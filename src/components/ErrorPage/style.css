@@ -1,0 +1,40 @@
+.error__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.error__title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #1E1E1E;
+    margin-bottom: 20px;
+}
+
+.error__subTitle {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #1E1E1E;
+    margin-bottom:69px;
+}
+
+.error__link {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    color: #3369F3;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    background: transparent;
+}
+
+.error__link :hover, .error__link :active, .error__link :focus {
+    opacity: 80%;
+}

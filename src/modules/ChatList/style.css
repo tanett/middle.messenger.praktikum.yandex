@@ -1,0 +1,198 @@
+.chats__container {
+    max-width: 1280px;
+    width: 100%;
+display: flex;
+    height: 100vh;
+}
+/*-------------------------left panel------------------------------*/
+.chats__leftPanel {
+    width: 310px;
+    background: #FBFBFB;
+    border-right: 1px solid #EAEAEA;
+    height: 100%;
+    padding: 21px 10px 0;
+}
+/*-------------------------profile link------------------------------*/
+.chats__profileLink {
+display: block;
+ text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: right;
+    color: #999999;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+.chats__profileLink:hover {
+    color: #6b6868;
+}
+/*-------------------------search------------------------------*/
+.chats__searchContainer{
+width: 100%;
+    padding: 14px 0;
+
+}
+.chats__inputSearch{
+    width: 100%;
+    text-align: center;
+    background: #EFEFEF;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    background-image: url("../../image/loop.svg");
+    background-repeat: no-repeat;
+    background-position-x: 39%;
+    background-position-y: 60%;
+}
+
+.chats__inputSearch:active, .chats__inputSearch:focus {
+    border: none;
+    outline: none;
+    background-image: none;
+}
+
+.chats__inputSearch::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: #999999;
+}
+
+/*-------------------------chat list------------------------------*/
+
+.chats__chatsListContainer {
+height: calc(100vh - 110px);
+    overflow-y: auto;
+}
+
+
+/*-------------------------right panel------------------------------*/
+.chats__messagesContainer {
+    background: #fff;
+    flex-grow: 1;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 54px 1fr 54px;
+    padding: 0 20px;
+}
+/*-------------------------chat info------------------------------*/
+.messagesContainer__chatInfo {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border-bottom: 1px solid #EAEAEA;
+    padding: 10px 10px 0 0;
+}
+
+.messagesContainer__chatInfoWrapper {
+display: flex;
+    align-items: center;
+}
+
+.messagesContainer__chatAvatar{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #EFEFEF;
+    margin-right: 10px;
+}
+
+.messagesContainer__chatName {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+   color: #1E1E1E;
+}
+
+.messagesContainer__chatActions {
+    height: 15px;
+    width: 3px;
+    align-self: center;
+cursor: pointer;
+    background-image: url("../../image/vertical3Dots.svg");
+    background-repeat: no-repeat;
+}
+/*-------------------------input block------------------------------*/
+
+.messagesContainer__inputContainer {
+    box-sizing: border-box;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    border-top: 1px solid #EAEAEA;
+    padding: 10px 0;
+}
+.inputContainer__addSomething {
+    width: 32px;
+    height: 32px;
+    background-color: white;
+    border: none;
+    background-image: url("../../image/skrepka.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.inputContainer__addSomething:hover {
+    opacity: 1;
+    background-image: url("../../image/skrepkaBlue.svg");
+}
+
+.inputContainer__input {
+    flex-grow: 1;
+    background: #EFEFEF;
+    border-radius: 30px;
+    border: none;
+    padding: 10px 20px;
+}
+
+.inputContainer__input::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+   color: #999999;
+}
+
+.inputContainer__input:active,.inputContainer__input:focus,.inputContainer__input:focus-visible {
+  border: none;
+    outline: none;
+}
+
+.inputContainer__submitBtn{
+    width: 28px;
+    height: 28px;
+   border-radius: 50%;
+    border:none;
+    background-image: url("../../image/arrowBlueRight.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.inputContainer__submitBtn:hover {
+    opacity: 0.8;
+}
+
+/*-------------------------message list------------------------------*/
+.messagesList {
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    overflow-y: auto;
+}
+
+.messagesList__date {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: #999999;
+    margin-top: 30px; /*  TODO change */
+}
