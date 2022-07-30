@@ -1,0 +1,32 @@
+
+.signIn_container {
+    background-color: white;
+    min-height: 450px;
+    width: 340px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 30px 30px;
+
+}
+
+.signIn_title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.signIn_fieldset{
+margin-bottom: 16px;
+    border: none;
+}
+
+.signIn_buttonBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+}

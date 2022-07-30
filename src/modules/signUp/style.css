@@ -1,0 +1,34 @@
+
+.signUp_container {
+    background-color: white;
+    min-height: 450px;
+    width: 340px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 50px 30px 30px;
+
+}
+
+.signUp_title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+
+.signUp_fieldset{
+    border: none;
+    margin-bottom: 16px;
+}
+
+.signUp_buttonBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+}

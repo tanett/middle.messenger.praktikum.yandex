@@ -1,0 +1,14 @@
+<div class="messagesItem {{classNames}}" id={{id}}>
+    {{#if text}}
+        <p class="messageItem__text">{{text}}</p>
+    {{/if}}
+    {{#if image}}
+        <img src={{image}} alt="image" class="messageItem__image">
+    {{/if}}
+    <div class="messageItem__date">
+        {{#if checkRead}}
+            <p class="messageItem__checkRead"></p>
+        {{/if}}
+        <p class="messageItem__date_text {{classNamesDate}}">{{date}}</p>
+    </div>
+</div>

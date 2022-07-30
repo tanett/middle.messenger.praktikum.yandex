@@ -1,0 +1,32 @@
+<main class="chats__container">
+    <section class="chats__leftPanel">
+        <a id="profileLink" class="chats__profileLink" href="./profile.html">Профиль&nbsp;&nbsp;></a>
+        <div class="chats__searchContainer">
+            <input id="search" name="search" class="chats__inputSearch" placeholder="Поиск"/>
+        </div>
+        <div class="chats__chatsListContainer">
+            {{{chatsList}}}
+        </div>
+    </section>
+    <section class="chats__messagesContainer">
+        <div class="messagesContainer__chatInfo">
+            <div class="messagesContainer__chatInfoWrapper">
+                <div class="messagesContainer__chatAvatar"></div>
+                <div class="messagesContainer__chatName">{{chatName}}</div>
+            </div>
+            <div class="messagesContainer__chatActions">
+            </div>
+        </div>
+      <div class="messagesList">
+          <div class="messagesList__date">21 июня</div>
+          {{{messagesList}}}
+      </div>
+        <div class="messagesContainer__inputContainer">
+            <button class="inputContainer__addSomething"></button>
+            <input id="message" name="imessage" class="inputContainer__input" maxlength="250" placeholder="Сообщение"/>
+            <button class="inputContainer__submitBtn"></button>
+        </div>
+    </section>
+
+</main>
+

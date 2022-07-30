@@ -1,0 +1,24 @@
+.button{
+    border-radius: 8px;
+
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+
+}
+.button:hover, .button:active, .button:focus {
+    opacity: 80%;
+}
+
+
+
+.button_primary {
+    background: #3369F3;
+    color: #FFFFFF;
+}
+
