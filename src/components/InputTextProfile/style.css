@@ -21,7 +21,9 @@
 }
 
 
-.inputBlockProfile__input  {
+
+
+.inputBlockProfile__input {
     border: none;
     flex-grow: 1;
 
@@ -29,7 +31,7 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
-  text-align: right;
+    text-align: right;
 
     color: #999999;
     background-color: transparent  !important;
@@ -37,6 +39,24 @@
 
 
 }
+
+.inputBlockProfile__input:not([disabled])  {
+    border-bottom: 1px solid gray;
+    flex-grow: 1;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: right;
+
+    color: #444242;
+    background-color: transparent  !important;
+    padding-bottom: 7px;
+
+
+}
+
 .inputBlockProfile__input:focus, .inputBlockProfile__input:active,.inputBlockProfile__input:focus-visible {
     outline: none;
 

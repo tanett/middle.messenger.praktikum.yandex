@@ -6,6 +6,9 @@
     display: flex;
 
 }
+.profile div {
+    width: 100%;
+}
 
 .profile__goBack{
     width: 64px;

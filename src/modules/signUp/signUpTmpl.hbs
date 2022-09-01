@@ -1,0 +1,35 @@
+export const signUpTmpl = `<main class="main">
+    <form class="signUp_container" name="signUp" id="signUpForm"  onsubmit={{onSubmitClick}}>
+        <h1 class="signUp_title">Регистрация</h1>
+        <fieldset class="signUp_fieldset">
+            {{{InputText id="email" name="email" type="email" placeholder="Почта"
+                         classInput="" classLabel="" label="Почта" errorMessage=""
+                         disabled=false }}}
+            {{{InputText id="login" name="login" type="text" placeholder="login"
+                         classInput="" classLabel="" label="Логин" errorMessage=""
+                         disabled=false }}}
+            {{{InputText id="first_name" name="first_name" type="text" placeholder="Имя"
+                         classInput="" classLabel="" label="Имя" errorMessage=""
+                         disabled=false }}}
+            {{{InputText id="second_name" name="second_name" type="text" placeholder="Фамилия"
+                         classInput="" classLabel="" label="Фамилия" errorMessage=""
+                         disabled=false }}}
+            {{{InputText id="phone" name="phone" type="text" placeholder="Телефон"
+                         classInput="" classLabel="" label="Телефон" errorMessage=""
+                         disabled=false }}}
+            {{{InputText id="password"  name="password" type="password" label="Пароль"
+                         placeholder="Пароль" errorMessage=""  disabled=false  classInput="" classLabel=""  }}}
+            {{{InputText id="passwordSubmi"  name="passwordSubmi" type="password" label="Пароль(еще раз)"
+                         placeholder="Пароль" errorMessage=""  disabled=false  classInput="" classLabel=""  }}}
+        </fieldset>
+
+        <div class="signUp_buttonBlock">
+            {{{Button text="Зарегестироваться" classNames="button_primary" type="submit" id="signUpSubmitBtn"}}}
+            {{{ButtonLink  text="Войти" classNames="buttonLink_center" id="onSignIn" onClick=onSignInClick}}}
+        </div>
+
+    </form>
+
+</main>`
+
+

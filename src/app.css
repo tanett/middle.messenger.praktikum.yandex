@@ -30,6 +30,10 @@
     align-content: center;
 }
 
+.main_wrapper {
+    flex-direction: column;
+}
+
 
 
 /*----------------------------------------------------*/

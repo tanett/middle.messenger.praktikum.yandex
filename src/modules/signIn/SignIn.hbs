@@ -1,0 +1,20 @@
+<main class="main">
+    <form class="signIn_container" name="signInForm" action="" id="signInForm"  onsubmit={{onSubmitClick}} >
+        <h1 class="signIn_title">Вход</h1>
+        <fieldset class="signIn_fieldset">
+            {{{InputText id="login" name="login" type="text" placeholder="login"
+                                 classInput="" classLabel="" label="Логин" errorMessage=""
+                                 disabled=false }}}
+            {{{InputText id="password"  name="password" type="password" label="Пароль"
+                           placeholder="Пароль" errorMessage=""  disabled=false  classInput="" classLabel=""  }}}
+        </fieldset>
+        <div class="signIn_buttonBlock">
+            {{{Button text="Войти" classNames="button_primary" type="submit" id="signInSubmitBtn"}}}
+            {{{ButtonLink  text="Нет аккаунта?" classNames="buttonLink_center" id="onSignUp" onClick=onSignUpClick}}}
+        </div>
+
+    </form>
+
+</main>
+
+
