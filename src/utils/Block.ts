@@ -378,7 +378,7 @@ class Block {
             return;
         }
         Object.assign(this.props, nextProps);
-     //   this.dispatchComponentDidUpdate()
+        //   this.dispatchComponentDidUpdate()
     };
 //----------------------------------------------------------------------------------------------------------------------
     private _render() {
