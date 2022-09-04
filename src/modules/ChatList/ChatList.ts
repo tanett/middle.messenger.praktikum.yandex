@@ -33,12 +33,28 @@ interface IChatList {
 }
 
 export class ChatList extends Block{
+    messageValue: string="";
     constructor(props: IChatList) {
         super('ChatList', props);
         this.props = props
-    }
-    //chats
 
+    }
+
+    //inputMessage
+    onChangeMessage(e:Event){
+        // @ts-ignore
+        this.messageValue = e.target?.value
+    }
+
+    onSubmitMessageClick(e:Event){
+        e.preventDefault()
+        console.log({message: this.messageValue})
+    }
+    onAddInMessageClick(e:Event){
+        console.log("add in message btn")
+    }
+
+    //chats
    chats: typeChatItem[] = [{id:'11',text: '554 555', chatName: 'GHJG',avatar:null ,date: 'sun',count: 0 , classNames:''},
         {id:'22',text: '555555', chatName: 'yyyy',avatar:null, date: 'mun',count: 5 , classNames:''},
     ]
@@ -95,6 +111,9 @@ messagesList = this.messages.map((item) => {
         return this.compile(ChatListTmpl, {
             chatName: 'Вася',
             children: this.children,
+            onChangeMessage: this.onChangeMessage.bind(this),
+            onSubmitMessageClick: this.onSubmitMessageClick.bind(this),
+            onAddInMessageClick: this.onAddInMessageClick.bind(this)
         })
     }
 }

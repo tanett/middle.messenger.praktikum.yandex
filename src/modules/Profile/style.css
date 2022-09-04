@@ -41,6 +41,10 @@
     padding-bottom: 109px;
 }
 
+.profile__container_edit{
+   justify-content: center;
+}
+
 .profile__avatar{
     width: 130px;
     height: 130px;
@@ -96,8 +100,17 @@
     margin-bottom: 60px;
 }
 
+
 .profile__fieldsItem{
    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 10px;
+
+}
+
+.profile__btnList {
+    display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #EAEAEA;
     margin-bottom: 10px;

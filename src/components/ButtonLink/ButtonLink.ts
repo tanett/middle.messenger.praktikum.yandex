@@ -7,7 +7,7 @@ import  Block  from '../../utils/Block';
 interface IButtonLink  {id: string,text: string, classNames: string,  onClick: () => void;}
 
 export class ButtonLink extends Block {
-    props;
+
 
     constructor(props: IButtonLink) {
         super('ButtonLink',  {
@@ -18,7 +18,6 @@ export class ButtonLink extends Block {
                 click: props.onClick
             }
     })
-        this.props = props
     }
 
     render() {

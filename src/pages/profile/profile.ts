@@ -271,7 +271,7 @@ import components from '../../components/**/index.ts';
 // @ts-ignore
 import modules from '../../modules/**/index.ts';
 
-console.log(components, modules)
+
 import { helperRegisterComponent } from '../../utils/helperRegisterComponent';
 
 
@@ -284,7 +284,7 @@ window.addEventListener('DOMContentLoaded', () => {
     Object.values(modules).forEach(module => helperRegisterComponent(module.default));
     const root = document.querySelector('#root')!;
 
-    const ProfilePage= new Profile({name: "Иван", secondName: "Ivanov", displayName: "vanya", email: "pochta@yandex.ru", login: "Ivan", phone: "+79659959598", editMode: false});
+    const ProfilePage= new Profile({name: "Иван", secondName: "Ivanov", displayName: "vanya", email: "pochta@yandex.ru", login: "Ivan", phone: "+79659959598", password: '1111', editMode: 'main'});
 
     root.append(ProfilePage.getContent()!);
 

@@ -1,6 +1,7 @@
 import './style.css'
 import SignInTmpl from './SignIn.hbs'
 import Block from '../../utils/Block';
+import { inputRules } from '../../utils/validationRules';
 
 
 interface ISignIn {
@@ -9,10 +10,17 @@ interface ISignIn {
 
 
 export class SignIn extends Block {
+    private loginInputValue: string = '';
+    private passwordInputValue: string = '';
+    private validationObject = {
+        validLogin: true,
+        validPassword: true
+    }
+
     constructor(props: ISignIn) {
         super('SignIn', props);
-        this.props = props
     }
+
 
 // //inputs in component
 // const inputList = [
@@ -28,28 +36,71 @@ export class SignIn extends Block {
 //         fieldset: Fieldset(inputList, "signIn_fieldset")
 //     })
 
+//----------------------------------------------------------------------------------------------------------------------
     onSubmitClick(e: Event) {
+        e.preventDefault()
 
-        console.log('tho',this)
-        console.log('onSubmit click')
-        const inputs = Array.from(document.querySelectorAll('input'))
-        console.log('login',document.querySelector('#login'))
-        const data = inputs.map((input) => [ input.name, input.value ])
+
+        const data = {
+            login: this.loginInputValue,
+            password: this.passwordInputValue,
+            validation: this.validationObject
+        }
         console.log('input data', data)
-
     }
-
+//----------------------------------------------------------------------------------------------------------------------
     onSignUpClick() {
         window.location.pathname = '/signUp.html'
-        console.log('onSignUp  click')
+    }
+//----------------------------------------------------------------------------------------------------------------------
+    onInputLoginHandler(e: Event): any {
+// @ts-ignore
+      this.loginInputValue=e.target?.value
+       // this.setProps({errorLoginMessage: ""})
     }
 
+    onChangeLoginHandler(e: Event): any {
 
+        // @ts-ignore
+        this.loginInputValue=e.target?.value
+        this.validationObject.validLogin = !!this.loginInputValue.match(inputRules.login) ;
+     if(!this.validationObject.validLogin) {
+         this.setProps({errorLoginMessage: this.loginInputValue.trim()===''?"Обязательное поле" :"Логин может содержать только буквы и '-' "})
+     } else { this.setProps({errorLoginMessage: ""})}
+
+    }
+//----------------------------------------------------------------------------------------------------------------------
+
+    onInputPasswordHandler(e: Event) {
+// @ts-ignore
+        this.passwordInputValue = e.target?.value
+
+    }
+
+    onChangePasswordHandler(e: Event): any {
+
+        // @ts-ignore
+        this.passwordInputValue=e.target?.value
+        this.validationObject.validPassword = this.passwordInputValue.trim() !== ''
+        if(!this.validationObject.validPassword) {
+            this.setProps({errorPasswordMessage: "Обязательное поле"})
+        } else { this.setProps({errorPasswordMessage: ""})}
+
+    }
+//----------------------------------------------------------------------------------------------------------------------
     render(): any {
 
         return this.compile(SignInTmpl, {
-            onSubmitClick: this.onSubmitClick,
+            onSubmitClick: ( (e: Event) => this.onSubmitClick(e) ).bind(this),
             onSignUpClick: this.onSignUpClick,
+            onChangeLogin:( (e: Event) => this.onChangeLoginHandler(e) ).bind(this),
+            onChangePassword:( (e: Event) => this.onChangePasswordHandler(e) ).bind(this),
+            onInputLogin: ( (e: Event) => this.onInputLoginHandler(e) ).bind(this),
+            onInputPassword: ( (e: Event) => this.onInputPasswordHandler(e) ).bind(this),
+            loginValue: this.loginInputValue,
+            errorLoginMessage: this.props.errorLoginMessage,
+            errorPasswordMessage: this.props.errorPasswordMessage,
+            passwordValue: this.passwordInputValue,
             children: this.children,
         })
     }

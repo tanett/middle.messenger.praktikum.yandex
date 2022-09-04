@@ -8,11 +8,9 @@ interface IErrorPageLayout {
 }
 
 export class ErrorPageLayout extends Block{
-    props;
 
     constructor(props:IErrorPageLayout) {
         super('errorLayout', props);
-        this.props = props
     }
 
     render(): any {

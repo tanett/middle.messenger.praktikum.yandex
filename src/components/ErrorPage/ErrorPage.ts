@@ -11,11 +11,11 @@ interface IErrorPage {
 }
 
 export class ErrorPage extends Block {
-    props;
+
 
     constructor(props: IErrorPage) {
         super('errorPage', props);
-        this.props = props
+
 
     }
 

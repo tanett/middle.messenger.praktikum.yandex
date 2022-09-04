@@ -10,7 +10,6 @@ interface IMessage {
 export class Message extends Block {
     constructor(props: IMessage) {
         super('Message', props);
-        this.props = props
     }
 
 

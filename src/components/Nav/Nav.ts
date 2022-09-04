@@ -9,12 +9,9 @@ import NavTmpl  from './NavTmpl.hbs';
 interface INav  { items: { url: string, title: string }[], events: { [key: string]: (events: Event) => void }}
 
 export class Nav extends Block {
-    props;
-
 
     constructor(props: INav) {
-        super('ul', props);
-        this.props = props
+        super('Nav', props);
     }
 
 

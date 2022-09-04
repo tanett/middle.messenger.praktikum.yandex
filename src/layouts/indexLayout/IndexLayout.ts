@@ -10,13 +10,9 @@ interface IIndexLayout {
 }
 
 export class IndexLayout extends Block {
-    props;
-
 
     constructor(props:IIndexLayout ) {
         super('IndexLayout', props);
-        this.props = props
-
     }
 
 

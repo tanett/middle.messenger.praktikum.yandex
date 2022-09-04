@@ -343,48 +343,48 @@ class Block {
 
 //----------------------------------------------------------------------------------------------------------------------
     public componentDidMount() {}
-
+//----------------------------------------------------------------------------------------------------------------------
+    get element() {
+        return this._element;
+    }
 //----------------------------------------------------------------------------------------------------------------------
     public dispatchComponentDidMount() {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
         Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
     }
+//----------------------------------------------------------------------------------------------------------------------
+    public dispatchComponentDidUpdate() {
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU);
 
+        Object.values(this.children).forEach(child => child.dispatchComponentDidUpdate());
+    }
 //----------------------------------------------------------------------------------------------------------------------
     private _componentDidUpdate(oldProps: any, newProps: any) {
         if (this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-            console.log('update')
+
         }
     }
 
 //----------------------------------------------------------------------------------------------------------------------
     protected componentDidUpdate(oldProps: any, newProps: any) {
+
         return true;
     }
-
 //----------------------------------------------------------------------------------------------------------------------
     setProps = (nextProps: any) => {
         if (!nextProps) {
             return;
         }
-
         Object.assign(this.props, nextProps);
+     //   this.dispatchComponentDidUpdate()
     };
-
-//----------------------------------------------------------------------------------------------------------------------
-    get element() {
-        return this._element;
-    }
-
 //----------------------------------------------------------------------------------------------------------------------
     private _render() {
 
         const fragment = this.render();
-
         // this._removeEvents();
-
         const newElement = fragment.firstElementChild as HTMLElement
 
         this._element?.replaceWith(newElement)
@@ -448,7 +448,6 @@ class Block {
                 const oldTarget = { ...target }
 
                 target[prop] = value;
-
 
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
                 return true;

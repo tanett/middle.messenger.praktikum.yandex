@@ -1,15 +1,10 @@
 <div class="inputBlockProfile">
     <div class="inputBlockProfile__wrapper">
         <p class="inputBlockProfile__label  {{classLabel}}">{{label}}</p>
-        <input id="{{id}}" name="{{name}}" type={{type}} placeholder="{{placeholder}}"
-               class="inputBlockProfile__input {{classInput}}"
-               {{#if disabled}}
-                    disabled
-               {{/if}}
-               />
+        {{{Input id=id name=name type=type placeholder=placeholder
+                 classInput="inputBlockProfile__input {{classInput}}" value=value onInput=onInput
+                 disabled=disabled onChange=onChange pattern=pattern}}}
     </div>
-    {{#if errorMessage}}
-        <p class="inputBlockProfile__message">{{errorMessage}}</p>
-    {{/if}}
+        <p id="id-errorMsg" class="inputBlockProfile__message">{{errorMessage}}</p>
 
 </div>

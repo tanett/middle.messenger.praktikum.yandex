@@ -23,11 +23,13 @@
           {{{ Message id="222" text="22222" image=null date="25 jjj"  checkRead=true classNames="messagesItem__interlocutor"}}}
           {{{ Message id="333" text="3333" image=null date="26 jjj"  checkRead=true classNames="messagesItem__host"}}}
       </div>
-        <div class="messagesContainer__inputContainer">
-            <button class="inputContainer__addSomething"></button>
-            <input id="message" name="imessage" class="inputContainer__input" maxlength="250" placeholder="Сообщение"/>
-            <button class="inputContainer__submitBtn"></button>
-        </div>
+        <form name="messageForm" class="messagesContainer__inputContainer">
+            {{{Button text="" classNames="inputContainer__addSomething" type="button" id="addInMessageBtn" onClick=onAddInMessageClick}}}
+            {{{Input id="message" name="imessage" type="text" placeholder="Сообщение"
+                     classInput="inputContainer__input" value=messageValue pattern=".{1,250}"
+                     disabled=false onChange=onChangeMessage}}}
+            {{{Button text="" classNames="inputContainer__submitBtn" type="submit" id="messageSubmitBtn" onClick=onSubmitMessageClick}}}
+        </form>
     </section>
 
 </main>

@@ -1,41 +1,51 @@
-
-import  InputTextTmpl  from './InputTextTmpl.hbs'
+import InputTextTmpl from './InputTextTmpl.hbs'
 import './style.css'
-import  Block  from '../../utils/Block';
+import Block from '../../utils/Block';
 
 
-interface  IInputText {
-    id:string,
-    name: string ,
-    label:string,
+interface IInputText {
+    id: string,
+    name: string,
+    label: string,
     type: string,
     placeholder: string,
-    errorMessage:string,
+    errorMessage: string,
     disabled: boolean,
-    onClick: () => void
+    value: string,
+    onChange: () => void,
+    onInput: ()=> void,
+    pattern: string
 }
 
 export class InputText extends Block {
-    props;
 
     constructor(props: IInputText) {
-        super('InputText', {
-            id: props.id,
-            name: props.name ,
-            label: props.label,
-            type: props.type,
-            placeholder: props.placeholder,
-            errorMessage:props.errorMessage,
-            disabled: props.disabled,
-            events: {
-                click: props.onClick
-            }
-        });
-        this.props = props
+        super('InputText', props);
+
     }
+
+    // onBlurHandler(e:Event){
+    //     console.log('onBlur')
+    //   // @ts-ignore
+    //     this.setProps({errorMessage:e.target.validationMessage})
+    //     console.log('onBlur valid Msg', this.props.errorMessage)
+    // }
 
     render() {
 
-        return this.compile(InputTextTmpl,this.props)
+        return this.compile(InputTextTmpl, {
+            id: this.id,
+            name: this.props.name,
+            label: this.props.label,
+            type: this.props.type,
+            placeholder: this.props.placeholder,
+            errorMessage: this.props.errorMessage,
+            disabled: this.props.disabled,
+            value: this.props.value,
+            onChange: this.props.onChange,
+            onInput: this.props.onInput,
+            pattern: this.props.pattern,
+            children: this.children
+        })
     }
 }

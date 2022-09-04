@@ -1,9 +1,8 @@
 <div class="inputBlock">
     <p class="inputBlock__label  {{classLabel}}">{{label}}</p>
-    <input id="{{id}}" name="{{name}}" type="{{type}}" placeholder="{{placeholder}}" class="inputBlock__input {{classInput}}"
-           {{#if disabled}}
-           disabled
-           {{/if}}
-    />
+    {{{Input id=id name=name type=type placeholder=placeholder
+                 classInput="inputBlock__input " value=value onInput=onInput
+                 disabled=disabled onChange=onChange pattern=pattern }}}
     <p class="inputBlock__message">{{errorMessage}}</p>
+
 </div>
