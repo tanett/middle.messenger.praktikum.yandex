@@ -6,15 +6,14 @@
     "module": "commonjs",
     "strictNullChecks": true,
     "sourceMap": true,
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+    "esModuleInterop": true,
 
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "forceConsistentCasingInFileNames": true,
 
-    /* Type Checking */
-    "strict": true,                                      /* Enable all strict type-checking options. */
+    "strict": true,
 
     "skipLibCheck": true,
-    /* Skip type checking all .d.ts files. */
+
     "lib": ["ES2020", "DOM"]
   },
 
