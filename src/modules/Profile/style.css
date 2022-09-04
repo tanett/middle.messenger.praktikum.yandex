@@ -6,6 +6,9 @@
     display: flex;
 
 }
+.profile div {
+    width: 100%;
+}
 
 .profile__goBack{
     width: 64px;
@@ -36,6 +39,10 @@
     background: #FBFBFB;
     padding: 60px;
     padding-bottom: 109px;
+}
+
+.profile__container_edit{
+   justify-content: center;
 }
 
 .profile__avatar{
@@ -93,8 +100,17 @@
     margin-bottom: 60px;
 }
 
+
 .profile__fieldsItem{
    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 10px;
+
+}
+
+.profile__btnList {
+    display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #EAEAEA;
     margin-bottom: 10px;
