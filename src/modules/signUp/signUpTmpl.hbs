@@ -1,44 +1,130 @@
 <main class="main">
-    <form class="signUp_container" name="signUp" id="signUpForm" >
+    <form class="signUp_container" name="signUp" id="signUpForm">
         <h1 class="signUp_title">Регистрация</h1>
         <fieldset class="signUp_fieldset">
-            {{{InputText id="email"  name="email" type="email" placeholder="Почта"
-                         classInput="inputBlock__input " classLabel="" label="Почта" errorMessage=errorEmailMessage
-                         pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-                         disabled=false  value=emailValue
-                         onChange=onChangeEmail onInput=onInputEmail}}}
-            {{{InputText id="login"  name="login" type="text" placeholder="Логин"
-                         classInput="inputBlock__input " classLabel="" label="Логин" errorMessage=errorLoginMessage value=loginValue
-                         disabled=false pattern="^[A-Za-z][A-Za-z0-9_-]{2,19}$"
-                         onChange=onChangeLogin onInput=onInputLogin}}}
-            {{{InputText id="first_name" name="first_name" type="text" placeholder="Имя"
-                         classInput="inputBlock__input " classLabel="" label="Имя" errorMessage=errorFirstNameMessage value=firstNameValue
-                         disabled=false pattern="^[A-ZА-ЯЁ]([a-zа-яё-])+"
-                         onChange=onChangeFirstName onInput=onInputFirstName}}}
-            {{{InputText id="second_name" name="second_name" type="text" placeholder="Фамилия"
-                         classInput="inputBlock__input " classLabel="" label="Фамилия" errorMessage=errorSecondNameMessage value=secondNameValue
-                         disabled=false pattern="^[A-ZА-ЯЁ]([a-zа-яё-])+"
-                         onChange=onChangeSecondName onInput=onInputSecondName}}}
-            {{{InputText id="phone" name="phone" type="text" placeholder="Телефон" value=phoneValue
-                         classInput="inputBlock__input " classLabel="" label="Телефон" errorMessage=errorPhoneMessage pattern="^([+])?\d{9,15}$"
-                         disabled=false onChange=onChangePhone onInput=onInputPhone}}}
-            {{{InputText id="password"  name="password" type="password" label="Пароль" value=passwordValue
-                         placeholder="Пароль" errorMessage=errorPasswordMessage  disabled=false  classInput="inputBlock__input " classLabel=""
-                         pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"
-                         onChange=onChangePassword  onInput=onInputPassword
-                         }}}
-            {{{InputText id="passwordSubmit"  name="passwordSubmit" type="password" label="Пароль(еще раз)" value=submitPasswordValue
-                         placeholder="Пароль" errorMessage=errorSubmitPasswordMessage  disabled=false  classInput="inputBlock__input " classLabel="" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"
-                     onChange=onChangeSubmitPassword onInput=onInputSubmitPassword}}}
+            {{{InputText
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Почта"
+                    classInput="inputBlock__input "
+                    classLabel=""
+                    label="Почта"
+                    errorMessage=errorEmailMessage
+                    pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                    disabled=false
+                    value=emailValue
+                    onChange=onChangeEmail
+                    onInput=onInputEmail
+            }}}
+            {{{InputText
+                    id="login"
+                    name="login"
+                    type="text"
+                    placeholder="Логин"
+                    classInput="inputBlock__input "
+                    classLabel=""
+                    label="Логин"
+                    errorMessage=errorLoginMessage
+                    value=loginValue
+                    disabled=false
+                    pattern="^[A-Za-z][A-Za-z0-9_-]{2,19}$"
+                    onChange=onChangeLogin
+                    onInput=onInputLogin
+            }}}
+            {{{InputText
+                    id="first_name"
+                    name="first_name"
+                    type="text"
+                    placeholder="Имя"
+                    classInput="inputBlock__input "
+                    classLabel=""
+                    label="Имя"
+                    errorMessage=errorFirstNameMessage
+                    value=firstNameValue
+                    disabled=false
+                    pattern="^[A-ZА-ЯЁ]([a-zа-яё-])+"
+                    onChange=onChangeFirstName
+                    onInput=onInputFirstName
+            }}}
+            {{{InputText
+                    id="second_name"
+                    name="second_name"
+                    type="text"
+                    placeholder="Фамилия"
+                    classInput="inputBlock__input "
+                    classLabel=""
+                    label="Фамилия"
+                    errorMessage=errorSecondNameMessage
+                    value=secondNameValue
+                    disabled=false
+                    pattern="^[A-ZА-ЯЁ]([a-zа-яё-])+"
+                    onChange=onChangeSecondName
+                    onInput=onInputSecondName
+            }}}
+            {{{InputText
+                    id="phone"
+                    name="phone"
+                    type="text"
+                    placeholder="Телефон"
+                    value=phoneValue
+                    classInput="inputBlock__input "
+                    classLabel=""
+                    label="Телефон"
+                    errorMessage=errorPhoneMessage
+                    pattern="^([+])?\d{9,15}$"
+                    disabled=false
+                    onChange=onChangePhone
+                    onInput=onInputPhone
+            }}}
+            {{{InputText
+                    id="password"
+                    name="password"
+                    type="password"
+                    label="Пароль"
+                    value=passwordValue
+                    placeholder="Пароль"
+                    errorMessage=errorPasswordMessage
+                    disabled=false
+                    classInput="inputBlock__input "
+                    classLabel=""
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"
+                    onChange=onChangePassword
+                    onInput=onInputPassword
+            }}}
+            {{{InputText
+                    id="passwordSubmit"
+                    name="passwordSubmit"
+                    type="password"
+                    label="Пароль(еще раз)"
+                    value=submitPasswordValue
+                    placeholder="Пароль"
+                    errorMessage=errorSubmitPasswordMessage
+                    disabled=false
+                    classInput="inputBlock__input "
+                    classLabel=""
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$"
+                    onChange=onChangeSubmitPassword
+                    onInput=onInputSubmitPassword
+            }}}
         </fieldset>
 
         <div class="signUp_buttonBlock">
-            {{{Button text="Зарегестироваться" classNames="button_primary" type="submit" id="signUpSubmitBtn" onClick=onSubmitClick}}}
-            {{{ButtonLink  text="Войти" classNames="buttonLink_center" id="onSignIn" onClick=onSignInClick}}}
+            {{{Button
+                    text="Зарегестироваться"
+                    classNames="button_primary"
+                    type="submit"
+                    id="signUpSubmitBtn"
+                    onClick=onSubmitClick
+            }}}
+            {{{ButtonLink
+                    text="Войти"
+                    classNames="buttonLink_center"
+                    id="onSignIn"
+                    onClick=onSignInClick
+            }}}
         </div>
 
     </form>
 
 </main>
-
-

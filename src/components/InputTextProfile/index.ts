@@ -1,1 +1,1 @@
-export { InputTextProfile as default } from './InputTextProfile';
+export { InputTextProfile as default } from './InputTextProfile'

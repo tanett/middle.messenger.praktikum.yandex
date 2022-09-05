@@ -1,29 +1,22 @@
-import  Block  from '../../utils/Block';
+import Block from '../../utils/Block'
 
-
-import indexLayoutTmpl from './indexLayoutTmpl.hbs';
-
+import indexLayoutTmpl from './indexLayoutTmpl.hbs'
 
 interface IIndexLayout {
-    title: string,
-    content?: any
+  title: string;
+  content?: any;
 }
 
-export class IndexLayout extends Block {
+export class IndexLayout extends Block<IIndexLayout> {
+  constructor(props: IIndexLayout) {
+    super('IndexLayout', props)
+  }
 
-    constructor(props:IIndexLayout ) {
-        super('IndexLayout', props);
-    }
-
-
-    render(): any {
-
-        return this.compile(indexLayoutTmpl, {
-            title: this.props.title,
-            onClick:()=> {console.log('Click')},
-            children: this.children,
-
-        })
-    }
+  render(): any {
+    return this.compile(indexLayoutTmpl, {
+      title: this.props.title,
+      onClick: () => { console.log('Click')},
+      children: this.children,
+    })
+  }
 }
-

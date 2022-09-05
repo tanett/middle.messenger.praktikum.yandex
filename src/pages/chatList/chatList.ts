@@ -1,27 +1,22 @@
-import { ChatList } from '../../modules/ChatList/ChatList';
-
+import { ChatList } from '../../modules/ChatList/ChatList'
 // @ts-ignore
-import components from '../../components/**/index.ts';
+import components from '../../components/**/index.ts'
 // @ts-ignore
-import modules from '../../modules/**/index.ts';
+import modules from '../../modules/**/index.ts'
 
-import { helperRegisterComponent } from '../../utils/helperRegisterComponent';
-
-
+import { helperRegisterComponent } from '../../utils/helperRegisterComponent'
 
 window.addEventListener('DOMContentLoaded', () => {
-    // @ts-ignore
-    Object.values(components).forEach(component => helperRegisterComponent(component.default));
+  // @ts-ignore
+  Object.values(components).forEach((component) => helperRegisterComponent(component.default))
 
-    // @ts-ignore
-    Object.values(modules).forEach(module => helperRegisterComponent(module.default));
-    const root = document.querySelector('#root')!;
+  // @ts-ignore
+  Object.values(modules).forEach((module) => helperRegisterComponent(module.default))
+  const root = document.querySelector('#root')!
 
-    const ChatListPage= new ChatList({});
+  const ChatListPage = new ChatList({})
 
-    root.append(ChatListPage.getContent()!);
+  root.append(ChatListPage.getContent()!)
 
-    ChatListPage.dispatchComponentDidMount();
-});
-
-
+  ChatListPage.dispatchComponentDidMount()
+})

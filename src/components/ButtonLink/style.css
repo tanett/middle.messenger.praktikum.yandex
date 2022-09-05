@@ -1,26 +1,27 @@
-.buttonLink{
+.buttonLink {
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
     line-height: 13px;
     border: none;
     cursor: pointer;
-    color: #3369F3;
+    color: #3369f3;
     text-align: left;
     background: transparent;
-
 }
-.buttonLink:hover, .buttonLink:active, .buttonLink:focus {
+
+.buttonLink:hover,
+.buttonLink:active,
+.buttonLink:focus {
     opacity: 80%;
 }
 
 .buttonLink_red {
-    color: #FF0000;
+    color: #ff0000;
 }
 
-.buttonLink_center{
-    font-size: 11px !important;
-    line-height: 11px !important;
-   text-align: center !important;
-
+.buttonLink.buttonLink_center {
+    font-size: 11px;
+    line-height: 11px;
+    text-align: center;
 }

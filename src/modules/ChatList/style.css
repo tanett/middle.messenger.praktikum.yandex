@@ -1,21 +1,23 @@
 .chats__container {
     max-width: 1280px;
     width: 100%;
-display: flex;
+    display: flex;
     height: 100vh;
 }
+
 /*-------------------------left panel------------------------------*/
 .chats__leftPanel {
     width: 310px;
-    background: #FBFBFB;
-    border-right: 1px solid #EAEAEA;
+    background: #fbfbfb;
+    border-right: 1px solid #eaeaea;
     height: 100%;
     padding: 21px 10px 0;
 }
+
 /*-------------------------profile link------------------------------*/
 .chats__profileLink {
-display: block;
- text-decoration: none;
+    display: block;
+    text-decoration: none;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -25,19 +27,21 @@ display: block;
     cursor: pointer;
     margin-bottom: 8px;
 }
+
 .chats__profileLink:hover {
     color: #6b6868;
 }
-/*-------------------------search------------------------------*/
-.chats__searchContainer{
-width: 100%;
-    padding: 14px 0;
 
+/*-------------------------search------------------------------*/
+.chats__searchContainer {
+    width: 100%;
+    padding: 14px 0;
 }
-.chats__inputSearch{
+
+.chats__inputSearch {
     width: 100%;
     text-align: center;
-    background: #EFEFEF;
+    background: #efefef;
     border-radius: 5px;
     border: none;
     padding: 10px;
@@ -47,7 +51,8 @@ width: 100%;
     background-position-y: 60%;
 }
 
-.chats__inputSearch:active, .chats__inputSearch:focus {
+.chats__inputSearch:active,
+.chats__inputSearch:focus {
     border: none;
     outline: none;
     background-image: none;
@@ -65,10 +70,9 @@ width: 100%;
 /*-------------------------chat list------------------------------*/
 
 .chats__chatsListContainer {
-height: calc(100vh - 110px);
+    height: calc(100vh - 110px);
     overflow-y: auto;
 }
-
 
 /*-------------------------right panel------------------------------*/
 .chats__messagesContainer {
@@ -79,25 +83,26 @@ height: calc(100vh - 110px);
     grid-template-rows: 54px 1fr 54px;
     padding: 0 20px;
 }
+
 /*-------------------------chat info------------------------------*/
 .messagesContainer__chatInfo {
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid #eaeaea;
     padding: 10px 10px 0 0;
 }
 
 .messagesContainer__chatInfoWrapper {
-display: flex;
+    display: flex;
     align-items: center;
 }
 
-.messagesContainer__chatAvatar{
+.messagesContainer__chatAvatar {
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background-color: #EFEFEF;
+    background-color: #efefef;
     margin-right: 10px;
 }
 
@@ -106,17 +111,18 @@ display: flex;
     font-weight: 600;
     font-size: 13px;
     line-height: 13px;
-   color: #1E1E1E;
+    color: #1e1e1e;
 }
 
 .messagesContainer__chatActions {
     height: 15px;
     width: 3px;
     align-self: center;
-cursor: pointer;
+    cursor: pointer;
     background-image: url("../../image/vertical3Dots.svg");
     background-repeat: no-repeat;
 }
+
 /*-------------------------input block------------------------------*/
 
 .messagesContainer__inputContainer {
@@ -124,9 +130,10 @@ cursor: pointer;
     display: flex;
     gap: 10px;
     justify-content: space-between;
-    border-top: 1px solid #EAEAEA;
+    border-top: 1px solid #eaeaea;
     padding: 10px 0;
 }
+
 .inputContainer__addSomething {
     width: 32px;
     height: 32px;
@@ -146,7 +153,7 @@ cursor: pointer;
 
 .inputContainer__input {
     flex-grow: 1;
-    background: #EFEFEF;
+    background: #efefef;
     border-radius: 30px;
     border: none;
     padding: 10px 20px;
@@ -157,19 +164,21 @@ cursor: pointer;
     font-weight: 500;
     font-size: 12px;
     line-height: 12px;
-   color: #999999;
+    color: #999999;
 }
 
-.inputContainer__input:active,.inputContainer__input:focus,.inputContainer__input:focus-visible {
-  border: none;
+.inputContainer__input:active,
+.inputContainer__input:focus,
+.inputContainer__input:focus-visible {
+    border: none;
     outline: none;
 }
 
-.inputContainer__submitBtn{
+.inputContainer__submitBtn {
     width: 28px;
     height: 28px;
-   border-radius: 50%;
-    border:none;
+    border-radius: 50%;
+    border: none;
     background-image: url("../../image/arrowBlueRight.svg");
     background-position: center;
     background-repeat: no-repeat;
@@ -184,7 +193,7 @@ cursor: pointer;
 .messagesList {
     display: flex;
     flex-direction: column;
-    gap:30px;
+    gap: 30px;
     overflow-y: auto;
 }
 

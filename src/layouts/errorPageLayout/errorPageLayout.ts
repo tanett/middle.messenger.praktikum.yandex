@@ -1,20 +1,17 @@
-import Block  from '../../utils/Block';
+import Block from '../../utils/Block'
 
-
-import errorPageLayoutTmpl  from './errorPageLayoutTmpl.hbs';
+import errorPageLayoutTmpl from './errorPageLayoutTmpl.hbs'
 
 interface IErrorPageLayout {
-    content?: any
+  content?: any;
 }
 
-export class ErrorPageLayout extends Block{
+export class ErrorPageLayout extends Block<IErrorPageLayout> {
+  constructor(props: IErrorPageLayout) {
+    super('errorLayout', props)
+  }
 
-    constructor(props:IErrorPageLayout) {
-        super('errorLayout', props);
-    }
-
-    render(): any {
-
+  render(): any {
     return this.compile(errorPageLayoutTmpl, this.props)
-    }
+  }
 }

@@ -10,50 +10,83 @@
         <form name="profileData_form">
 
             <ul class="profile__fields">
-                <li class="profile__fieldsItem">{{{InputTextProfile  id="login" name=name type="text" placeholder=loginValue
-                                                                     classInput="" classLabel="" label="Логин"
-                                                                     errorMessage=''
-                                                                     disabled=true }}}</li>
+                <li class="profile__fieldsItem">{{{InputTextProfile
+                        id="login"
+                        name=name
+                        type="text"
+                        placeholder=loginValue
+                        label="Логин"
+                        disabled=true
+                }}}</li>
 
-                <li class="profile__fieldsItem">{{{InputTextProfile  id="name" name=name type="text" placeholder=firstNameValue
-                                                                     classInput="" classLabel="" label="Имя"
-                                                                     errorMessage=''
-                                                                     disabled=true }}}</li>
-                <li class="profile__fieldsItem">{{{InputTextProfile  id="secondName" name=secondName type="text"
-                                                                     placeholder=secondNameValue
-                                                                     classInput="" classLabel="" label="Фамилия"
-                                                                     errorMessage=''
-                                                                     disabled=true }}}</li>
-                <li class="profile__fieldsItem">{{{InputTextProfile  id="displayName" name=displayName type="text"
-                                                                     placeholder=displayNameValue
-                                                                     classInput="" classLabel="" label="Имя в чате"
-                                                                     errorMessage=''
-                                                                     disabled=true }}}</li>
-                <li class="profile__fieldsItem">{{{InputTextProfile  id="email" name=email type="text" placeholder=emailValue
-                                                                     classInput="" classLabel="" label="Почта"
-                                                                     errorMessage='' value=emailValue
-                                                                     disabled=true }}}</li>
-                <li class="profile__fieldsItem">{{{InputTextProfile  id="phone" name=phone type="text" placeholder="Телефон"
-                                                                     value=phoneValue
-                                                                     classInput="" classLabel="" label="Телефон"
-                                                                     errorMessage=errorPhoneMessage value=phoneValue
-                                                                     disabled=true}}}</li>
+                <li class="profile__fieldsItem">{{{InputTextProfile
+                        id="name"
+                        name=name
+                        type="text"
+                        placeholder=firstNameValue
+                        label="Имя"
+                        disabled=true
+                }}}</li>
+                <li class="profile__fieldsItem">{{{InputTextProfile
+                        id="secondName"
+                        name=secondName
+                        type="text"
+                        placeholder=secondNameValue
+                        label="Фамилия"
+                        disabled=true
+                }}}</li>
+                <li class="profile__fieldsItem">{{{InputTextProfile
+                        id="displayName"
+                        name=displayName
+                        type="text"
+                        placeholder=displayNameValue
+                        label="Имя в чате"
+                        disabled=true
+                }}}</li>
+                <li class="profile__fieldsItem">{{{InputTextProfile
+                        id="email"
+                        name=email
+                        type="text"
+                        placeholder=emailValue
+                        label="Почта"
+                        value=emailValue
+                        disabled=true
+                }}}</li>
+                <li class="profile__fieldsItem">{{{InputTextProfile
+                        id="phone"
+                        name=phone
+                        type="text"
+                        placeholder="Телефон"
+                        value=phoneValue
+                        label="Телефон"
+                        value=phoneValue
+                        disabled=true
+                }}}</li>
 
             </ul>
 
         </form>
 
-
-            <ul class="profile__fields">
-                <li class="profile__btnList">{{{ButtonLink  text="Изменить данные" classNames=""  id="changeBtn"
-                                                               onClick=onChangeClick}}}</li>
-                <li class="profile__btnList">{{{ButtonLink  text="Изменить пароль" classNames="" id="changeBtn"
-                                                               onClick=onChangePasswClick}}}</li>
-                <li class="profile__btnList">{{{ButtonLink  text="Выйти" classNames="buttonLink_red" id="outBtn"
-                                                               onClick=onOutClick}}}</li>
-            </ul>
-
-
+        <ul class="profile__fields">
+            <li class="profile__btnList">{{{ButtonLink
+                    text="Изменить данные"
+                    classNames=""
+                    id="changeBtn"
+                    onClick=onChangeClick
+            }}}</li>
+            <li class="profile__btnList">{{{ButtonLink
+                    text="Изменить пароль"
+                    classNames=""
+                    id="changeBtn"
+                    onClick=onChangePasswClick
+            }}}</li>
+            <li class="profile__btnList">{{{ButtonLink
+                    text="Выйти"
+                    classNames="buttonLink_red"
+                    id="outBtn"
+                    onClick=onOutClick
+            }}}</li>
+        </ul>
 
     </section>
 </main>
