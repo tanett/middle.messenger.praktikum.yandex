@@ -1,0 +1,99 @@
+<section class="profile__container">
+
+  <div class='profile__title-wrapper'>{{{Button
+    text=""
+    classNames="profile__goBackBtn"
+    type="button"
+    id="backtoProfileBtn"
+    onClick=onGoBackClick
+  }}}
+  <h1 class="profile__title_edit">
+    Изменить данные профиля
+  </h1>
+  </div>
+  <form name="profileData_form">
+
+    <ul class="profile__fields">
+      <li class="profile__fieldsItem">{{{InputTextValidate
+        id="login"
+        name="login"
+        type="text"
+        placeholder="Логин"
+        label="Логин"
+        value=loginValue
+        errorMessage=errorLoginMessage
+        disabled=false
+        pattern=loginPattern
+      }}}</li>
+
+      <li class="profile__fieldsItem">{{{InputTextValidate
+        id="name"
+        name="name"
+        type="text"
+        placeholder="Имя"
+        value=firstNameValue
+        label="Имя"
+        errorMessage=errorFirstNameMessage
+        disabled=false
+        pattern=firstNamePattern
+      }}}</li>
+      <li class="profile__fieldsItem">{{{InputTextValidate
+        id="secondName"
+        name="secondName"
+        type="text"
+        placeholder="Фамилия"
+        value=secondNameValue
+        label="Фамилия"
+        errorMessage=errorSecondNameMessage
+        disabled=false
+        pattern=secondNamePattern
+      }}}</li>
+      <li class="profile__fieldsItem">{{{InputTextValidate
+        id="displayName"
+        name="displayName"
+        type="text"
+        value=displayNameValue
+        placeholder="Имя в чате"
+        label="Имя в чате"
+        errorMessage=errorDisplayNameMessage
+        disabled=false
+        pattern=displayNamePattern
+      }}}</li>
+      <li class="profile__fieldsItem">{{{InputTextValidate
+        id="email"
+        name="email"
+        type="email"
+        placeholder="Почта"
+        value=emailValue
+        label="Почта"
+        errorMessage=errorEmailMessage
+        disabled=false
+        pattern=emailPattern
+      }}}</li>
+
+      <li class="profile__fieldsItem">{{{InputTextValidate
+        id="phone"
+        name="phone"
+        type="text"
+        placeholder="Телефон"
+        value=phoneValue
+        label="Телефон"
+        errorMessage=errorPhoneMessage
+        disabled=false
+        pattern=phonePattern
+      }}}</li>
+
+    </ul>
+
+    {{{Button
+      text="Сохранить"
+      classNames="button_primary"
+      type="submit"
+      id="saveBtn"
+      onClick=onSaveDataClick
+    }}}
+
+  </form>
+
+</section>
+

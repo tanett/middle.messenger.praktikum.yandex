@@ -20,6 +20,7 @@ export class InputTextProfile extends Block<IInputTextProfile> {
 
   constructor(props: IInputTextProfile) {
     super('inputProfile', props)
+    // console.log('=====', Object.values(this.children).find(child=>child.componentName = 'Input')!.element.value)
   }
 
   render() {

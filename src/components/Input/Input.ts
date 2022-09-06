@@ -23,7 +23,7 @@ export class Input extends Block<IInput> {
       type: props.type? props.type : 'text',
       placeholder: props.placeholder? props.placeholder: '',
       disabled: props.disabled,
-      value: props.value? props.value: '',
+      value: props.value,
       classInput: props.classInput? props.classInput : '',
       pattern: props.pattern,
       events: {

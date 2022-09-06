@@ -1,44 +1,9 @@
-.profile {
-    max-width: 1280px;
-    width: 100%;
-    justify-self: stretch;
-    align-self: stretch;
-    display: flex;
-}
-
-/*.profile div {*/
-/*    width: 100%;*/
-/*}*/
-
-.profile__title-wrapper{
-    display: flex;
-    align-items: baseline;
-}
-
-.profile__goBack {
-    width: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fbfbfb;
-    border-right: 1px solid #eaeaea;
-}
-
-.profile__goBackBtn {
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    background: #3369f3;
-    background-image: url("../../image/arrowBlueLeft.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
 .profile__container {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    justify-content: center;
     flex-grow: 1;
     background: #fbfbfb;
     padding: 60px;

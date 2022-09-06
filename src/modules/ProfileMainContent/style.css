@@ -10,10 +10,7 @@
 /*    width: 100%;*/
 /*}*/
 
-.profile__title-wrapper{
-    display: flex;
-    align-items: baseline;
-}
+
 
 .profile__goBack {
     width: 64px;

@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
                                     errorLoginMessage: '',
                                     errorNewPasswordMessage: '',
                                     errorOldPasswordMessage: '',
-                                    errorPhoneMessage: '',
+                                    errorPhoneMessage: 'Длина 9-15 символов, только цмфры, может начинаться с +',
                                     errorSecondNameMessage: '',
                                     errorSubmitPasswordMessage: '',
                                   })

@@ -1,38 +1,4 @@
-.profile {
-    max-width: 1280px;
-    width: 100%;
-    justify-self: stretch;
-    align-self: stretch;
-    display: flex;
-}
 
-/*.profile div {*/
-/*    width: 100%;*/
-/*}*/
-
-.profile__title-wrapper{
-    display: flex;
-    align-items: baseline;
-}
-
-.profile__goBack {
-    width: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fbfbfb;
-    border-right: 1px solid #eaeaea;
-}
-
-.profile__goBackBtn {
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    background: #3369f3;
-    background-image: url("../../image/arrowBlueLeft.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
 .profile__container {
     display: flex;
@@ -49,40 +15,15 @@
     justify-content: center;
 }
 
-.profile__avatar {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    background: #efefef url("../../image/avatarPlaceholder.png") no-repeat center;
-    margin-bottom: 21px;
-    cursor: pointer;
-    z-index: 2;
-}
 
-.profile__avatar:before {
+.profile__title-wrapper{
+    width: 50%;
     display: flex;
-    color: white;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    content: "Поменять аватар";
-    background: #000000;
-    opacity: 0;
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    transition: opacity 0.3s;
+    gap: 20px;
+    align-items: baseline;
 }
-
-.profile__avatar:hover:before {
-    opacity: 0.5;
-}
-
-.profile__img {
-    margin: 0 auto;
-}
-
-.profile__title {
+.profile__title_edit {
+    flex-grow: 1;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -90,7 +31,6 @@
     text-align: center;
     color: #1e1e1e;
     margin-bottom: 60px;
-    flex-grow: 1;
 }
 
 .profile__fields {
