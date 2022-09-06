@@ -14,6 +14,8 @@ interface IInputTextValidate {
   errorMessage: string;
   disabled: boolean;
   pattern: string;
+  classInput: string;
+  classLabel: string;
 }
 
 export class InputTextValidate extends Block<IInputTextValidate> {
@@ -55,6 +57,8 @@ export class InputTextValidate extends Block<IInputTextValidate> {
       pattern: this.props.pattern,
       errorMessage: this.props.message,
       value: this.props.value,
+      classInput: this.props.classInput,
+      classLabel: this.props.classLabel,
       onInput: ( (e: Event) => this.onInputHandler(e) ).bind(this),
       onChange: ( (e: Event) => this.onChangeHandler(e) ).bind(this),
       children: this.children,

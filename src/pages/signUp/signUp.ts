@@ -15,15 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
   Object.values(modules).forEach((module) => helperRegisterComponent(module.default))
   const root = document.querySelector('#root')!
 
-  const SignUpPage = new SignUp({
-                                  errorEmailMessage: '',
-                                  errorFirstNameMessage: '',
-                                  errorLoginMessage: '',
-                                  errorPasswordMessage: '',
-                                  errorPhoneMessage: '',
-                                  errorSecondNameMessage: '',
-                                  errorSubmitPasswordMessage: ''
-                                })
+  const SignUpPage = new SignUp({ })
 
   root.append(SignUpPage.getContent()!)
 

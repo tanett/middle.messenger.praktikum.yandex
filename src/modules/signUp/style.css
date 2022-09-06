@@ -33,3 +33,53 @@
   justify-content: center;
   gap: 14px;
 }
+.signUp__input {
+  text-align: right;
+  color: #999;
+  border: none;
+  flex-grow: 1;
+  padding-bottom: 7px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 13px;
+  background-color: #0000 !important;
+}
+
+.signUp__label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 9px;
+  color: #999999;
+}
+
+.signUp__input:not([disabled]) {
+  text-align: right;
+  color: #444242;
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #3369F3;
+  flex-grow: 1;
+  padding-bottom: 7px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 13px;
+}
+
+.signUp__input:focus,
+.signUp__input:active,
+.signUp__input:focus-visible {
+  outline: none;
+  background-color: transparent !important;
+}
+
+.signUp__input::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: #999999;
+  text-align: left;
+}

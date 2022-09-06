@@ -1,5 +1,4 @@
 import InputTmpl from './InputTmpl.hbs'
-import './style.css'
 import Block from '../../utils/Block'
 
 interface IInput {

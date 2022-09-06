@@ -2,36 +2,32 @@
     <form class="signIn_container" name="signInForm" action="" id="signInForm">
         <h1 class="signIn_title">Вход</h1>
         <fieldset class="signIn_fieldset">
-            {{{InputText
-                    id="login"
-                    name="login"
-                    type="text"
-                    placeholder="Логин"
-                    classInput="inputBlock__input "
-                    classLabel=""
-                    label="Логин"
-                    errorMessage=errorLoginMessage
-                    value=loginValue
-                    disabled=false
-                    onInput=onInputLogin
-                    onChange=onChangeLogin
-                    pattern="^[A-Za-z][A-Za-z0-9_-]{2,19}$"
-            }}}
-            {{{InputText
-                    id="password"
-                    name="password"
-                    type="password"
-                    label="Пароль"
-                    value=passwordValue
-                    placeholder="Пароль"
-                    errorMessage=errorPasswordMessage
-                    disabled=false
-                    classInput="inputBlock__input "
-                    classLabel=""
-                    onInput=onInputPassword
-                    onChange=onChangePassword
-                    pattern="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)){8,40}$"
-            }}}
+          {{{InputTextValidate
+            id="login"
+            name="login"
+            type="text"
+            placeholder="Логин"
+            label="Логин"
+            classInput="signIn__input"
+            classLabel='signIn__label'
+            value=loginValue
+            errorMessage=errorLoginMessage
+            disabled=false
+            pattern=loginPattern
+          }}}
+          {{{InputTextValidate
+            id="passw"
+            name="passw"
+            type="password"
+            label="Пароль"
+            value=passwordValue
+            placeholder="Пароль"
+            errorMessage=errorPasswordMessage
+            disabled=false
+            pattern=passwordPattern
+            classInput="signIn__input"
+            classLabel='signIn__label'
+          }}}
         </fieldset>
         <div class="signIn_buttonBlock">
             {{{Button
