@@ -1,0 +1,74 @@
+.inputBlock{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+}
+
+.inputBlock__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.inputBlock__label {
+    width: 150px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1e1e1e;
+}
+
+.inputBlock__input {
+    border: none;
+    flex-grow: 1;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: right;
+
+    color: #999999;
+    background-color: transparent !important;
+    padding-bottom: 7px;
+}
+
+.inputBlock__input:not([disabled]) {
+    border-bottom: 1px solid gray;
+    flex-grow: 1;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: right;
+
+    color: #444242;
+    background-color: transparent !important;
+    padding-bottom: 7px;
+}
+
+.inputBlock__input:focus,
+.inputBlock__input:active,
+.inputBlock__input:focus-visible {
+    outline: none;
+
+    background-color: transparent !important;
+}
+
+.inputBlock__input::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #999999;
+}
+
+.inputBlock__message {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+    color: #ff2f2f;
+}

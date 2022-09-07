@@ -1,97 +1,121 @@
-enum METHODS  {
-    GET='GET',
-    POST= 'POST',
-    PUT ='PUT',
-    DELETE= 'DELETE'
+enum METHODS {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }
 
-// Самая простая версия. Реализовать штучку со всеми проверками им предстоит в конце спринта
-// Необязательный метод
-function queryStringify(data) {
-    if (typeof data !== 'object') {
-        throw new Error('Data must be object');
-    }
+function queryStringify(data: any) {
+  if (typeof data !== 'object') {
+    throw new Error('Data must be object')
+  }
 
-    // Здесь достаточно и [object Object] для объекта
-    const keys = Object.keys(data);
-    return keys.reduce((result, key, index) => {
-        return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-    }, '?');
+  const keys = Object.keys(data)
+  return keys.reduce((result, key, index) => {
+    return `${ result }${ key }=${ data[key] }${ index < keys.length - 1 ? '&' : '' }`
+  }, '?')
 }
 
-export type typeOptionsRequest = {
-    headers: {[key: string]: string}
-    data: any,
-    timeout?: number,
-    method?: string
+export type typeOptionsRequest =
+  | {
+  headers: Record<string, string>,
+  data: any,
+  timeout?: number,
+  method?: string,
 }
+  | {}
 
-type typeHttpTransport ={
-    url: string,
-    options: typeOptionsRequest
+type typeHttpTransport = {
+  url: string,
+  options: typeOptionsRequest,
 }
 
 export class HTTPTransport {
+  get = (url: string, options: typeOptionsRequest) => {
+    return this.request(
+      url,
+      // @ts-ignore
+      { ...options, method: METHODS.GET },
+      // @ts-ignore
+      options.timeout,
+    )
+  }
 
-    get = (url:string, options: typeOptionsRequest) => {
+  post = (url: string, options = {}) => {
+    return this.request(
+      url,
+      // @ts-ignore
+      { ...options, method: METHODS.POST },
+      // @ts-ignore
+      options.timeout,
+    )
+  }
 
-        return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
-    };
+  put = (url: string, options = {}) => {
+    // @ts-ignore
+    return this.request(
+      url,
+      // @ts-ignore
+      { ...options, method: METHODS.PUT },
+      // @ts-ignore
+      options.timeout,
+    )
+  }
 
-    post = (url, options = {}) => {
+  delete = (url: string, options: typeOptionsRequest) => {
+    return this.request(
+      url,
+      // @ts-ignore
+      { ...options, method: METHODS.DELETE },
+      // @ts-ignore
+      options.timeout,
+    )
+  }
 
-        // @ts-ignore
-        return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
-    };
+  request = (
+    url: string,
+    options: {
+      headers: { [p: string]: string },
+      data: any,
+      method: string,
+      timeout?: number,
+    },
+    timeout: number | undefined,
+  ) => {
+    const { headers = {}, method, data } = options
 
-    put = (url, options = {}) => {
-        // @ts-ignore
-        return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
-    };
+    return new Promise(function(resolve, reject) {
+      if (!method) {
+        reject('No method')
+        return
+      }
 
-    delete = (url, options = {}) => {
-        // @ts-ignore
-        return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
-    };
+      const xhr = new XMLHttpRequest()
+      const isGet = method === METHODS.GET
 
-    request = (url: string, options: { headers: { [p: string]: string }; data: any; method: string; timeout?: number }, timeout: number | undefined) => {
-        const {headers = {}, method, data} = options;
+      xhr.open(method, isGet && !!data ? `${ url }${ queryStringify(data) }` : url)
 
-        return new Promise(function(resolve, reject) {
-            if (!method) {
-                reject('No method');
-                return;
-            }
+      Object.keys(headers).forEach((key) => {
+        xhr.setRequestHeader(key, headers[key])
+      })
 
-            const xhr = new XMLHttpRequest();
-            const isGet = method === METHODS.GET;
+      xhr.onload = function() {
+        resolve(xhr)
+      }
 
-            xhr.open(
-                method,
-                isGet && !!data
-                    ? `${url}${queryStringify(data)}`
-                    : url,
-            );
+      xhr.onabort = reject
+      xhr.onerror = reject
 
-            Object.keys(headers).forEach(key => {
-                xhr.setRequestHeader(key, headers[key]);
-            });
+      if (typeof timeout === 'number') {
+        xhr.timeout = timeout
+      }
+      xhr.ontimeout = reject
 
-            xhr.onload = function() {
-                resolve(xhr);
-            };
-
-            xhr.onabort = reject;
-            xhr.onerror = reject;
-
-            if (typeof timeout === 'number') {xhr.timeout = timeout;}
-            xhr.ontimeout = reject;
-
-            if (isGet || !data) {
-                xhr.send();
-            } else {
-                xhr.send(data);
-            }
-        });
-    };
+      if (isGet || !data) {
+        xhr.send()
+      } else {
+        xhr.send(data)
+      }
+    })
+  }
 }

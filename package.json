@@ -7,7 +7,6 @@
     "dev": "parcel src/index.html  src/notFound.html src/serverError.html src/chatList.html src/profile.html src/signIn.html src/signUp.html -p 3000  --target default --dist-dir ./build",
     "watch": "parcel watch src/index.html  src/notFound.html src/serverError.html src/chatList.html src/profile.html src/signIn.html src/signUp.html ",
     "prestart": "parcel build src/index.html  src/notFound.html src/serverError.html src/chatList.html src/profile.html src/signIn.html src/signUp.html ",
-    "build": "parcel build src/index.html  src/notFound.html src/serverError.html src/chatList.html src/profile.html src/signIn.html src/signUp.html ",
     "start": "node ./server.js"
   },
   "targets": {
@@ -22,24 +21,22 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
-    "autoprefixer": "^10.4.7",
-    "eslint": "^8.21.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "express": "^4.18.1",
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
-    "@parcel/resolver-glob": "^2.7.0",
-    "parcel": "^2.7.0",
-    "typescript": "^4.7.4"
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
+    "@parcel/resolver-glob": "2.7.0",
+    "@typescript-eslint/eslint-plugin": "5.32.0",
+    "@typescript-eslint/parser": "5.32.0",
+    "autoprefixer": "10.4.7",
+    "eslint": "8.21.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "express": "4.18.1",
+    "parcel": "2.7.0",
+    "prettier": "2.7.1",
+    "typescript": "4.8.2"
   },
   "dependencies": {
-    "handlebars": "^4.7.7",
-    "nanoid": "^4.0.0",
-    "parcel": "^2.7.0",
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
-    "@parcel/resolver-glob": "^2.7.0"
+    "handlebars": "4.7.7",
+    "nanoid": "4.0.0"
   }
 }

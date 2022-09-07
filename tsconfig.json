@@ -7,15 +7,12 @@
     "strictNullChecks": true,
     "sourceMap": true,
     "esModuleInterop": true,
-
     "forceConsistentCasingInFileNames": true,
-
     "strict": true,
-
     "skipLibCheck": true,
-
-    "lib": ["ES2020", "DOM"]
-  },
-
+    "lib": [
+      "ES2020",
+      "DOM"
+    ]
+  }
 }
-

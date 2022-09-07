@@ -1,28 +1,21 @@
-
-import  Block  from '../../utils/Block';
-import ErrorPageTmpl  from './ErrorPageTmpl.hbs'
+import Block from '../../utils/Block'
+import ErrorPageTmpl from './ErrorPageTmpl.hbs'
 import './style.css'
 
-
-
-
 interface IErrorPage {
-    title: string, subTitle: string, link: string, linkText: string,
+  title: string;
+  subTitle: string;
+  link: string;
+  linkText: string;
 }
 
-export class ErrorPage extends Block {
+export class ErrorPage extends Block<IErrorPage> {
+  constructor(props: IErrorPage) {
+    super('errorPage', props)
+  }
 
-
-    constructor(props: IErrorPage) {
-        super('errorPage', props);
-
-
-    }
-
-
-    render() {
-        const { title, subTitle, link, linkText } = this.props
-        return this.compile(ErrorPageTmpl,{ title, subTitle, link, linkText })
-    }
+  render() {
+    const { title, subTitle, link, linkText } = this.props
+    return this.compile(ErrorPageTmpl, { title, subTitle, link, linkText })
+  }
 }
-

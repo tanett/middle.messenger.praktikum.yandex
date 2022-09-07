@@ -9,7 +9,7 @@
     font-size: 40px;
     line-height: 40px;
     text-align: center;
-    color: #1E1E1E;
+    color: #1e1e1e;
     margin-bottom: 20px;
 }
 
@@ -19,8 +19,8 @@
     font-size: 20px;
     line-height: 20px;
     text-align: center;
-    color: #1E1E1E;
-    margin-bottom:69px;
+    color: #1e1e1e;
+    margin-bottom: 69px;
 }
 
 .error__link {
@@ -28,13 +28,15 @@
     font-weight: 500;
     font-size: 11px;
     line-height: 11px;
-    color: #3369F3;
+    color: #3369f3;
     border: none;
     cursor: pointer;
     text-align: center;
     background: transparent;
 }
 
-.error__link :hover, .error__link :active, .error__link :focus {
+.error__link :hover,
+.error__link :active,
+.error__link :focus {
     opacity: 80%;
 }
