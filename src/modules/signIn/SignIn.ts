@@ -9,7 +9,7 @@ interface ISignIn {}
 export class SignIn extends Block<ISignIn> {
   private loginInputValue: string = ''
   private passwordInputValue: string = ''
-
+  static componentName: string='SignIn'
 
   constructor(props: ISignIn) {
     super('SignIn', props)
@@ -22,7 +22,7 @@ export class SignIn extends Block<ISignIn> {
     e.preventDefault()
     const inputs:Record<string, string>= {}
     Object.values(this.children).forEach(child => {
-      if (child.componentName === 'InputTextValidate') {
+      if (child.className === 'InputTextValidate') {
         // @ts-ignore
         inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
       }
@@ -41,12 +41,12 @@ export class SignIn extends Block<ISignIn> {
       onSubmitClick: ( (e: Event) => this.onSubmitClick(e) ).bind(this),
       onSignUpClick: this.onSignUpClick,
 
-      loginValue: this.loginInputValue,
+      loginValue: '',
       loginPattern: inputRules.login,
       errorLoginMessage: 'Логин может содержать только буквы и \'-\' ',
       passwordPattern: inputRules.password,
       errorPasswordMessage: 'Пароль должен содержать хотя бы одну цифру и заглавную букву. Длина 8-40 символов',
-      passwordValue: this.passwordInputValue,
+      passwordValue: '',
       children: this.children,
     })
   }

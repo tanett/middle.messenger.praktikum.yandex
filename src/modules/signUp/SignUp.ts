@@ -9,14 +9,7 @@ interface ISignUp {
 }
 
 export class SignUp extends Block<ISignUp> {
-  private loginInputValue: string = ''
-  private passwordInputValue: string = ''
-  private emailInputValue: string = ''
-  private firstNameInputValue: string = ''
-  private secondNameInputValue: string = ''
-  private phoneInputValue: string = ''
-  private passwordSubmitInputValue: string = ''
-
+  static componentName: string='SignUp'
 
   constructor(props: ISignUp) {
     super('SignUp', props)
@@ -26,7 +19,7 @@ export class SignUp extends Block<ISignUp> {
     e.preventDefault()
     const inputs:Record<string, string>= {}
     Object.values(this.children).forEach(child => {
-      if (child.componentName === 'InputTextValidate') {
+      if (child.className === 'InputTextValidate') {
         // @ts-ignore
         inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
       }
@@ -59,13 +52,13 @@ export class SignUp extends Block<ISignUp> {
       errorNewPasswordMessage: 'Пароль должен содержать хотя бы одну цифру и заглавную букву. Длина 8-40 символов',
       errorSubmitPasswordMessage: 'Пароль должен содержать хотя бы одну цифру и заглавную букву. Длина 8-40 символов',
 
-      firstNameValue: this.firstNameInputValue,
-      secondNameValue: this.secondNameInputValue,
-      phoneValue: this.phoneInputValue,
-      emailValue: this.emailInputValue,
-      loginValue: this.loginInputValue,
-      passwordValue: this.passwordInputValue,
-      submitPasswordValue: this.passwordSubmitInputValue,
+      firstNameValue: '',
+      secondNameValue: '',
+      phoneValue: '',
+      emailValue:'',
+      loginValue: '',
+      passwordValue: '',
+      submitPasswordValue: '',
 
       onSubmitClick: ( (e: Event) => this.onSubmitClick(e) ).bind(this),
       onSignInClick: this.onSignInClick,

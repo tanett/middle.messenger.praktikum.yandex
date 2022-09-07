@@ -9,6 +9,7 @@ interface INav {
 }
 
 export class Nav extends Block<INav> {
+  static componentName: string='Nav'
   constructor(props: INav) {
     super('Nav', props)
   }

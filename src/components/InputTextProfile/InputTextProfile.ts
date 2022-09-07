@@ -17,9 +17,9 @@ interface IInputTextProfile {
 }
 
 export class InputTextProfile extends Block<IInputTextProfile> {
-
+  static componentName: string='InputTextProfile'
   constructor(props: IInputTextProfile) {
-    super('inputProfile', props)
+    super('InputTextProfile', props)
     // console.log('=====', Object.values(this.children).find(child=>child.componentName = 'Input')!.element.value)
   }
 

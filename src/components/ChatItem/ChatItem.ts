@@ -13,6 +13,7 @@ interface IChatItem {
 }
 
 export class ChatItem extends Block<IChatItem> {
+  static componentName: string='ChatItem'
   constructor(props: IChatItem) {
     super('ChatItem', props)
   }

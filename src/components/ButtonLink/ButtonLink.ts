@@ -10,6 +10,7 @@ interface IButtonLink {
 }
 
 export class ButtonLink extends Block<IButtonLink> {
+  static componentName: string='ButtonLink'
   constructor(props: IButtonLink) {
     super('ButtonLink', {
       text: props.text,

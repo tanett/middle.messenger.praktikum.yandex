@@ -13,7 +13,7 @@ interface IProfileEditPasswordComponent {
 
 //----------------------------------------------------------------------------------------------------------------------
 export class ProfileEditPasswordComponent extends Block<IProfileEditPasswordComponent> {
-
+  static componentName: string='ProfileEditPasswordComponent'
   private newPasswordInputValue: string = ''
   private oldPasswordValue: string = ''
   private passwordSubmitInputValue: string = ''
@@ -33,7 +33,7 @@ export class ProfileEditPasswordComponent extends Block<IProfileEditPasswordComp
     e.preventDefault()
     const inputs: Record<string, string> = {}
     Object.values(this.children).forEach(child => {
-      if (child.componentName === 'InputTextValidate') {
+      if (child.className==="InputTextValidate") {
         // @ts-ignore
         inputs[child.meta.props.id] = ( child as InputTextValidate ).getValue()
       }

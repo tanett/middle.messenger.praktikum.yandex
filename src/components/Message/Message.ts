@@ -12,6 +12,7 @@ interface IMessage {
 }
 
 export class Message extends Block<IMessage> {
+  static componentName: string='Message'
   constructor(props: IMessage) {
     super('Message', props)
   }

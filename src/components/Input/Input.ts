@@ -15,6 +15,7 @@ interface IInput {
 }
 
 export class Input extends Block<IInput> {
+  static componentName: string='Input'
   constructor(props: IInput) {
     super('Input', {
       id: props.id,

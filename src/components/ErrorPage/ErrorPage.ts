@@ -10,6 +10,7 @@ interface IErrorPage {
 }
 
 export class ErrorPage extends Block<IErrorPage> {
+  static componentName: string='ErrorPage'
   constructor(props: IErrorPage) {
     super('errorPage', props)
   }

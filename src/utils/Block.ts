@@ -15,7 +15,7 @@ class Block<Props extends {}> {
   private eventBus: () => EventBus
   private _element: HTMLElement | null = null
   protected meta: { props: any }
-  public componentName: string
+  public className: string
 
   /** JSDoc
    * @param {string} name
@@ -25,9 +25,8 @@ class Block<Props extends {}> {
    */
   public constructor(name: string, propsWithChildren: any = {}) {
     const eventBus = new EventBus()
-    this.componentName = name
+   this.className = name
     const { props, children } = this._getChildrenAndProps(propsWithChildren)
-
     this.meta = {
       props,
     }

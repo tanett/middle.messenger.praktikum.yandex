@@ -11,6 +11,7 @@ interface IButtonProps {
 }
 
 export class Button extends Block<IButtonProps> {
+  static componentName: string='Button'
   constructor(props: IButtonProps) {
     super('Button', {
       text: props.text,

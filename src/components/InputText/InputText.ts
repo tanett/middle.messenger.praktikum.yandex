@@ -17,6 +17,7 @@ interface IInputText {
 }
 
 export class InputText extends Block<IInputText> {
+  static componentName: string='InputText'
   constructor(props: IInputText) {
     super('InputText', props)
   }

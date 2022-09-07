@@ -19,8 +19,7 @@ interface IProfileMainContent  {
 
 //----------------------------------------------------------------------------------------------------------------------
 export class ProfileMainContent extends Block<IProfileMainContent > {
-
-
+  static componentName: string='ProfileMainContent'
   constructor(props: IProfileMainContent ) {
     super('ProfileMainContent', props)
 

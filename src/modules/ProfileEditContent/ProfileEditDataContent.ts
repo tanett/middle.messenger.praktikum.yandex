@@ -18,6 +18,7 @@ interface IProfileEditDataContent {
 
 //----------------------------------------------------------------------------------------------------------------------
 export class ProfileEditDataContent extends Block<IProfileEditDataContent> {
+  static componentName: string='ProfileEditDataContent'
    constructor(props: IProfileEditDataContent) {
     super('ProfileEditDataContent', props)
   }
@@ -33,7 +34,7 @@ export class ProfileEditDataContent extends Block<IProfileEditDataContent> {
     e.preventDefault()
     const inputs:Record<string, string>= {}
     Object.values(this.children).forEach(child => {
-      if (child.componentName === 'InputTextValidate') {
+        if (child.className==="InputTextValidate") {
         // @ts-ignore
         inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
       }

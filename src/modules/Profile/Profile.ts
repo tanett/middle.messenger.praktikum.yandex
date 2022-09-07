@@ -28,7 +28,7 @@ interface IProfile {
 
 //----------------------------------------------------------------------------------------------------------------------
 export class Profile extends Block<IProfile> {
-
+  static componentName: string='Profile'
   constructor(props: IProfile) {
     super('Profile', props)
 

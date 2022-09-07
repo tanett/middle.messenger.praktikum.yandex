@@ -13,7 +13,6 @@ export function helperRegisterComponent(Component: typeof Block) {
         data.root.children = {}
       }
       data.root.children[component.id] = component
-
       return `<div data-id='${ component.id }'></div>`
     },
   )

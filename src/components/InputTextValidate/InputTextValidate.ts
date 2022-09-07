@@ -19,6 +19,7 @@ interface IInputTextValidate {
 }
 
 export class InputTextValidate extends Block<IInputTextValidate> {
+  static componentName: string='InputTextValidate'
  private inputValue: string = this.props.value
  private valid: boolean = true
 
