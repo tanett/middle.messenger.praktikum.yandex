@@ -108,5 +108,5 @@ typings/
 .idea
 .github
 build
-
+dist
 
