@@ -4,14 +4,14 @@ import Block from '../../utils/Block'
 import { inputRules } from '../../utils/validationRules'
 import InputTextValidate from '../../components/InputTextValidate'
 
-interface ISignUp {
+import { ROUTES } from '../../index'
 
-}
 
-export class SignUp extends Block<ISignUp> {
+
+export class SignUp extends Block {
   static componentName: string='SignUp'
 
-  constructor(props: ISignUp) {
+  constructor(props={}) {
     super('SignUp', props)
   }
 
@@ -30,7 +30,7 @@ export class SignUp extends Block<ISignUp> {
 //----------------------------------------------------------------------------------------------------------------------
 
   onSignInClick() {
-    window.location.pathname = '/signIn.html'
+    window.location.pathname = ROUTES.Home
   }
 
 //----------------------------------------------------------------------------------------------------------------------

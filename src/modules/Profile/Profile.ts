@@ -4,6 +4,7 @@ import Block from '../../utils/Block'
 import { ProfileEditDataContent } from '../ProfileEditContent/ProfileEditDataContent'
 import { ProfileMainContent } from '../ProfileMainContent/ProfileMainContent'
 import { ProfileEditPasswordComponent } from '../ProfileEditPasswordComponent/ProfileEditPasswordComponent'
+import { ROUTES } from '../../index'
 
 
 interface IProfile {
@@ -27,7 +28,7 @@ interface IProfile {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-export class Profile extends Block<IProfile> {
+export class Profile extends Block {
   static componentName: string='Profile'
   constructor(props: IProfile) {
     super('Profile', props)
@@ -51,189 +52,10 @@ export class Profile extends Block<IProfile> {
     this.setProps({ editMode: 'main' })
   }
 
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputLoginHandler(e: Event): any {
-//     this.loginInputValue = ( e.target as HTMLInputElement ).value
-//
-//   }
-//
-//   onChangeLoginHandler(e: Event): any {
-//     this.loginInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validLogin = !!this.loginInputValue.match(inputRules.login)
-//     if (!this.validationObject.validLogin) {
-//       this.setProps({
-//                       errorLoginMessage:
-//                         this.loginInputValue.trim() === ''
-//                           ? 'Обязательное поле'
-//                           : 'Логин может содержать только буквы и \'-\' ',
-//                     })
-//     } else {
-//       this.setProps({ errorLoginMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputDisplayNameHandler(e: Event): void {
-//     this.displayNameInputValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangeDisplayNameHandler(e: Event): void {
-//     this.displayNameInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validDisplayName = true
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//
-//   onInputOldPasswordHandler(e: Event) {
-//     this.oldPasswordValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangeOldPasswordHandler(e: Event): void {
-//
-//     this.oldPasswordValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validOldPassword =
-//       this.oldPasswordValue === this.props.password
-//     if (!this.validationObject.validOldPassword) {
-//       this.setProps({ errorOldPasswordMessage: 'Пароль не подходит' })
-//     } else {
-//       this.setProps({ errorOldPasswordMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputNewPasswordHandler(e: Event) {
-//     this.newPasswordInputValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangeNewPasswordHandler(e: Event): any {
-//
-//     this.newPasswordInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validPassword = !!this.newPasswordInputValue.match(
-//       inputRules.password,
-//     )
-//     if (!this.validationObject.validPassword) {
-//       this.setProps({
-//                       errorNewPasswordMessage:
-//                         'Пароль должен содержать хотя бы одну цифру и заглавную букву. Длина 8-40 символов',
-//                     })
-//     } else {
-//       this.setProps({ errorNewPasswordMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputSubmitPasswordHandler(e: Event) {
-//     this.passwordSubmitInputValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangeSubmitPasswordHandler(e: Event): any {
-//     this.passwordSubmitInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validSubmitPassword =
-//       this.passwordSubmitInputValue.trim() ===
-//       this.newPasswordInputValue.trim()
-//     if (!this.validationObject.validSubmitPassword) {
-//       this.setProps({ errorSubmitPasswordMessage: 'Пароль не совпадает' })
-//     } else {
-//       this.setProps({ errorSubmitPasswordMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputEmailHandler(e: Event) {
-//     this.emailInputValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangeEmailHandler(e: Event): any {
-//     this.emailInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validEmail = !!this.emailInputValue.match(inputRules.email)
-//     if (!this.validationObject.validEmail) {
-//       this.setProps({ errorEmailMessage: ( e.target as HTMLInputElement ).validationMessage })
-//     } else {
-//       this.setProps({ errorEmailMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputFirstNameHandler(e: Event) {
-//     this.firstNameInputValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangeFirstNameHandler(e: Event) {
-//     this.firstNameInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validFirstName = !!this.firstNameInputValue.match(inputRules.firstName)
-//     if (!this.validationObject.validFirstName) {
-//       this.setProps({
-//                       errorFirstNameMessage: 'Только буквы и "-". Первая буква - заглавная',
-//                     })
-//     } else {
-//       this.setProps({ errorFirstNameMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputSecondNameHandler(e: Event) {
-//     this.secondNameInputValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangeSecondNameHandler(e: Event) {
-//     this.secondNameInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validSecondName = !!this.secondNameInputValue.match(inputRules.secondName)
-//     if (!this.validationObject.validSecondName) {
-//       this.setProps({
-//                       errorSecondNameMessage: 'Только буквы и "-".  Первая буква - заглавная',
-//                     })
-//     } else {
-//       this.setProps({ errorSecondNameMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onInputPhoneHandler(e: Event) {
-//     this.phoneInputValue = ( e.target as HTMLInputElement ).value
-//   }
-//
-//   onChangePhoneHandler(e: Event) {
-//     this.phoneInputValue = ( e.target as HTMLInputElement ).value
-//     this.validationObject.validPhone = !!this.phoneInputValue.match(inputRules.phone)
-//     if (!this.validationObject.validPhone) {
-//       this.setProps({
-//                       errorPhoneMessage:
-//                         'Длина 9-15 символов, только цмфры, может начинаться с +',
-//                     })
-//     } else {
-//       this.setProps({ errorPhoneMessage: '' })
-//     }
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onSaveDataClick(e: Event) {
-//     e.preventDefault()
-//     const inputs:Record<string, string>= {}
-//     Object.values(this.children).forEach(child => {
-//       if (child.componentName === 'InputTextValidate') {
-//         // @ts-ignore
-//         inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
-//       }
-//     })
-//     console.log('input data', inputs)
-//   }
-//
-// //----------------------------------------------------------------------------------------------------------------------
-//   onSaveNewPasswordClick(e: Event) {
-//     e.preventDefault()
-//     const inputs:Record<string, string>= {}
-//     Object.values(this.children).forEach(child => {
-//       if (child.componentName === 'InputTextValidate') {
-//         // @ts-ignore
-//         inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
-//       }
-//     })
-//     console.log('input data', inputs)
-//   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onOutClick() {
-    window.location.pathname = ''
+    window.location.pathname = ROUTES.Home
     console.log('onOutClick')
   }
 

@@ -4,9 +4,9 @@
   "description": "",
   "source": "index.html",
   "scripts": {
-    "dev": "parcel src/index.html  src/notFound.html src/serverError.html src/chatList.html src/profile.html src/signIn.html src/signUp.html -p 3000  --target default --dist-dir ./build",
-    "watch": "parcel watch src/index.html  src/notFound.html src/serverError.html src/chatList.html src/profile.html src/signIn.html src/signUp.html ",
-    "prestart": "parcel build src/index.html  src/notFound.html src/serverError.html src/chatList.html src/profile.html src/signIn.html src/signUp.html ",
+    "dev": "parcel src/index.html   -p 3000  --target default --dist-dir ./build",
+    "watch": "parcel watch src/index.html ",
+    "prestart": "parcel build src/index.html  ",
     "start": "node ./server.js"
   },
   "targets": {

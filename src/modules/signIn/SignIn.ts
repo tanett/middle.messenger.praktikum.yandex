@@ -3,18 +3,37 @@ import SignInTmpl from './SignIn.hbs'
 import Block from '../../utils/Block'
 import { inputRules } from '../../utils/validationRules'
 import InputTextValidate from '../../components/InputTextValidate'
+import ButtonLink from '../../components/ButtonLink'
+import Button from '../../components/Button'
+import { ROUTES } from '../../index'
 
-interface ISignIn {}
 
-export class SignIn extends Block<ISignIn> {
+
+export class SignIn extends Block {
   private loginInputValue: string = ''
   private passwordInputValue: string = ''
   static componentName: string='SignIn'
 
-  constructor(props: ISignIn) {
+  constructor(props={}) {
     super('SignIn', props)
   }
-
+  //
+  // protected init() {
+  //   this.children.btnLink = new ButtonLink({
+  //                                            text: "Нет аккаунта?",
+  //                                            classNames: "buttonLink_center",
+  //                                            id: "onSignUp",
+  //                                            onClick: this.onSignUpClick
+  //                                          })
+  //
+  //   this.children.onSubmitBtn = new Button({
+  //                                            text: 'Войти',
+  //                                            classNames:'button_primary',
+  //                                            type: 'submit',
+  //                                            id:'signInSubmitBtn',
+  //                                            onClick:( (e: Event) => this.onSubmitClick(e) ).bind(this)
+  //                                          })
+  // }
 //----------------------------------------------------------------------------------------------------------------------
   onSubmitClick(e: Event) {
     e.preventDefault()
@@ -32,7 +51,7 @@ export class SignIn extends Block<ISignIn> {
 
 //----------------------------------------------------------------------------------------------------------------------
   onSignUpClick() {
-    window.location.pathname = '/signUp.html'
+    window.location.pathname = ROUTES.Signup
   }
 
 //----------------------------------------------------------------------------------------------------------------------

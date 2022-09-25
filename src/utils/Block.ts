@@ -1,7 +1,7 @@
 import { EventBus } from './EventBus'
 import { nanoid } from 'nanoid'
 
-class Block<Props extends {}> {
+class Block<Props extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
