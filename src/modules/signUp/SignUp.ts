@@ -5,26 +5,44 @@ import { inputRules } from '../../utils/validationRules'
 import InputTextValidate from '../../components/InputTextValidate'
 
 import { ROUTES } from '../../index'
-
+import AuthController from '../../controllers/AuthController'
+import { SignupData } from '../../api/AuthAPI'
 
 
 export class SignUp extends Block {
-  static componentName: string='SignUp'
+  static componentName: string = 'SignUp'
+  private isValidForm: boolean = true
 
-  constructor(props={}) {
+  constructor(props = {}) {
     super('SignUp', props)
+    this.isValidForm = true
   }
 
   onSubmitClick(e: Event) {
     e.preventDefault()
-    const inputs:Record<string, string>= {}
+    const inputs: SignupData = {
+      first_name: '',
+      second_name: '',
+      login: '',
+      email: '',
+      password: '',
+      phone: '',
+    }
     Object.values(this.children).forEach(child => {
       if (child.className === 'InputTextValidate') {
+
         // @ts-ignore
-        inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
+        inputs[child.meta.props.id as keyof SignupData] = ( child as InputTextValidate ).getValue()
+        this.isValidForm = !( child as InputTextValidate ).isValid ? false : this.isValidForm
+
       }
     })
+
     console.log('input data', inputs)
+
+if(this.isValidForm) {
+  AuthController.signup(inputs)
+}
   }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -36,7 +54,7 @@ export class SignUp extends Block {
 //----------------------------------------------------------------------------------------------------------------------
   render(): any {
     return this.compile(signUpTmpl, {
-       phonePattern: inputRules.phone,
+      phonePattern: inputRules.phone,
       emailPattern: inputRules.email,
       secondNamePattern: inputRules.secondName,
       loginPattern: inputRules.login,
@@ -55,7 +73,7 @@ export class SignUp extends Block {
       firstNameValue: '',
       secondNameValue: '',
       phoneValue: '',
-      emailValue:'',
+      emailValue: '',
       loginValue: '',
       passwordValue: '',
       submitPasswordValue: '',

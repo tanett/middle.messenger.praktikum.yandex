@@ -21,6 +21,7 @@ export class Button extends Block<IButtonProps> {
       id: props.id,
       events: { click: props.onClick },
     })
+    console.log("thisbtn", this)
   }
 
   render() {

@@ -16,6 +16,7 @@ export class Store extends EventBus {
   }
 
   public getState() {
+
     return this.state;
   }
 }

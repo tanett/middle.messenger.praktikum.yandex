@@ -6,6 +6,8 @@ import InputTextValidate from '../../components/InputTextValidate'
 import ButtonLink from '../../components/ButtonLink'
 import Button from '../../components/Button'
 import { ROUTES } from '../../index'
+import AuthController from '../../controllers/AuthController'
+import { SigninData } from '../../api/AuthAPI'
 
 
 
@@ -38,8 +40,10 @@ export class SignIn extends Block {
   onSubmitClick(e: Event) {
     e.preventDefault()
 
-    e.preventDefault()
-    const inputs:Record<string, string>= {}
+    const inputs:SigninData = {
+      login:'',
+      password: ''
+    }
     Object.values(this.children).forEach(child => {
       if (child.className === 'InputTextValidate') {
         // @ts-ignore
@@ -47,10 +51,13 @@ export class SignIn extends Block {
       }
     })
     console.log('input data', inputs)
+    AuthController.signin(inputs)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
-  onSignUpClick() {
+  onSignUpClick(e: Event) {
+
+    e.preventDefault()
     window.location.pathname = ROUTES.Signup
   }
 
@@ -58,7 +65,7 @@ export class SignIn extends Block {
   render(): any {
     return this.compile(SignInTmpl, {
       onSubmitClick: ( (e: Event) => this.onSubmitClick(e) ).bind(this),
-      onSignUpClick: this.onSignUpClick,
+      onSignUpClick: (e: Event) =>this.onSignUpClick(e),
 
       loginValue: '',
       loginPattern: inputRules.login,

@@ -1,4 +1,3 @@
-import queryStringify from 'src/utils/helpers/queryStringify'
 
 
 export enum METHODS {
@@ -144,9 +143,10 @@ export default class HTTPTransport {
     });
   }
 
-  public delete<Response>(path: string): Promise<Response> {
+  public delete<Response>(path: string, data?: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
       method: METHODS.DELETE,
+      data
     });
   }
 

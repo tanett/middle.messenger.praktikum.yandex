@@ -4,6 +4,10 @@
   padding: 2px 0;
 }
 
+.chatItem_active {
+  background-color: rgba(207, 209, 211, 0.35);
+}
+
 .chatItem:last-child {
   border-bottom: 1px solid #eaeaea;
 }

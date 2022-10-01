@@ -5,6 +5,9 @@ import { ProfileEditDataContent } from '../ProfileEditContent/ProfileEditDataCon
 import { ProfileMainContent } from '../ProfileMainContent/ProfileMainContent'
 import { ProfileEditPasswordComponent } from '../ProfileEditPasswordComponent/ProfileEditPasswordComponent'
 import { ROUTES } from '../../index'
+import store from '../../utils/Store'
+import { User } from '../../api/AuthAPI'
+import AuthController from '../../controllers/AuthController'
 
 
 interface IProfile {
@@ -29,10 +32,13 @@ interface IProfile {
 
 //----------------------------------------------------------------------------------------------------------------------
 export class Profile extends Block {
-  static componentName: string='Profile'
+  static componentName: string = 'Profile'
+  private userData: User
+
   constructor(props: IProfile) {
     super('Profile', props)
-
+    this.userData = store.getState()
+    console.log(store)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -55,40 +61,46 @@ export class Profile extends Block {
 
 //----------------------------------------------------------------------------------------------------------------------
   onOutClick() {
-    window.location.pathname = ROUTES.Home
+
+    AuthController.logout()
     console.log('onOutClick')
   }
 
   private chooseContent(editMode: string) {
+    const userData: User = store.getState().user
     switch (editMode) {
       case 'data':
         return new ProfileEditDataContent({
-                                            login: this.props.login,
-                                            email: this.props.email,
-                                            name: this.props.name,
-                                            secondName: this.props.secondName,
-                                            displayName: this.props.displayName,
-                                            phone: this.props.phone,
+
+                                            login: userData.login,
+                                            email: userData.email,
+                                            name: userData.first_name,
+                                            secondName: userData.second_name,
+                                            displayName: userData.display_name,
+                                            phone: userData.phone,
                                             editMode: 'data',
                                             onGoBackToProfile: (e: Event) => this.onGoBackToProfileClick(e),
                                           })
       case 'password':
         return new ProfileEditPasswordComponent({
-                                                  password: this.props.password,
+
+                                                  password: this.userData.password,
                                                   editMode: 'password',
                                                   onGoBackToProfile: (e: Event) => this.onGoBackToProfileClick(e),
                                                 })
       default:
         return new ProfileMainContent({
-                                        login: this.props.login,
-                                        email: this.props.email,
-                                        name: this.props.name,
-                                        secondName: this.props.secondName,
-                                        displayName: this.props.displayName,
-                                        phone: this.props.phone,
+          avatar: userData.avatar,
+                                        login: userData.login,
+                                        email: userData.email,
+                                        name: userData.first_name,
+                                        secondName: userData.second_name,
+                                        displayName: userData.display_name,
+                                        phone: userData.phone,
                                         editMode: 'main',
                                         onEditDataClick: ( (e: Event) => this.onChangeDataClick(e) ).bind(this),
                                         onEditPasswordClick: ( (e: Event) => this.onEditPasswordClick(e) ).bind(this),
+                                        onOutClick: () => this.onOutClick(),
                                       })
     }
   }
@@ -96,20 +108,20 @@ export class Profile extends Block {
 
 //----------------------------------------------------------------------------------------------------------------------
   render(): any {
-    const { name, secondName, login, displayName, phone, email } = this.props
-    const content = this.chooseContent(this.props.editMode)
 
+    const content = this.chooseContent(this.props.editMode)
+    const userData = store.getState().user
     // @ts-ignore
     this.children.content = content
 
     return this.compile(ProfileTmpl, {
-      name: name,
-      firstNameValue: name,
-      secondNameValue: secondName,
-      phoneValue: phone,
-      emailValue: email,
-      loginValue: login,
-      displayNameValue: displayName,
+      name: userData.first_name,
+      firstNameValue: userData.first_name,
+      secondNameValue: userData.second_name,
+      phoneValue: userData.phone,
+      emailValue: userData.email,
+      loginValue: userData.login,
+      displayNameValue: userData.display_name,
       children: this.children,
       onChangeClick: ( (e: Event) => this.onChangeDataClick(e) ),
       onChangePasswClick: ( (e: Event) => this.onEditPasswordClick(e) ).bind(this),

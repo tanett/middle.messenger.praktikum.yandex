@@ -25,7 +25,7 @@ class Block<Props extends Record<string, any> = any> {
    */
   public constructor(name: string, propsWithChildren: any = {}) {
     const eventBus = new EventBus()
-   this.className = name
+    this.className = name
     const { props, children } = this._getChildrenAndProps(propsWithChildren)
     this.meta = {
       props,
@@ -163,7 +163,12 @@ class Block<Props extends Record<string, any> = any> {
     const contextAndStubs = { ...context }
 
     Object.entries(this.children).forEach(([ name, component ]) => {
-      contextAndStubs[name] = `<div data-id='${ component.id }'></div>`
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map((child) => `<div data-id='${ component.id }'></div>`)
+      } else {
+        contextAndStubs[name] = `<div data-id='${ component.id }'></div>`
+      }
+
     })
 
     const html = template(contextAndStubs)
@@ -173,11 +178,22 @@ class Block<Props extends Record<string, any> = any> {
     temp.innerHTML = html
 
     Object.entries(this.children).forEach(([ _, component ]) => {
-      const stub = temp.content.querySelector(`[data-id="${ component.id }"]`)
-      if (!stub) {
-        return
+      if (Array.isArray(component)) {
+        component.map(( child => {
+          const stub = temp.content.querySelector(`[data-id="${ child.id }"]`)
+          if (!stub) {
+            return
+          }
+          stub.replaceWith(child.getContent()!)
+        } ))
+      } else {
+        const stub = temp.content.querySelector(`[data-id="${ component.id }"]`)
+        if (!stub) {
+          return
+        }
+        stub.replaceWith(component.getContent()!)
       }
-      stub.replaceWith(component.getContent()!)
+
     })
 
     return temp.content

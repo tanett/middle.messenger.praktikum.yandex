@@ -11,6 +11,7 @@ import { SignIn } from './modules/signIn/SignIn'
 import { Profile } from './modules/Profile/Profile'
 import AuthController from './controllers/AuthController'
 import ChatList from './modules/ChatList'
+import { Chats } from './modules/ChatList/ChatList'
 
 
 export enum ROUTES {
@@ -29,21 +30,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // @ts-ignore
   Object.values(modules).forEach((module) => helperRegisterComponent(module.default))
-//   // @ts-ignore
-//   Object.values(components).forEach((component) => helperRegisterComponent(component.default))
-//   console.log("++++++", components, modules)
-// // @ts-ignore
-//   Object.values(modules).forEach((module) => helperRegisterComponent(module.default))
-  // // @ts-ignore
-  // Object.values(components).forEach((component) => helperRegisterComponent(component.default))
-  // const root = document.querySelector('#root')!
-  //
-  // const homePage = new IndexLayout({ title: 'Page list' })
-  //
-  // root.append(homePage.getContent()!)
-  //
-  // homePage.dispatchComponentDidMount()
-  // @ts-ignore
+
 
   Router
     .use(ROUTES.Home, SignIn)
@@ -51,12 +38,14 @@ window.addEventListener('DOMContentLoaded', async () => {
     // @ts-ignore
     .use(ROUTES.Profile, Profile)
     // @ts-ignore
-    .use(ROUTES.Chats, ChatList)
+    .use(ROUTES.Chats, Chats)
 
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
     case ROUTES.Home:
+    case ROUTES.Profile:
+    case ROUTES.Chats:
     case ROUTES.Signup:
       isProtectedRoute = false;
       break;
@@ -68,9 +57,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     Router.start();
 
-    if (!isProtectedRoute) {
-      Router.go(ROUTES.Profile)
-    }
+    // if (!isProtectedRoute) {
+    //   Router.go(ROUTES.Profile)
+    // }
   } catch (e) {
     Router.start();
 
