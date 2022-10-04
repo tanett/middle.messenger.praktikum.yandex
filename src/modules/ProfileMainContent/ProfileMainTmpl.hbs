@@ -1,19 +1,18 @@
 <section class="profile__container">
 
     <image href="{{pathAvatar}}" class="avatar " ></image>
-    <label for="avatar" class="avatar profile__avatar" >
 
-    </label>
-
-  <input type="file" id="avatar" name="avatar" accept="image/*" hidden />
-
-    {{{Button
-      text="Сохранить"
-      classNames="button_primary"
-      type="submit"
-      id="saveBtn"
-      onClick=onUploadAvatar
-    }}}
+  {{{InputFile
+    id="fileInput"
+    name="fileInput"
+    placeholder=""
+    label="File avatar"
+    errorMessage="1111"
+    disabled=false
+    classInput="inputFile__input"
+    classLabel="avatar profile__avatar"
+    onUpload=onUploadAvatar
+  }}}
 
 
   <h1 class="profile__title">{{name}}</h1>

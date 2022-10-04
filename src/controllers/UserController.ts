@@ -1,4 +1,3 @@
-
 import store from '../utils/Store'
 import router from '../utils/Router'
 import UserAPI, { editUserData, newPasswordData } from '../api/UserAPI'
@@ -13,7 +12,7 @@ class UserController {
 
   async searchUser(login: string) {
     try {
-      const response = await this.api.searchByLogin({ login : login})
+      const response = await this.api.searchByLogin({ login: login })
       console.log(response)
 
     } catch (e: any) {
@@ -26,7 +25,7 @@ class UserController {
       const response = await this.api.read(id)
 
       if (response.id) {
-       console.log(response)
+        console.log(response)
       }
 
 
@@ -35,7 +34,7 @@ class UserController {
     }
   }
 
-  async changeUserProfile(editData: editUserData ) {
+  async changeUserProfile(editData: editUserData) {
     const response = await this.api.changeUserProfile(editData)
 
 
@@ -45,13 +44,15 @@ class UserController {
     }
   }
 
-  async changeUserPassword(passwordData: newPasswordData ) {
+  async changeUserPassword(passwordData: newPasswordData) {
     const response = await this.api.changeUserPassword(passwordData)
 
 
     console.log(response)
   }
-  async changeUserAvatar(avatar: FormData ) {
+
+  async changeUserAvatar(avatar: File) {
+    console.log('controller', avatar)
     const response = await this.api.changeUserAvatar(avatar)
     if (response.id) {
       store.set('user', response)

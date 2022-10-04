@@ -1,9 +1,19 @@
 import { EventBus } from './EventBus'
 import { set } from './helpers/set'
 import Block from './Block'
+import { User } from '../api/UserAPI'
+import { IChats } from '../api/ChatsAPI'
+import { Message } from '../controllers/MessageController'
 
 export enum StoreEvents {
   Updated = 'updated'
+}
+
+interface State {
+  user: User;
+  chats: IChats[];
+  messages: Record<number, Message[]>;
+  activeChatId?: number;
 }
 
 export class Store extends EventBus {

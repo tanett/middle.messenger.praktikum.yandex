@@ -11,7 +11,7 @@ class Block<Props extends Record<string, any> = any> {
 
   public id = nanoid(6)
   protected props: Props
-  public children: Record<string, Block<Props>>
+  public children: Record<string, Block<Props> | Block<Props>[]>
   private eventBus: () => EventBus
   private _element: HTMLElement | null = null
   protected meta: { props: any }
@@ -111,8 +111,13 @@ class Block<Props extends Record<string, any> = any> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
 
-    Object.values(this.children).forEach((child) =>
-                                           child.dispatchComponentDidMount(),
+    Object.values(this.children).forEach((child) => {
+                                           if (Array.isArray(child)) {
+                                             child.forEach(ch => ch.dispatchComponentDidMount())
+                                           } else {
+                                             child.dispatchComponentDidMount()
+                                           }
+                                         },
     )
   }
 
@@ -120,8 +125,14 @@ class Block<Props extends Record<string, any> = any> {
   public dispatchComponentDidUpdate() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDU)
 
-    Object.values(this.children).forEach((child) =>
-                                           child.dispatchComponentDidUpdate(),
+    Object.values(this.children).forEach((child) => {
+                                           if (Array.isArray(child)) {
+                                             child.forEach(ch => ch.dispatchComponentDidUpdate())
+                                           } else {
+                                             child.dispatchComponentDidUpdate()
+                                           }
+
+                                         },
     )
   }
 
@@ -164,7 +175,8 @@ class Block<Props extends Record<string, any> = any> {
 
     Object.entries(this.children).forEach(([ name, component ]) => {
       if (Array.isArray(component)) {
-        contextAndStubs[name] = component.map((child) => `<div data-id='${ component.id }'></div>`)
+
+        contextAndStubs[name] = component.map((child) => `<div data-id='${ child.id }'></div>`)
       } else {
         contextAndStubs[name] = `<div data-id='${ component.id }'></div>`
       }

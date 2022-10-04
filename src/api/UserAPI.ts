@@ -49,8 +49,9 @@ export interface ILightUser {
   }
 
 
-  changeUserAvatar(data: FormData): Promise<User> {
-    return this.http.put('/profile/avatar', data);
+  changeUserAvatar(data: File): Promise<User> {
+    console.log('api', data)
+    return this.http.put('/profile/avatar', {avatar: data}, true);
   }
 
   changeUserPassword(data: newPasswordData){

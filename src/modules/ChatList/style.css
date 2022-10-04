@@ -111,6 +111,7 @@
     box-sizing: border-box;
     border-bottom: 1px solid #eaeaea;
     padding: 10px 10px 0 0;
+    position: relative;
 }
 
 .messagesContainer__chatInfoWrapper {
@@ -136,14 +137,30 @@
 
 .messagesContainer__chatActions {
     height: 15px;
-    width: 3px;
+    width: 15px;
     align-self: center;
     cursor: pointer;
     background-image: url("../../image/vertical3Dots.svg");
     background-repeat: no-repeat;
 }
 
-/*-------------------------input block------------------------------*/
+.chatActions__container {
+    list-style: none;
+    display: none;
+    border: 1px solid #b4b4b4;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 1px 5px 2px rgba(206, 221, 224, 0.53);
+}
+
+.messagesContainer__chatActions:hover .chatActions__container{
+    display: block;
+}
+    /*-------------------------input block------------------------------*/
 
 .messagesContainer__inputContainer {
     box-sizing: border-box;

@@ -1,12 +1,10 @@
 import ProfileTmpl from './ProfileMainTmpl.hbs'
 import './style.css'
 import Block from '../../utils/Block'
+import UserController from '../../controllers/UserController'
 
 
-
-
-
-interface IProfileMainContent  {
+interface IProfileMainContent {
   avatar: string;
   login: string;
   email: string;
@@ -15,30 +13,31 @@ interface IProfileMainContent  {
   displayName: string;
   phone: string;
   editMode: 'main';
-  onEditDataClick: (e: Event)=>void
-  onEditPasswordClick:(e: Event)=>void
-  onOutClick:()=>void
+  onEditDataClick: (e: Event) => void
+  onEditPasswordClick: (e: Event) => void
+  onOutClick: () => void
 }
 
 
 //----------------------------------------------------------------------------------------------------------------------
-export class ProfileMainContent extends Block<IProfileMainContent > {
-  static componentName: string='ProfileMainContent'
+export class ProfileMainContent extends Block<IProfileMainContent> {
+  static componentName: string = 'ProfileMainContent'
   private newAvatar: boolean = false
-  constructor(props: IProfileMainContent ) {
+
+  constructor(props: IProfileMainContent) {
     super('ProfileMainContent', props)
 
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onChangeDataClick(e: Event) {
- this.props.onEditDataClick(e)
+    this.props.onEditDataClick(e)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onEditPasswordClick(e: Event) {
     console.log('pasww click')
- this.props.onEditPasswordClick( e )
+    this.props.onEditPasswordClick(e)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -48,34 +47,15 @@ export class ProfileMainContent extends Block<IProfileMainContent > {
   }
 
 //----------------------------------------------------------------------------------------------------------------------
-  onUploadAvatarClick(e: Event) {
+  onUploadAvatarClick(e: Event, file: File) {
+    console.log('upload', file)
 
+           UserController.changeUserAvatar(file)
 
-    const input =  Array.from(this.element!.children).find(el=>el.id === 'avatar')
+        this.dispatchComponentDidUpdate()
 
-    // @ts-ignore
-    const file = (this.element!.children[2] as HTMLInputElement).files[0]
-
-    if(file){
-      console.log('file',  file)
-      this.newAvatar = true
-      // const preview = (file) => {
-      //   const img = document.createElement("img");
-      //   img.src = URL.createObjectURL(file);  // Object Blob
-      //   img.alt = file.name;
-      //   document.querySelector('#preview').append(img);
-      // };
-      //
-      // document.querySelector("#files").addEventListener("change", (ev) => {
-      //   if (!ev.target.files) return; // Do nothing.
-      //   [...ev.target.files].forEach(preview);
-      // });
-
-      // });
-    }
-
-    console.log('onAvatar',  this.element?.children, input)
   }
+
 
 //----------------------------------------------------------------------------------------------------------------------
   render(): any {
@@ -83,7 +63,7 @@ export class ProfileMainContent extends Block<IProfileMainContent > {
 
 
     return this.compile(ProfileTmpl, {
-newAvatar: this.newAvatar,
+      newAvatar: this.newAvatar,
       pathAvatar: avatar,
       name: name,
       firstNameValue: name,
@@ -94,9 +74,9 @@ newAvatar: this.newAvatar,
       displayNameValue: displayName,
       children: this.children,
       onChangeClick: ( (e: Event) => this.props.onEditDataClick(e) ),
-      onChangePasswClick: (e: Event) => this.onEditPasswordClick(e) ,
+      onChangePasswClick: (e: Event) => this.onEditPasswordClick(e),
       onOutClick: () => this.onOutClick(),
-      onUploadAvatar: ((e:Event)=> this.onUploadAvatarClick(e)).bind(this)
+      onUploadAvatar: (e: Event, file: File) => this.onUploadAvatarClick(e,file) ,
 
     })
   }

@@ -1,7 +1,7 @@
 import store from '../utils/Store'
 import router from '../utils/Router'
 import ChatsAPI from '../api/ChatsAPI'
-
+import MessageController from './MessageController'
 
 
 class ChatsController {
@@ -14,12 +14,23 @@ class ChatsController {
   async getChats() {
     try {
       const response = await this.api.getChats()
-      store.set('chatsList', response.map(item=> ({...item, active: false})))
+      response.map(async (chat) => {
+        const token = await this.getConnectTokenController(chat.id)
+        if (token) {
+          await MessageController.connect(chat.id, token.token)
+        }
+      })
+      store.set('chatsList', response.map(item => ( { ...item, active: false } )))
 
       return response
     } catch (e: any) {
       console.error(e)
     }
+  }
+
+
+  selectChat(id: number) {
+    store.set('activeChatId', id)
   }
 
   async createChat(title: string) {
@@ -76,7 +87,7 @@ class ChatsController {
     }
   }
 
-  async  getCommonChatController(id: number) {
+  async getCommonChatController(id: number) {
     try {
       const response = await this.api.getCommonChat({ id })
       console.log(response)
@@ -86,7 +97,7 @@ class ChatsController {
     }
   }
 
-  async  getUsersInChatController(id: number) {
+  async getUsersInChatController(id: number) {
     try {
       const response = await this.api.getUsersInChat({ id })
       console.log(response)
@@ -96,7 +107,7 @@ class ChatsController {
     }
   }
 
-  async  getCountNewMessageController(id: number) {
+  async getCountNewMessageController(id: number) {
     try {
       const response = await this.api.getCountNewMessage({ id })
       console.log(response)
@@ -106,7 +117,7 @@ class ChatsController {
     }
   }
 
-  async  uploadChatAvatarController(id: number, avatar: FormData) {
+  async uploadChatAvatarController(id: number, avatar: FormData) {
     try {
       const response = await this.api.uploadChatAvatar({ id, avatar })
       console.log(response)
@@ -116,9 +127,9 @@ class ChatsController {
     }
   }
 
-  async  addUserToChatController(users: number[], chatId: number) {
+  async addUserToChatController(users: number[], chatId: number) {
     try {
-      const response = await this.api.addUserToChat({ users,  chatId})
+      const response = await this.api.addUserToChat({ users, chatId })
       console.log(response)
       return response
     } catch (e: any) {
@@ -126,9 +137,9 @@ class ChatsController {
     }
   }
 
-  async  deleteUserToChatController(users: number[], chatId: number) {
+  async deleteUserToChatController(users: number[], chatId: number) {
     try {
-      const response = await this.api.deleteUserToChat({ users,  chatId})
+      const response = await this.api.deleteUserToChat({ users, chatId })
       console.log(response)
       return response
     } catch (e: any) {
@@ -136,9 +147,9 @@ class ChatsController {
     }
   }
 
-  async  getConnectTokenController(id: number) {
+  async getConnectTokenController(id: number) {
     try {
-      const response = await this.api.getConnectToken({ id})
+      const response = await this.api.getConnectToken({ id })
       console.log(response)
       return response
     } catch (e: any) {

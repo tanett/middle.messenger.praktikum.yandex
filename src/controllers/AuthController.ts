@@ -14,10 +14,9 @@ class AuthController {
       const response = await this.api.signin(data)
       console.log(response)
 
-       await this.fetchUser()
+      await this.fetchUser()
 
-        router.go('/profile')
-
+      router.go('/profile')
 
 
     } catch (e: any) {

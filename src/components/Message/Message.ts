@@ -3,9 +3,9 @@ import Block from '../../utils/Block'
 import MessageTmpl from './Message.hbs'
 
 interface IMessage {
-  id: string;
+  id: number;
   text: string;
-  image: string;
+  image?: string;
   date: string;
   checkRead: boolean;
   classNames: string;

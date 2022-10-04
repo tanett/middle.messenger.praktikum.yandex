@@ -14,21 +14,10 @@
       />
     </div>
     <div class="chats__chatsListContainer">
-      {{#each chatListContent}}
-
-        {{{ChatItem
-          active=this.active
-          id=this.id
-          text= this.last_message.content
-          chatName= this.title
-          avatar=this.avatar
-          date= this.last_message.time
-          count=this.unread_count
-          classNames= ''
-          onClick=this.onChatClick
-        }}}
+      {{#each chats}}
+        {{{this}}}
       {{/each}}
-      {{{chatContent}}}
+
     </div>
     {{{Button
       text="+"
@@ -46,26 +35,21 @@
         <div class="messagesContainer__chatName">{{chatName}}</div>
       </div>
       <div class="messagesContainer__chatActions">
+        <ul class='chatActions__container'>
+          <li> {{{ButtonLink
+          id="addUsertoChat"
+          text="Добавить юзера"
+          classNames=""
+          onClick=openPopupAddUserToChat
+          }}}
+         </li>
+        </ul>
       </div>
     </div>
     <div class="messagesList">
-      <div class="messagesList__date">21 июня</div>
-      {{{Message
-        id="222"
-        text="22222"
-        image=null
-        date="25 jjj"
-        checkRead=true
-        classNames="messagesItem__interlocutor"
-      }}}
-      {{{Message
-        id="333"
-        text="3333"
-        image=null
-        date="26 jjj"
-        checkRead=true
-        classNames="messagesItem__host"
-      }}}
+      {{#each messages}}
+        {{{this}}}
+      {{/each}}
     </div>
     <form name="messageForm" class="messagesContainer__inputContainer">
       {{{Button
@@ -98,9 +82,22 @@
 {{#if isOpenPopup}}
     {{{ Popup
       title="Создать новый чат"
+      placeholder="Название чата"
+      label="Новый чат"
       openPopup=openPopupCreateChat
       closePopup=closePopupCreateChat
       onSaveNewChat=onSaveNewChat
     }}}
 {{/if}}
+  {{#if isOpenPopupAddUser}}
+    {{{ Popup
+      title="Добавить юзера по id"
+      placeholder="id юзера"
+      label="Юзер"
+      forUser=true
+      openPopup=openPopupAddUserToChat
+      closePopup= closePopupAddUserToChat
+      onSaveNewChat= onAddUserHandler
+    }}}
+  {{/if}}
 </main>

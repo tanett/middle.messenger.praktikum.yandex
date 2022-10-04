@@ -57,7 +57,7 @@
 .chatItem__metaData {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
   align-items: end;
 }
 .chatItem__date {
