@@ -129,6 +129,7 @@ class ChatsAPI extends BaseAPI {
   }
 
   addUserToChat(data:{users: number[],chatId: number}):Promise<Response> {
+
     return this.http.put(`/users`, data)
   }
 

@@ -16,6 +16,7 @@ interface IPopup {
   closePopup: (e: Event) => void
   onSaveNewChat: (e: Event) => void
   forUser?: boolean
+  forDeleteUser?: boolean
 
 }
 
@@ -56,6 +57,23 @@ export class Popup extends Block<IPopup> {
   async onSaveUserHandler(e: Event) {
     e.preventDefault()
 
+    let value:number[]=[]
+    Object.values(this.children).forEach(child => {
+      // @ts-ignore
+      if (child.className === 'InputTextValidate') {
+        value.push(+(( child as unknown as InputTextValidate ).getValue()))
+         }
+    })
+    const activeChat = store.getState().activeChatId
+    if (value.length>0 && activeChat) {
+      await ChatsController.addUserToChatController(value, activeChat).catch(error => console.log(error))
+      this.props.closePopup(e)
+    } else { return}
+  }
+
+  async onDeleteUserHandler(e: Event) {
+    e.preventDefault()
+
     const inputs = {
       chatTitle: '',
       isValid: true,
@@ -71,21 +89,22 @@ export class Popup extends Block<IPopup> {
     })
     const activeChat = store.getState().activeChatId
     if (inputs.isValid && activeChat) {
-      const activeChat = store.getState().activeChatId
-      // @ts-ignore
-      await ChatsController.addUserToChatController(inputs.chatTitle, activeChat).catch(error => console.log(error))
+
+
+      await ChatsController.deleteUserToChatController([+inputs.chatTitle], activeChat).catch(error => console.log(error))
       this.props.closePopup(e)
     } else { return}
   }
 
   render() {
+
     const { title, placeholder, label, openPopup, closePopup } = this.props
     return this.compile(PopupTmpl, {
       title, openPopup, closePopup, placeholder,
       onCloseClick: ( (e: Event) => closePopup(e) ).bind(this),
-      titlePattern: inputRules.titleChat,
+      titlePattern: inputRules.anyNumber,
       errorMessage: 'Поле не должно быть пустым',
-      onSaveClick: this.props.forUser ? (e: Event) => this.onSaveUserHandler(e) : (e: Event) => this.onSaveDataClick(e),
+      onSaveClick: this.props.forUser ? (e: Event) => this.onSaveUserHandler(e) :  this.props.forDeleteUser ? (e: Event) => this.onDeleteUserHandler(e) :(e: Event) => this.onSaveDataClick(e),
       children: this.children,
     })
   }

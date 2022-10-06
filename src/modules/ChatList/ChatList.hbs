@@ -28,7 +28,9 @@
     }}}
 
   </section>
+
   <section class="chats__messagesContainer">
+    {{#if activeChat}}
     <div class="messagesContainer__chatInfo">
       <div class="messagesContainer__chatInfoWrapper">
         <div class="messagesContainer__chatAvatar"></div>
@@ -43,6 +45,20 @@
           onClick=openPopupAddUserToChat
           }}}
          </li>
+          <li> {{{ButtonLink
+            id="deleteUserfromChat"
+            text="Удалить юзера"
+            classNames=""
+            onClick=openPopupDeleteUserFromChat
+          }}}
+          </li>
+          <li> {{{ButtonLink
+            id="deleteChat"
+            text="Удалить чат"
+            classNames=""
+            onClick=openPopupDeleteUserFromChat
+          }}}
+          </li>
         </ul>
       </div>
     </div>
@@ -78,6 +94,9 @@
         onClick=onSubmitMessageClick
       }}}
     </form>
+      {{else}}
+      <div class='messagesContainer__notify'>Выберите чат или создайте новый</div>
+    {{/if}}
   </section>
 {{#if isOpenPopup}}
     {{{ Popup
@@ -98,6 +117,18 @@
       openPopup=openPopupAddUserToChat
       closePopup= closePopupAddUserToChat
       onSaveNewChat= onAddUserHandler
+    }}}
+  {{/if}}
+  {{#if isOpenPopupDeleteUser}}
+    {{{ Popup
+      title="Удалить юзера по id"
+      placeholder="id юзера"
+      label="Юзер"
+      forUser=true
+      forDeleteUser=true
+      openPopup=openPopupDeleteUserFromChat
+      closePopup= closePopupDeleteUserFromChat
+      onSaveNewChat= onDeleteUserHandler
     }}}
   {{/if}}
 </main>

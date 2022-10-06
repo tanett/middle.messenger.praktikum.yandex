@@ -135,6 +135,17 @@
     color: #1e1e1e;
 }
 
+.messagesContainer__notify {
+color: #6b6868;
+    font-size: 25px;
+    line-height: 35px;
+    text-align: center;
+
+
+    margin-top: 50vh;
+
+}
+
 .messagesContainer__chatActions {
     height: 15px;
     width: 15px;
@@ -146,19 +157,33 @@
 
 .chatActions__container {
     list-style: none;
-    display: none;
     border: 1px solid #b4b4b4;
     padding: 10px 20px;
     position: absolute;
-    bottom: -10px;
+    top: 20px;
     right: 10px;
     border-radius: 5px;
     background-color: white;
     box-shadow: 0px 1px 5px 2px rgba(206, 221, 224, 0.53);
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 300ms ease-out;
 }
 
 .messagesContainer__chatActions:hover .chatActions__container{
-    display: block;
+   opacity: 100;
+    z-index: 10;
+}
+
+.chatActions__container li {
+    padding: 10px 20px;
+    border-bottom: 1px solid gray;
+
+}
+
+.chatActions__container li:last-child {
+    border-bottom: none;
+
 }
     /*-------------------------input block------------------------------*/
 

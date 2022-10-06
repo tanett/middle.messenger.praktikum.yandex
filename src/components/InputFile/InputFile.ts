@@ -15,6 +15,7 @@ interface IInputTextValidate {
   classInput: string;
   classLabel: string;
   onUpload: (e: Event, file: File)=>void
+  pathAvatar: string
 }
 
 export class InputFile extends Block<IInputTextValidate> {
@@ -66,6 +67,7 @@ console.log("22222", (e.target as HTMLInputElement).files!)
       classLabel: this.props.classLabel,
       onChange: ( (e: Event) => this.onChangeHandler(e) ).bind(this),
       children: this.children,
+      pathAvatar:this.props.pathAvatar
     })
   }
 }

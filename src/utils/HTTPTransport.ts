@@ -128,7 +128,7 @@ export default class HTTPTransport {
   }
 
   public put<Response = void>(path: string, data: unknown, sendFile?: boolean): Promise<Response> {
-    console.log('http', data)
+
     return this.request<Response>(this.endpoint + path, {
       method: METHODS.PUT,
       data,

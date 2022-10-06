@@ -20,6 +20,11 @@ class AuthController {
 
 
     } catch (e: any) {
+
+      if(e?.reason === 'User already in system'){
+        await this.fetchUser()
+        router.go('/profile')
+      }
       console.error(e)
     }
   }
@@ -27,14 +32,15 @@ class AuthController {
   async signup(data: SignupData) {
     try {
       const response = await this.api.signup(data)
+
       // @ts-ignore
       if (response.id) {
         await this.fetchUser()
         router.go('/profile')
       }
 
-
     } catch (e: any) {
+
       console.error(e.message)
     }
   }

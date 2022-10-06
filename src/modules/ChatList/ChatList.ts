@@ -37,6 +37,7 @@ export type typeMessageItem = {
 interface IChatList {
   openPopupCreateChat: boolean
   openPopupAddUserInChat: boolean
+  openPopupDeleteUserFromChat: boolean
   chats: IChats[]
 
   user: User
@@ -78,15 +79,14 @@ class ChatList extends Block<IChatList> {
 //----------------------------------------------------------------------------------------------------------------------
   private createChats(props: IChatList) {
     return props.chats.map(data => {
-      let date=''
-      if(data.last_message){
-        const d=new Date(data.last_message.time)
-        const day = d.getDate() >9 ? d.getDate() : `0${d.getDate()}`
-        const month = d.getMonth()+1 >9 ? d.getMonth()+1 : `0${d.getMonth() + 1}`
-        date = `${day}.${month} ${d.getHours()}:${d.getMinutes()}`
+      let date = ''
+      if (data.last_message) {
+        const d = new Date(data.last_message.time)
+        const day = d.getDate() > 9 ? d.getDate() : `0${ d.getDate() }`
+        const month = d.getMonth() + 1 > 9 ? d.getMonth() + 1 : `0${ d.getMonth() + 1 }`
+        date = `${ day }.${ month } ${ d.getHours() }:${ d.getMinutes() }`
       }
 
-      console.log(date)
       return new ChatItem({
                             ...data,
                             id: data.id,
@@ -98,6 +98,7 @@ class ChatList extends Block<IChatList> {
                             active: this.props.activeChatId === data.id,
                             events: {
                               click: () => {
+                                if(data.id === this.props.activeChatId){return}
                                 ChatsController.selectChat(data.id)
                                 MessageController.fetchOldMessages(data.id)
                                 console.log('Click')
@@ -116,7 +117,7 @@ class ChatList extends Block<IChatList> {
                            id: data.id,
                            text: data.content,
 
-                           date: data.time.substring(11,16),
+                           date: data?.time.substring(11, 16) || '',
                            checkRead: true,
                            classNames: data.user_id === this.props.user.id ? 'messagesItem__host' : 'messagesItem__interlocutor',
 
@@ -148,8 +149,8 @@ class ChatList extends Block<IChatList> {
 
     // @ts-ignore
     const chatId = e.target!.id
-    console.log('chatID', chatId, e.target)
-
+    if(chatId === this.props.activeChatId){return}
+    store.set('activeChatId ', chatId)
     this.chatsList.find((chat: IChats) => chatId === chat.id)!.active = true
 
     this.dispatchComponentDidUpdate()
@@ -159,22 +160,34 @@ class ChatList extends Block<IChatList> {
 //----------------------------------------------------------------------------------------------------------------------
 
   onAddChatClick = () => {
-
     this.setProps({ openPopupCreateChat: true })
-    console.log('+', this.props.openPopupCreateChat)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-  onAddUserInChatHandler= (e: Event) => {
+  onAddUserInChatHandler = (e: Event) => {
     this.setProps({ openPopupAddUserInChat: true })
-    console.log('rkn')
+
   }
 
   onCloseUserInChatHandler = (e: Event) => {
     this.setProps({ openPopupAddUserInChat: false })
   }
   onSaveAddUserInChat = (e: Event) => {
+    this.dispatchComponentDidUpdate()
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+  onDeleteUserFromChatHandler = (e: Event) => {
+    this.setProps({ openPopupDeleteUserFromChat: true })
+
+  }
+
+  onCloseUserFromChatHandler = (e: Event) => {
+    this.setProps({ openPopupDeleteUserFromChat: false })
+  }
+  onSaveDeleteUserFromChat = (e: Event) => {
     this.dispatchComponentDidUpdate()
   }
 //----------------------------------------------------------------------------------------------------------------------
@@ -195,12 +208,10 @@ class ChatList extends Block<IChatList> {
 //----------------------------------------------------------------------------------------------------------------------
 
   render(): any {
-    // const st = this.props.chats.map(item=>({...item, onChatClick: (e:Event)=> this.onChatClick(e)}))
-    // console.log('lll', st, this.props.chats, this.onChatClick)
-    console.log("popup user",this.props.openPopupAddUserInChat)
-    return this.compile(ChatListTmpl, {
-      chatName: this.props.chats ? this.props.chats.find(item => item.active === true)?.title : '',
 
+    return this.compile(ChatListTmpl, {
+      chatName: this.props.activeChatId ? this.props.chats.find(item => item.id === this.props.activeChatId)?.title : '',
+activeChat: !!this.props.activeChatId,
       children: this.children,
       onChangeMessage: this.onChangeMessage.bind(this),
       onSubmitMessageClick: this.onSubmitMessageClick.bind(this),
@@ -211,9 +222,13 @@ class ChatList extends Block<IChatList> {
       isOpenPopup: this.props.openPopupCreateChat,
       onSaveNewChat: ( (e: Event) => this.onSaveNewChat(e) ).bind(this),
       isOpenPopupAddUser: this.props.openPopupAddUserInChat,
-      onAddUserHandler:(e: Event) => this.onSaveAddUserInChat(e),
+      onAddUserHandler: (e: Event) => this.onSaveAddUserInChat(e),
       openPopupAddUserToChat: (e: Event) => this.onAddUserInChatHandler(e),
       closePopupAddUserToChat: (e: Event) => this.onCloseUserInChatHandler(e),
+      isOpenPopupDeleteUser: this.props.openPopupDeleteUserFromChat,
+      onDeleteUserHandler: (e: Event) => this.onSaveDeleteUserFromChat(e),
+      openPopupDeleteUserFromChat: (e: Event) => this.onDeleteUserFromChatHandler(e),
+      closePopupDeleteUserFromChat: (e: Event) => this.onCloseUserFromChatHandler(e),
     })
   }
 

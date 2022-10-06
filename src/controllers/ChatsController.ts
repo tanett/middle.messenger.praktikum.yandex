@@ -130,7 +130,7 @@ class ChatsController {
   async addUserToChatController(users: number[], chatId: number) {
     try {
       const response = await this.api.addUserToChat({ users, chatId })
-      console.log(response)
+      console.log('chatController',response)
       return response
     } catch (e: any) {
       console.error(e)

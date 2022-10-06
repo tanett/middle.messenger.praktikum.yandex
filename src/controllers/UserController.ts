@@ -52,8 +52,10 @@ class UserController {
   }
 
   async changeUserAvatar(avatar: File) {
-    console.log('controller', avatar)
-    const response = await this.api.changeUserAvatar(avatar)
+    const formData = new FormData()
+    formData.append('avatar', avatar)
+    console.log('controller', formData)
+    const response = await this.api.changeUserAvatar(formData)
     if (response.id) {
       store.set('user', response)
 

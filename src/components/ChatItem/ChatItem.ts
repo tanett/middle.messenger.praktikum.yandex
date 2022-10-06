@@ -2,7 +2,7 @@ import ChatItemTmpl from './ChatItem.hbs'
 import './style.css'
 import Block from '../../utils/Block'
 import store, { withStore } from '../../utils/Store'
-import { IChats } from '../../api/ChatsAPI'
+import { resourceUrl }from '../../api/constants'
 
 
 interface IChatItem {
@@ -49,8 +49,9 @@ export class ChatItemBase extends Block<IChatItem> {
 
 
   render(): any {
+
     const chatAvatar = this.props.avatar
-      ? `<img src='${ this.props.avatar }' alt='${ this.props.title }' class='chatItem__img'>`
+      ? `<img src='${resourceUrl}${ this.props.avatar }' alt='${ this.props.title }' class='chatItem__img'>`
       : undefined
     return this.compile(ChatItemTmpl, {
       ...this.props,

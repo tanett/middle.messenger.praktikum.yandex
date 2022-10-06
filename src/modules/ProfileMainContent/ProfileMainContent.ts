@@ -2,6 +2,7 @@ import ProfileTmpl from './ProfileMainTmpl.hbs'
 import './style.css'
 import Block from '../../utils/Block'
 import UserController from '../../controllers/UserController'
+import { resourceUrl } from '../../api/constants'
 
 
 interface IProfileMainContent {
@@ -64,7 +65,7 @@ export class ProfileMainContent extends Block<IProfileMainContent> {
 
     return this.compile(ProfileTmpl, {
       newAvatar: this.newAvatar,
-      pathAvatar: avatar,
+      pathAvatar: `${resourceUrl}${avatar}`,
       name: name,
       firstNameValue: name,
       secondNameValue: secondName,

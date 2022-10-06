@@ -44,6 +44,7 @@ class MessagesController {
     if (!socket) {
       throw new Error(`Chat ${id} is not connected`);
     }
+
     console.log('send')
     socket.send({
                   type: 'message',
@@ -72,11 +73,12 @@ class MessagesController {
       messagesToAdd = messages.reverse();
     } else {
       messagesToAdd.push(messages);
+      const currentMessages = (store.getState().messages || {})[id] || [];
+
+      messagesToAdd = [...currentMessages, ...messagesToAdd];
     }
 
-    const currentMessages = (store.getState().messages || {})[id] || [];
 
-    messagesToAdd = [...currentMessages, ...messagesToAdd];
 
     store.set(`messages.${id}`, messagesToAdd);
   }

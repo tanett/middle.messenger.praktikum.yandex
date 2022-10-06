@@ -3,5 +3,8 @@
   "transformers": {
     "*.hbs": ["@anikin/parcel-transformer-handlebars-precompile"]
   },
-  "resolvers": ["@parcel/resolver-glob", "..."]
+  "resolvers": ["@parcel/resolver-glob", "..."],
+  "optimizers": {
+      "*.{jpg,jpeg,png}": []
+    }
 }
