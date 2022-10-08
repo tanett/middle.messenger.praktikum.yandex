@@ -31,6 +31,7 @@ class ChatsController {
 
   selectChat(id: number) {
     store.set('activeChatId', id)
+    this.getUsersInChatController(id).then((res)=>{store.set('usersList', res)})
   }
 
   async createChat(title: string) {

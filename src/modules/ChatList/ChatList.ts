@@ -38,8 +38,10 @@ interface IChatList {
   openPopupCreateChat: boolean
   openPopupAddUserInChat: boolean
   openPopupDeleteUserFromChat: boolean
+  isOpenPopupConfirmationDeleteChat: boolean
+  isOpenPopupShowUsersFromChat: boolean
   chats: IChats[]
-
+  usersList: User[]
   user: User
   messages: typeMessageItem[]
   isLoaded: boolean;
@@ -52,7 +54,7 @@ class ChatList extends Block<IChatList> {
 
   constructor(props: IChatList) {
     super('ChatList', props)
-    ChatsController.getChats().then((res) => {if (res) {this.dispatchComponentDidUpdate()}})
+    ChatsController.getChats().then((res) => {if (res) { this.dispatchComponentDidUpdate()}})
 
 
   }
@@ -162,6 +164,20 @@ class ChatList extends Block<IChatList> {
   onAddChatClick = () => {
     this.setProps({ openPopupCreateChat: true })
   }
+//----------------------------------------------------------------------------------------------------------------------
+
+  onDeleteChatClick = (e:Event) => {
+    this.setProps({ isOpenPopupConfirmationDeleteChat: true })
+  }
+
+  onCloseConfirmationPopupDeleteChatClick = (e:Event) => {
+    this.setProps({ isOpenPopupConfirmationDeleteChat: false })
+  }
+
+  onConfirmDeleteChatClick = (e:Event) => {
+    ChatsController.deleteChartByIdController(this.props.activeChatId)
+    this.setProps({ isOpenPopupConfirmationDeleteChat: false })
+  }
 
 //----------------------------------------------------------------------------------------------------------------------
 
@@ -175,6 +191,15 @@ class ChatList extends Block<IChatList> {
   }
   onSaveAddUserInChat = (e: Event) => {
     this.dispatchComponentDidUpdate()
+  }
+//----------------------------------------------------------------------------------------------------------------------
+
+  onShowUsersFromChatClick = (e: Event) => {
+    this.setProps({ isOpenPopupShowUsersFromChat: true })
+
+  }
+onCloseUsersFromChatClick = (e: Event) => {
+    this.setProps({ isOpenPopupShowUsersFromChat: false })
   }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -209,6 +234,7 @@ class ChatList extends Block<IChatList> {
 
   render(): any {
 
+
     return this.compile(ChatListTmpl, {
       chatName: this.props.activeChatId ? this.props.chats.find(item => item.id === this.props.activeChatId)?.title : '',
 activeChat: !!this.props.activeChatId,
@@ -229,6 +255,14 @@ activeChat: !!this.props.activeChatId,
       onDeleteUserHandler: (e: Event) => this.onSaveDeleteUserFromChat(e),
       openPopupDeleteUserFromChat: (e: Event) => this.onDeleteUserFromChatHandler(e),
       closePopupDeleteUserFromChat: (e: Event) => this.onCloseUserFromChatHandler(e),
+      isOpenPopupDeleteChat: this.props.isOpenPopupConfirmationDeleteChat,
+      closePopupDeleteChat: this.onCloseConfirmationPopupDeleteChatClick,
+      onDeleteChatHandler: this.onConfirmDeleteChatClick,
+      onDeleteChatClick: this.onDeleteChatClick,
+      isOpenPopupShowUsersFromChat: this.props.isOpenPopupShowUsersFromChat,
+      closePopupShowUsers: this.onCloseUsersFromChatClick,
+      onShowUsersFromChatClick: this.onShowUsersFromChatClick,
+      usersList: this.props.usersList
     })
   }
 
@@ -239,6 +273,7 @@ const withChats = withStore((state) => ( {
   activeChatId: state.activeChatId,
   messages: ( state.messages || {} )[state.activeChatId] || [],
   user: state.user,
+  usersList: state.usersList || []
 } ))
 
 // @ts-ignore

@@ -39,6 +39,13 @@
       <div class="messagesContainer__chatActions">
         <ul class='chatActions__container'>
           <li> {{{ButtonLink
+            id="showUserfromChat"
+            text="Участники чата"
+            classNames=""
+            onClick=onShowUsersFromChatClick
+          }}}
+          </li>
+          <li> {{{ButtonLink
           id="addUsertoChat"
           text="Добавить юзера"
           classNames=""
@@ -56,7 +63,7 @@
             id="deleteChat"
             text="Удалить чат"
             classNames=""
-            onClick=openPopupDeleteUserFromChat
+            onClick=onDeleteChatClick
           }}}
           </li>
         </ul>
@@ -129,6 +136,24 @@
       openPopup=openPopupDeleteUserFromChat
       closePopup= closePopupDeleteUserFromChat
       onSaveNewChat= onDeleteUserHandler
+    }}}
+  {{/if}}
+  {{#if isOpenPopupShowUsersFromChat}}
+    {{{ UsersListPopup
+      title="Участники чата"
+      list=usersList
+      isOpenPopup=isOpenPopupShowUsersFromChat
+      closePopupClick= closePopupShowUsers
+      onSaveClick= ""
+    }}}
+  {{/if}}
+  {{#if isOpenPopupDeleteChat}}
+    {{{ ConfirmationPopup
+      title="Удалить этот чат?"
+     message="Нажмите кнопку подтвердить если вы действительно хотите это сделать"
+      isOpenPopup=isOpenPopupDeleteChat
+      closePopupClick= closePopupDeleteChat
+      onSaveClick= onDeleteChatHandler
     }}}
   {{/if}}
 </main>

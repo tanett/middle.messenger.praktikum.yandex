@@ -11,9 +11,11 @@ export enum StoreEvents {
 
 interface State {
   user: User;
+  usersList: User[]
   chats: IChats[];
   messages: Record<number, Message[]>;
   activeChatId?: number;
+
 }
 
 export class Store extends EventBus {

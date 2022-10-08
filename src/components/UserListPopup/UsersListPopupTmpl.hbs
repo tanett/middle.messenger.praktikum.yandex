@@ -1,0 +1,25 @@
+<div  class="popup__overlay">
+  <div class="popup__container">
+    {{{Button
+      text="X"
+      classNames="popup__closeBtn"
+      type="button"
+      id="popupClsBtn"
+      onClick=onCloseClick
+      secondary="true"
+    }}}
+    <h1 class="popup__title">{{ title }}</h1>
+    <ul class='usersList'>
+      {{#each list}}
+
+        <li class='usersList__li' ><span>id</span> :<span  class='usersList__item'> {{this.id}}</span>, <span>login</span> :<span  class='usersList__item'> {{this.login}}</span></li>
+      {{/each}}
+    </ul>
+
+
+    </div>
+
+  </div>
+</div>
+
+
