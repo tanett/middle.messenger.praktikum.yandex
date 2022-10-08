@@ -46,10 +46,17 @@
     justify-content: center;
 }
 
+.avatar__image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+
 .profile__avatar {
     width: 130px;
     height: 130px;
     border-radius: 50%;
+
     background: #efefef url("../../image/avatarPlaceholder.png") no-repeat center;
     margin-bottom: 21px;
     cursor: pointer;

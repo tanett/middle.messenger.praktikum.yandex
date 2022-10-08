@@ -1,16 +1,16 @@
-<div class="chatItem" id={{id}}>
+<div class="chatItem {{#if active}}chatItem_active{{/if}} " id={{id}} >
   <div class="chatItem__wrapper">
     <div class="chatItem__avatar">
-      {{chatAvatar}}
+      {{avatar}}
     </div>
     <div class="chatItem__info">
-      <h3 class="chatItem__name">{{chatName}}</h3>
+      <h3 class="chatItem__name">{{title}}</h3>
       <p class="chatItem__message">{{text}}</p>
     </div>
     <div class="chatItem__metaData">
       <p class="chatItem__date">{{date}}</p>
-      {{#if count}}
-        <p class="chatItem__notify">{{count}}</p>
+      {{#if unread_count}}
+        <p class="chatItem__notify">{{unread_count}}</p>
       {{/if}}
     </div>
   </div>

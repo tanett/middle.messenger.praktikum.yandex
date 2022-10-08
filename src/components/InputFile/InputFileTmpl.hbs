@@ -1,0 +1,19 @@
+<div class="inputBlock">
+  <div class="inputBlock__wrapper">
+    <label for='{{id}}' class="inputFile__label {{classLabel}}" style='background-image: url("{{pathAvatar}}")'></label>
+    {{{Input
+      id=id
+      name=name
+      type=type
+      placeholder=placeholder
+      classInput=classInput
+      value=value
+      onInput=onInput
+      disabled=disabled
+      onChange=onChange
+      pattern=pattern
+    }}}
+  </div>
+  <p id="id-errorMsg" class="inputBlock__message">{{errorMessage}}</p>
+
+</div>

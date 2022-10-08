@@ -17,12 +17,14 @@
 
 
 .profile__title-wrapper{
-    width: 50%;
+    margin: 0 auto;
     display: flex;
     gap: 20px;
     align-items: baseline;
+    justify-content: center;
 }
 .profile__title_edit {
+    white-space: nowrap;
     flex-grow: 1;
     font-style: normal;
     font-weight: 600;

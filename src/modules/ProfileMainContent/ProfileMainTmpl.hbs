@@ -1,7 +1,19 @@
 <section class="profile__container">
-  <label for="avatar" class="avatar profile__avatar">
-    <input type="file" id="avatar" name="avatar" hidden />
-  </label>
+
+  {{{InputFile
+    id="fileInput"
+    name="fileInput"
+    placeholder=""
+    label="File avatar"
+    errorMessage="1111"
+    disabled=false
+    classInput="inputFile__input"
+    classLabel="avatar profile__avatar"
+    onUpload=onUploadAvatar
+    pathAvatar=pathAvatar
+  }}}
+
+
   <h1 class="profile__title">{{name}}</h1>
   <form name="profileData_form">
 
