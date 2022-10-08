@@ -2,7 +2,7 @@ import Block from '../../utils/Block'
 import PopupTmpl from './ConfirmationPopupTmpl.hbs'
 import './style.css'
 import ChatsController from '../../controllers/ChatsController'
-import { inputRules } from '../../utils/validationRules'
+
 
 
 interface IPopup {

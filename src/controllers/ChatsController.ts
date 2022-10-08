@@ -1,5 +1,4 @@
 import store from '../utils/Store'
-import router from '../utils/Router'
 import ChatsAPI from '../api/ChatsAPI'
 import MessageController from './MessageController'
 
