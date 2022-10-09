@@ -1,11 +1,12 @@
 import ProfileTmpl from './ProfileMainTmpl.hbs'
 import './style.css'
 import Block from '../../utils/Block'
+import UserController from '../../controllers/UserController'
+import { resourceUrl } from '../../api/constants'
 
 
-
-
-interface IProfileMainContent  {
+interface IProfileMainContent {
+  avatar: string;
   login: string;
   email: string;
   name: string;
@@ -13,42 +14,52 @@ interface IProfileMainContent  {
   displayName: string;
   phone: string;
   editMode: 'main';
-  onEditDataClick: (e: Event)=>void
-  onEditPasswordClick:(e: Event)=>void
+  onEditDataClick: (e: Event) => void
+  onEditPasswordClick: (e: Event) => void
+  onOutClick: () => void
 }
 
+
 //----------------------------------------------------------------------------------------------------------------------
-export class ProfileMainContent extends Block<IProfileMainContent > {
-  static componentName: string='ProfileMainContent'
-  constructor(props: IProfileMainContent ) {
+export class ProfileMainContent extends Block<IProfileMainContent> {
+  static componentName: string = 'ProfileMainContent'
+  private newAvatar: boolean = false
+
+  constructor(props: IProfileMainContent) {
     super('ProfileMainContent', props)
 
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onChangeDataClick(e: Event) {
- this.props.onEditDataClick(e)
+    this.props.onEditDataClick(e)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onEditPasswordClick(e: Event) {
-    console.log('pasww click')
- this.props.onEditPasswordClick( e )
+
+    this.props.onEditPasswordClick(e)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onOutClick() {
-    window.location.pathname = ''
-    console.log('onOutClick')
+    this.props.onOutClick()
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
+  onUploadAvatarClick(e: Event, file: File) {
+    UserController.changeUserAvatar(file)
+    this.dispatchComponentDidUpdate()
   }
 
 
 //----------------------------------------------------------------------------------------------------------------------
   render(): any {
-    const { name, secondName, login, displayName, phone, email } = this.props
-
+    const { name, secondName, login, displayName, phone, email, avatar } = this.props
 
     return this.compile(ProfileTmpl, {
+      newAvatar: this.newAvatar,
+      pathAvatar: `${ resourceUrl }${ avatar }`,
       name: name,
       firstNameValue: name,
       secondNameValue: secondName,
@@ -58,8 +69,9 @@ export class ProfileMainContent extends Block<IProfileMainContent > {
       displayNameValue: displayName,
       children: this.children,
       onChangeClick: ( (e: Event) => this.props.onEditDataClick(e) ),
-      onChangePasswClick: (e: Event) => this.onEditPasswordClick(e) ,
+      onChangePasswClick: (e: Event) => this.onEditPasswordClick(e),
       onOutClick: () => this.onOutClick(),
+      onUploadAvatar: (e: Event, file: File) => this.onUploadAvatarClick(e, file),
 
     })
   }

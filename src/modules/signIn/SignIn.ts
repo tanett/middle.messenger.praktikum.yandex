@@ -3,43 +3,49 @@ import SignInTmpl from './SignIn.hbs'
 import Block from '../../utils/Block'
 import { inputRules } from '../../utils/validationRules'
 import InputTextValidate from '../../components/InputTextValidate'
+import AuthController from '../../controllers/AuthController'
+import { SigninData } from '../../api/AuthAPI'
+import { ROUTES } from '../../index'
 
-interface ISignIn {}
 
-export class SignIn extends Block<ISignIn> {
+
+export class SignIn extends Block<{}> {
   private loginInputValue: string = ''
   private passwordInputValue: string = ''
   static componentName: string='SignIn'
 
-  constructor(props: ISignIn) {
+  constructor(props={}) {
     super('SignIn', props)
   }
 
-//----------------------------------------------------------------------------------------------------------------------
   onSubmitClick(e: Event) {
     e.preventDefault()
 
-    e.preventDefault()
-    const inputs:Record<string, string>= {}
+    const inputs:SigninData = {
+      login:'',
+      password: ''
+    }
     Object.values(this.children).forEach(child => {
       if (child.className === 'InputTextValidate') {
         // @ts-ignore
         inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
       }
     })
-    console.log('input data', inputs)
+    AuthController.signin(inputs)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
-  onSignUpClick() {
-    window.location.pathname = '/signUp.html'
+  onSignUpClick(e: Event) {
+
+    e.preventDefault()
+    window.location.pathname = ROUTES.Signup
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   render(): any {
     return this.compile(SignInTmpl, {
       onSubmitClick: ( (e: Event) => this.onSubmitClick(e) ).bind(this),
-      onSignUpClick: this.onSignUpClick,
+      onSignUpClick: (e: Event) =>this.onSignUpClick(e),
 
       loginValue: '',
       loginPattern: inputRules.login,

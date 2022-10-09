@@ -1,85 +1,159 @@
 <main class="chats__container">
-    <section class="chats__leftPanel">
-        <a
-                id="profileLink"
-                class="chats__profileLink"
-                href="./profile.html"
-        >Профиль&nbsp;&nbsp;></a>
-        <div class="chats__searchContainer">
-            <input
-                    id="search"
-                    name="search"
-                    class="chats__inputSearch"
-                    placeholder="Поиск"
-            />
-        </div>
-        <div class="chats__chatsListContainer">
-            {{{ChatItem
-                    id="11111"
-                    text="text"
-                    chatName="111"
-                    avatar=null
-                    date="21 bkk"
-                    count=8
-                    classNames=""
-            }}}
-        </div>
-    </section>
-    <section class="chats__messagesContainer">
-        <div class="messagesContainer__chatInfo">
-            <div class="messagesContainer__chatInfoWrapper">
-                <div class="messagesContainer__chatAvatar"></div>
-                <div class="messagesContainer__chatName">{{chatName}}</div>
-            </div>
-            <div class="messagesContainer__chatActions">
-            </div>
-        </div>
-        <div class="messagesList">
-            <div class="messagesList__date">21 июня</div>
-            {{{Message
-                    id="222"
-                    text="22222"
-                    image=null
-                    date="25 jjj"
-                    checkRead=true
-                    classNames="messagesItem__interlocutor"
-            }}}
-            {{{Message
-                    id="333"
-                    text="3333"
-                    image=null
-                    date="26 jjj"
-                    checkRead=true
-                    classNames="messagesItem__host"
-            }}}
-        </div>
-        <form name="messageForm" class="messagesContainer__inputContainer">
-            {{{Button
-                    text=""
-                    classNames="inputContainer__addSomething"
-                    type="button"
-                    id="addInMessageBtn"
-                    onClick=onAddInMessageClick
-            }}}
-            {{{Input
-                    id="message"
-                    name="imessage"
-                    type="text"
-                    placeholder="Сообщение"
-                    classInput="inputContainer__input"
-                    value=messageValue
-                    pattern=".{1,250}"
-                    disabled=false
-                    onChange=onChangeMessage
-            }}}
-            {{{Button
-                    text=""
-                    classNames="inputContainer__submitBtn"
-                    type="submit"
-                    id="messageSubmitBtn"
-                    onClick=onSubmitMessageClick
-            }}}
-        </form>
-    </section>
+  <section class="chats__leftPanel">
+    <a
+      id="profileLink"
+      class="chats__profileLink"
+      href="/profile"
+    >Профиль&nbsp;&nbsp;></a>
+    <div class="chats__searchContainer">
+      <input
+        id="search"
+        name="search"
+        class="chats__inputSearch"
+        placeholder="Поиск"
+      />
+    </div>
+    <div class="chats__chatsListContainer">
+      {{#each chats}}
+        {{{this}}}
+      {{/each}}
 
+    </div>
+    {{{Button
+      text="+"
+      classNames="chats__addChatBtn"
+      type="button"
+      id="addChatBtn"
+      onClick=onAddChatClick
+    }}}
+
+  </section>
+
+  <section class="chats__messagesContainer">
+    {{#if activeChat}}
+    <div class="messagesContainer__chatInfo">
+      <div class="messagesContainer__chatInfoWrapper">
+        <div class="messagesContainer__chatAvatar"></div>
+        <div class="messagesContainer__chatName">{{chatName}}</div>
+      </div>
+      <div class="messagesContainer__chatActions">
+        <ul class='chatActions__container'>
+          <li> {{{ButtonLink
+            id="showUserfromChat"
+            text="Участники чата"
+            classNames=""
+            onClick=onShowUsersFromChatClick
+          }}}
+          </li>
+          <li> {{{ButtonLink
+          id="addUsertoChat"
+          text="Добавить юзера"
+          classNames=""
+          onClick=openPopupAddUserToChat
+          }}}
+         </li>
+          <li> {{{ButtonLink
+            id="deleteUserfromChat"
+            text="Удалить юзера"
+            classNames=""
+            onClick=openPopupDeleteUserFromChat
+          }}}
+          </li>
+          <li> {{{ButtonLink
+            id="deleteChat"
+            text="Удалить чат"
+            classNames=""
+            onClick=onDeleteChatClick
+          }}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="messagesList">
+      {{#each messages}}
+        {{{this}}}
+      {{/each}}
+    </div>
+    <form name="messageForm" class="messagesContainer__inputContainer">
+      {{{Button
+        text=""
+        classNames="inputContainer__addSomething"
+        type="button"
+        id="addInMessageBtn"
+        onClick=onAddInMessageClick
+      }}}
+      {{{Input
+        id="message"
+        name="imessage"
+        type="text"
+        placeholder="Сообщение"
+        classInput="inputContainer__input"
+        value=messageValue
+        pattern=".{1,250}"
+        disabled=false
+        onChange=onChangeMessage
+      }}}
+      {{{Button
+        text=""
+        classNames="inputContainer__submitBtn"
+        type="submit"
+        id="messageSubmitBtn"
+        onClick=onSubmitMessageClick
+      }}}
+    </form>
+      {{else}}
+      <div class='messagesContainer__notify'>Выберите чат или создайте новый</div>
+    {{/if}}
+  </section>
+{{#if isOpenPopup}}
+    {{{ Popup
+      title="Создать новый чат"
+      placeholder="Название чата"
+      label="Новый чат"
+      openPopup=openPopupCreateChat
+      closePopup=closePopupCreateChat
+      onSaveNewChat=onSaveNewChat
+    }}}
+{{/if}}
+  {{#if isOpenPopupAddUser}}
+    {{{ Popup
+      title="Добавить юзера по id"
+      placeholder="id юзера"
+      label="Юзер"
+      forUser=true
+      openPopup=openPopupAddUserToChat
+      closePopup= closePopupAddUserToChat
+      onAddUser=onAddUserHandler
+    }}}
+  {{/if}}
+  {{#if isOpenPopupDeleteUser}}
+    {{{ Popup
+      title="Удалить юзера по id"
+      placeholder="id юзера"
+      label="Юзер"
+      forUser=false
+      forDeleteUser=true
+      openPopup=openPopupDeleteUserFromChat
+      closePopup= closePopupDeleteUserFromChat
+      onDeleteUser = onDeleteUserHandler
+    }}}
+  {{/if}}
+  {{#if isOpenPopupShowUsersFromChat}}
+    {{{ UsersListPopup
+      title="Участники чата"
+      list=usersList
+      isOpenPopup=isOpenPopupShowUsersFromChat
+      closePopupClick= closePopupShowUsers
+      onSaveClick= ""
+    }}}
+  {{/if}}
+  {{#if isOpenPopupDeleteChat}}
+    {{{ ConfirmationPopup
+      title="Удалить этот чат?"
+     message="Нажмите кнопку подтвердить если вы действительно хотите это сделать"
+      isOpenPopup=isOpenPopupDeleteChat
+      closePopupClick= closePopupDeleteChat
+      onSaveClick= onDeleteChatHandler
+    }}}
+  {{/if}}
 </main>

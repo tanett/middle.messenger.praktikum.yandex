@@ -1,7 +1,7 @@
 import { EventBus } from './EventBus'
 import { nanoid } from 'nanoid'
 
-class Block<Props extends {}> {
+class Block<Props extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -11,7 +11,7 @@ class Block<Props extends {}> {
 
   public id = nanoid(6)
   protected props: Props
-  public children: Record<string, Block<Props>>
+  public children: Record<string, Block<Props> | Block<Props>[]>
   private eventBus: () => EventBus
   private _element: HTMLElement | null = null
   protected meta: { props: any }
@@ -25,7 +25,7 @@ class Block<Props extends {}> {
    */
   public constructor(name: string, propsWithChildren: any = {}) {
     const eventBus = new EventBus()
-   this.className = name
+    this.className = name
     const { props, children } = this._getChildrenAndProps(propsWithChildren)
     this.meta = {
       props,
@@ -111,8 +111,13 @@ class Block<Props extends {}> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM)
 
-    Object.values(this.children).forEach((child) =>
-                                           child.dispatchComponentDidMount(),
+    Object.values(this.children).forEach((child) => {
+                                           if (Array.isArray(child)) {
+                                             child.forEach(ch => ch.dispatchComponentDidMount())
+                                           } else {
+                                             child.dispatchComponentDidMount()
+                                           }
+                                         },
     )
   }
 
@@ -120,8 +125,14 @@ class Block<Props extends {}> {
   public dispatchComponentDidUpdate() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDU)
 
-    Object.values(this.children).forEach((child) =>
-                                           child.dispatchComponentDidUpdate(),
+    Object.values(this.children).forEach((child) => {
+                                           if (Array.isArray(child)) {
+                                             child.forEach(ch => ch.dispatchComponentDidUpdate())
+                                           } else {
+                                             child.dispatchComponentDidUpdate()
+                                           }
+
+                                         },
     )
   }
 
@@ -163,7 +174,13 @@ class Block<Props extends {}> {
     const contextAndStubs = { ...context }
 
     Object.entries(this.children).forEach(([ name, component ]) => {
-      contextAndStubs[name] = `<div data-id='${ component.id }'></div>`
+      if (Array.isArray(component)) {
+
+        contextAndStubs[name] = component.map((child) => `<div data-id='${ child.id }'></div>`)
+      } else {
+        contextAndStubs[name] = `<div data-id='${ component.id }'></div>`
+      }
+
     })
 
     const html = template(contextAndStubs)
@@ -173,11 +190,22 @@ class Block<Props extends {}> {
     temp.innerHTML = html
 
     Object.entries(this.children).forEach(([ _, component ]) => {
-      const stub = temp.content.querySelector(`[data-id="${ component.id }"]`)
-      if (!stub) {
-        return
+      if (Array.isArray(component)) {
+        component.map(( child => {
+          const stub = temp.content.querySelector(`[data-id="${ child.id }"]`)
+          if (!stub) {
+            return
+          }
+          stub.replaceWith(child.getContent()!)
+        } ))
+      } else {
+        const stub = temp.content.querySelector(`[data-id="${ component.id }"]`)
+        if (!stub) {
+          return
+        }
+        stub.replaceWith(component.getContent()!)
       }
-      stub.replaceWith(component.getContent()!)
+
     })
 
     return temp.content

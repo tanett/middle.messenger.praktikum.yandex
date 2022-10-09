@@ -12,7 +12,8 @@ interface IButtonProps {
 
 export class Button extends Block<IButtonProps> {
   static componentName: string='Button'
-  constructor(props: IButtonProps) {
+
+  constructor(props: { onClick: (e: Event) => void; classNames: string; text: string; id: string; type: string }) {
     super('Button', {
       text: props.text,
       classNames: props.classNames,

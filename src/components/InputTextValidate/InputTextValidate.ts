@@ -25,6 +25,8 @@ export class InputTextValidate extends Block<IInputTextValidate> {
 
   constructor(props: IInputTextValidate) {
     super('InputTextValidate', props)
+    this.setProps({ message: '' })
+
   }
 
  private onInputHandler(e: Event): void {
@@ -35,7 +37,7 @@ export class InputTextValidate extends Block<IInputTextValidate> {
 
     this.props.value = ( e.target as HTMLInputElement ).value
     this.valid = !!this.inputValue.match(this.props.pattern)
-    if (!this.valid) {
+    if (!this.valid || this.props.value.trim() === '') {
       this.setProps({ message: this.props.errorMessage.toString() })
     } else {
       this.setProps({ message: '' })
@@ -44,6 +46,10 @@ export class InputTextValidate extends Block<IInputTextValidate> {
 
  public getValue(){
     return this.inputValue
+  }
+
+  public  isValid(){
+    return this.props.message === ''
   }
 
   render() {

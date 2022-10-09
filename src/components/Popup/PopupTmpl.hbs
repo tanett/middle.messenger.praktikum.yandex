@@ -1,0 +1,36 @@
+<div  class="popup__overlay">
+  <div class="popup__container">
+    {{{Button
+      text="X"
+      classNames="popup__closeBtn"
+      type="button"
+      id="popupClsBtn"
+      onClick=onCloseClick
+      secondary="true"
+    }}}
+    <h1 class="popup__title">{{ title }}</h1>
+    {{{InputTextValidate
+      id="chatTitle"
+      name="chatTitle"
+      type="text"
+      placeholder=placeholder
+      label=label
+      value=''
+      errorMessage=errorMessage
+      disabled=false
+      pattern=titlePattern
+      classInput="popup__input"
+      classLabel="popup__inputLabel"
+    }}}
+    {{{Button
+      text="Сохранить"
+      classNames="button_primary"
+      type="button"
+      id="popupSaveBtn"
+      onClick=onSaveClick
+
+    }}}
+  </div>
+</div>
+
+

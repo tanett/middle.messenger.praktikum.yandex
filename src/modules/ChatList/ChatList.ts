@@ -2,6 +2,14 @@ import './style.css'
 import ChatListTmpl from './ChatList.hbs'
 import { Message } from '../../components/Message/Message'
 import Block from '../../utils/Block'
+import { IChats } from '../../api/ChatsAPI'
+import ChatsController from '../../controllers/ChatsController'
+import ChatItem from '../../components/ChatItem'
+import store, { withStore } from '../../utils/Store'
+import MessageController from '../../controllers/MessageController'
+import { IResources } from '../../controllers/ResourcesController'
+import { User } from '../../api/AuthAPI'
+
 
 export type typeChatItem = {
   id: string,
@@ -11,131 +19,260 @@ export type typeChatItem = {
   date: string,
   count: number,
   classNames: string,
+  active: boolean
 }
 
 export type typeMessageItem = {
-  id: string,
-  author: string,
-  text: string,
-  image: string | null,
-  checkRead: boolean,
-  date: string,
+
+  id: number,
+  user_id: number,
+  type: 'message' | 'file',
+  content: string,
+  chat_id: number
+  time: string,
+  file?: IResources
 }
 
-interface IChatList {}
+interface IChatList {
+  openPopupCreateChat: boolean
+  openPopupAddUserInChat: boolean
+  openPopupDeleteUserFromChat: boolean
+  isOpenPopupConfirmationDeleteChat: boolean
+  isOpenPopupShowUsersFromChat: boolean
+  chats: IChats[]
+  usersList: User[]
+  user: User
+  messages: typeMessageItem[]
+  isLoaded: boolean;
+  activeChatId: number
+}
 
-export class ChatList extends Block<IChatList> {
+class ChatList extends Block<IChatList> {
   messageValue: string = ''
+  chatsList: IChats[] = []
 
   constructor(props: IChatList) {
     super('ChatList', props)
-    this.props = props
+    ChatsController.getChats().then((res) => {if (res) { this.dispatchComponentDidUpdate()}})
+
+
   }
 
-  //----------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------
+  protected init() {
+    // @ts-ignore
+    this.children.chats = this.createChats(this.props)
+    // @ts-ignore
+    this.children.messages = this.createMessagesList(this.props)
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
+  protected componentDidUpdate(oldProps: IChatList, newProps: IChatList): boolean {
+    // @ts-ignore
+    this.children.chats = this.createChats(newProps)
+    // @ts-ignore
+    this.children.messages = this.createMessagesList(newProps)
+    return true
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
+  private createChats(props: IChatList) {
+    return props.chats.map(data => {
+      let date = ''
+      if (data.last_message) {
+        const d = new Date(data.last_message.time)
+        const day = d.getDate() > 9 ? d.getDate() : `0${ d.getDate() }`
+        const month = d.getMonth() + 1 > 9 ? d.getMonth() + 1 : `0${ d.getMonth() + 1 }`
+        date = `${ day }.${ month } ${ d.getHours() }:${ d.getMinutes() }`
+      }
+
+      return new ChatItem({
+                            ...data,
+                            id: data.id,
+                            text: data.last_message?.content,
+
+                            date: date,
+                            count: data.unread_count,
+
+                            active: this.props.activeChatId === data.id,
+                            events: {
+                              click: () => {
+                                if (data.id === this.props.activeChatId) {return}
+                                ChatsController.selectChat(data.id)
+                                MessageController.fetchOldMessages(data.id)
+                              },
+                            },
+                          })
+    })
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
+  private createMessagesList(props: IChatList) {
+    return props.messages.map(data => {
+
+      return new Message({
+                           ...data,
+                           id: data.id,
+                           text: data.content,
+
+                           date: data?.time.substring(11, 16) || '',
+                           checkRead: true,
+                           classNames: data.user_id === this.props.user.id ? 'messagesItem__host' : 'messagesItem__interlocutor',
+
+
+                         })
+    })
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
   //inputMessage
   onChangeMessage(e: Event) {
-    this.messageValue = (e.target as HTMLInputElement).value
+    this.messageValue = ( e.target as HTMLInputElement ).value
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onSubmitMessageClick(e: Event) {
     e.preventDefault()
-    console.log({ message: this.messageValue })
+    MessageController.sendMessage(this.props.activeChatId, this.messageValue)
   }
 
   onAddInMessageClick(e: Event) {
     console.log('add in message btn')
   }
 
-//----------------------------------------------------------------------------------------------------------------------
-  //chats
-  chats: typeChatItem[] = [
-    {
-      id: '11',
-      text: '554 555',
-      chatName: 'GHJG',
-      avatar: null,
-      date: 'sun',
-      count: 0,
-      classNames: '',
-    },
-    {
-      id: '22',
-      text: '555555',
-      chatName: 'yyyy',
-      avatar: null,
-      date: 'mun',
-      count: 5,
-      classNames: '',
-    },
-  ]
 
-  // messages
-  messages: typeMessageItem[] = [
-    {
-      id: '1',
-      author: 'Вася',
-      text:
-        'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью ServerError EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.\n' +
-        '\n' +
-        'Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.',
-      image: null,
-      checkRead: false,
-      date: '15:58',
-    },
-    {
-      id: '2',
-      author: 'Вася',
-      text: '',
-      image: '../../image/photo.png',
-      checkRead: false,
-      date: '15:58',
-    },
-    {
-      id: '3',
-      author: 'you',
-      text: 'Круто!  ',
-      image: null,
-      checkRead: true,
-      date: '15:59',
-    },
-  ]
+//----------------------------------------------------------------------------------------------------------------------
+  onChatClick = (e: Event) => {
+
+    // @ts-ignore
+    const chatId = e.target!.id
+    if (chatId === this.props.activeChatId) {return}
+    store.set('activeChatId ', chatId)
+    this.chatsList.find((chat: IChats) => chatId === chat.id)!.active = true
+
+    this.dispatchComponentDidUpdate()
+
+  }
 
 //----------------------------------------------------------------------------------------------------------------------
 
-  messagesList = this.messages
-    .map((item) => {
-      let className =
-        item.author === 'you'
-          ? 'messagesItem__host'
-          : 'messagesItem__interlocutor'
+  onAddChatClick = () => {
+    this.setProps({ openPopupCreateChat: true })
+  }
+//----------------------------------------------------------------------------------------------------------------------
 
-      if (item.image) {
-        className = `${ className } messagesItem_image`
-      }
+  onDeleteChatClick = (e: Event) => {
+    this.setProps({ isOpenPopupConfirmationDeleteChat: true })
+  }
 
-      return new Message({
-                           id: item.id,
-                           text: item.text,
-                           // @ts-ignore
-                           image: item.image,
-                           date: item.date,
-                           checkRead: item.checkRead,
-                           classNames: className,
-                         })
-    })
-    .join('')
+  onCloseConfirmationPopupDeleteChatClick = (e: Event) => {
+    this.setProps({ isOpenPopupConfirmationDeleteChat: false })
+  }
+
+  onConfirmDeleteChatClick = (e: Event) => {
+    ChatsController.deleteChartByIdController(this.props.activeChatId)
+    this.setProps({ isOpenPopupConfirmationDeleteChat: false })
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+  onAddUserInChatHandler = (e: Event) => {
+    this.setProps({ openPopupAddUserInChat: true })
+
+  }
+
+  onCloseUserInChatHandler = (e: Event) => {
+    this.setProps({ openPopupAddUserInChat: false })
+  }
+  onSaveAddUserInChat = async (e: Event) => {
+   await ChatsController.getUsersInChatController(this.props.activeChatId)
+    this.dispatchComponentDidUpdate()
+  }
+//----------------------------------------------------------------------------------------------------------------------
+
+  onShowUsersFromChatClick = (e: Event) => {
+    this.setProps({ isOpenPopupShowUsersFromChat: true })
+
+  }
+  onCloseUsersFromChatClick = (e: Event) => {
+    this.setProps({ isOpenPopupShowUsersFromChat: false })
+  }
+
+//----------------------------------------------------------------------------------------------------------------------
+
+  onDeleteUserFromChatHandler = (e: Event) => {
+    this.setProps({ openPopupDeleteUserFromChat: true })
+
+  }
+
+  onCloseUserFromChatHandler = (e: Event) => {
+    this.setProps({ openPopupDeleteUserFromChat: false })
+  }
+
+  onSaveDeleteUserFromChat = async (e: Event) => {
+  await  ChatsController.getUsersInChatController(this.props.activeChatId)
+    this.dispatchComponentDidUpdate()
+  }
+//----------------------------------------------------------------------------------------------------------------------
+  openPopupCreateChatHandler = (e: Event) => {
+    this.setProps({ openPopupCreateChat: true })
+  }
+
+
+  closePopupCreateChatHandler = (e: Event) => {
+    this.setProps({ openPopupCreateChat: false })
+  }
+
+  onSaveNewChat = (e: Event) => {
+    this.dispatchComponentDidUpdate()
+  }
+
 
 //----------------------------------------------------------------------------------------------------------------------
 
   render(): any {
+
+
     return this.compile(ChatListTmpl, {
-      chatName: 'Вася',
+      chatName: this.props.activeChatId ? this.props.chats.find(item => item.id === this.props.activeChatId)?.title : '',
+      activeChat: !!this.props.activeChatId,
       children: this.children,
       onChangeMessage: this.onChangeMessage.bind(this),
       onSubmitMessageClick: this.onSubmitMessageClick.bind(this),
       onAddInMessageClick: this.onAddInMessageClick.bind(this),
+      onAddChatClick: (e: Event) => this.onAddChatClick(),
+      openPopupCreateChat: (e: Event) => this.openPopupCreateChatHandler(e),
+      closePopupCreateChat: (e: Event) => this.closePopupCreateChatHandler(e),
+      isOpenPopup: this.props.openPopupCreateChat,
+      onSaveNewChat: ( (e: Event) => this.onSaveNewChat(e) ).bind(this),
+      isOpenPopupAddUser: this.props.openPopupAddUserInChat,
+      onAddUserHandler: (e: Event) => this.onSaveAddUserInChat(e),
+      openPopupAddUserToChat: (e: Event) => this.onAddUserInChatHandler(e),
+      closePopupAddUserToChat: (e: Event) => this.onCloseUserInChatHandler(e),
+      isOpenPopupDeleteUser: this.props.openPopupDeleteUserFromChat,
+      onDeleteUserHandler: (e: Event) => this.onSaveDeleteUserFromChat(e),
+      openPopupDeleteUserFromChat: (e: Event) => this.onDeleteUserFromChatHandler(e),
+      closePopupDeleteUserFromChat: (e: Event) => this.onCloseUserFromChatHandler(e),
+      isOpenPopupDeleteChat: this.props.isOpenPopupConfirmationDeleteChat,
+      closePopupDeleteChat: this.onCloseConfirmationPopupDeleteChatClick,
+      onDeleteChatHandler: this.onConfirmDeleteChatClick,
+      onDeleteChatClick: this.onDeleteChatClick,
+      isOpenPopupShowUsersFromChat: this.props.isOpenPopupShowUsersFromChat,
+      closePopupShowUsers: this.onCloseUsersFromChatClick,
+      onShowUsersFromChatClick: this.onShowUsersFromChatClick,
+      usersList: this.props.usersList,
     })
   }
+
 }
+
+const withChats = withStore((state) => ( {
+  chats: [ ...state.chatsList || [] ],
+  activeChatId: state.activeChatId,
+  messages: ( state.messages || {} )[state.activeChatId] || [],
+  user: state.user,
+  usersList: state.usersList || [],
+} ))
+
+// @ts-ignore
+export const Chats = withChats(ChatList)
