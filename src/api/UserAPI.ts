@@ -16,6 +16,7 @@ export interface newPasswordData {
 }
 
 export interface User {
+  reason?: string
   id: number;
   first_name: string;
   second_name: string;
@@ -45,12 +46,12 @@ export interface ILightUser {
   }
 
   changeUserProfile(data: editUserData):Promise<User> {
+
     return this.http.put('/profile', data);
   }
 
 
   changeUserAvatar(data: FormData): Promise<User> {
-    console.log('api', data)
     return this.http.put('/profile/avatar', data, true);
   }
 

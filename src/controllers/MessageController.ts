@@ -44,8 +44,6 @@ class MessagesController {
     if (!socket) {
       throw new Error(`Chat ${id} is not connected`);
     }
-
-    console.log('send')
     socket.send({
                   type: 'message',
                   content: message,

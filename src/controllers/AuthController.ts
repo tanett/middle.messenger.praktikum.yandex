@@ -15,10 +15,7 @@ class AuthController {
       console.log(response)
 
       await this.fetchUser()
-
       router.go('/profile')
-
-
     } catch (e: any) {
 
       if(e?.reason === 'User already in system'){
@@ -40,14 +37,12 @@ class AuthController {
       }
 
     } catch (e: any) {
-
       console.error(e.message)
     }
   }
 
   async fetchUser() {
     const user = await this.api.read()
-
 
     if (user.id) {
       store.set('user', user)

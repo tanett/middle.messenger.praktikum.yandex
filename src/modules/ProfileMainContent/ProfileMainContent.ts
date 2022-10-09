@@ -37,24 +37,19 @@ export class ProfileMainContent extends Block<IProfileMainContent> {
 
 //----------------------------------------------------------------------------------------------------------------------
   onEditPasswordClick(e: Event) {
-    console.log('pasww click')
+
     this.props.onEditPasswordClick(e)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onOutClick() {
     this.props.onOutClick()
-    console.log('onOutClick')
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onUploadAvatarClick(e: Event, file: File) {
-    console.log('upload', file)
-
-           UserController.changeUserAvatar(file)
-
-        this.dispatchComponentDidUpdate()
-
+    UserController.changeUserAvatar(file)
+    this.dispatchComponentDidUpdate()
   }
 
 
@@ -62,10 +57,9 @@ export class ProfileMainContent extends Block<IProfileMainContent> {
   render(): any {
     const { name, secondName, login, displayName, phone, email, avatar } = this.props
 
-
     return this.compile(ProfileTmpl, {
       newAvatar: this.newAvatar,
-      pathAvatar: `${resourceUrl}${avatar}`,
+      pathAvatar: `${ resourceUrl }${ avatar }`,
       name: name,
       firstNameValue: name,
       secondNameValue: secondName,
@@ -77,7 +71,7 @@ export class ProfileMainContent extends Block<IProfileMainContent> {
       onChangeClick: ( (e: Event) => this.props.onEditDataClick(e) ),
       onChangePasswClick: (e: Event) => this.onEditPasswordClick(e),
       onOutClick: () => this.onOutClick(),
-      onUploadAvatar: (e: Event, file: File) => this.onUploadAvatarClick(e,file) ,
+      onUploadAvatar: (e: Event, file: File) => this.onUploadAvatarClick(e, file),
 
     })
   }

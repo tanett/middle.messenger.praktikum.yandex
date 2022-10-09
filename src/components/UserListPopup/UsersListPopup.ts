@@ -2,6 +2,7 @@ import Block from '../../utils/Block'
 import PopupTmpl from './UsersListPopupTmpl.hbs'
 import './style.css'
 import { User } from '../../api/UserAPI'
+import store from '../../utils/Store'
 
 
 interface IPopupUsers {
@@ -9,9 +10,6 @@ interface IPopupUsers {
   list: User[]
   isOpenPopup: boolean;
   closePopupClick: (e: Event) => void
-
-
-
 }
 
 export class UsersListPopup extends Block<IPopupUsers> {
@@ -22,16 +20,13 @@ export class UsersListPopup extends Block<IPopupUsers> {
 
   }
 
-
-
-
   render() {
-    console.log('888', this.props)
+
+
     const { title, list, isOpenPopup, closePopupClick } = this.props
     return this.compile(PopupTmpl, {
       title, list, isOpenPopup, closePopupClick,
-      onCloseClick:  (e: Event) => closePopupClick(e) ,
-
+      onCloseClick: (e: Event) => closePopupClick(e),
       children: this.children,
     })
   }

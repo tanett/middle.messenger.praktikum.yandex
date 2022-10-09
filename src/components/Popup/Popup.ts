@@ -17,7 +17,8 @@ interface IPopup {
   onSaveNewChat: (e: Event) => void
   forUser?: boolean
   forDeleteUser?: boolean
-
+  onAddUser:(e: Event) => void
+  onDeleteUser:(e: Event) => void
 }
 
 export class Popup extends Block<IPopup> {
@@ -45,7 +46,6 @@ export class Popup extends Block<IPopup> {
     })
     if (inputs.isValid) {
 
-      // @ts-ignore
       await ChatsController.createChat(inputs.chatTitle).catch(error => console.log(error))
 
       await ChatsController.getChats().catch(error => console.log(error))
@@ -67,7 +67,9 @@ export class Popup extends Block<IPopup> {
     const activeChat = store.getState().activeChatId
     if (value.length>0 && activeChat) {
       await ChatsController.addUserToChatController(value, activeChat).catch(error => console.log(error))
+      this.props.onAddUser(e)
       this.props.closePopup(e)
+
     } else { return}
   }
 
@@ -89,9 +91,8 @@ export class Popup extends Block<IPopup> {
     })
     const activeChat = store.getState().activeChatId
     if (inputs.isValid && activeChat) {
-
-
       await ChatsController.deleteUserToChatController([+inputs.chatTitle], activeChat).catch(error => console.log(error))
+      this.props.onDeleteUser(e)
       this.props.closePopup(e)
     } else { return}
   }
@@ -102,8 +103,8 @@ export class Popup extends Block<IPopup> {
     return this.compile(PopupTmpl, {
       title, openPopup, closePopup, placeholder,
       onCloseClick: ( (e: Event) => closePopup(e) ).bind(this),
-      titlePattern: inputRules.anyNumber,
-      errorMessage: 'Поле не должно быть пустым',
+      titlePattern: this.props.forUser? inputRules.anyNumber : this.props.forDeleteUser? inputRules.anyNumber : inputRules.titleChat,
+      errorMessage:( this.props.forUser || this.props.forDeleteUser) ?'Id содержит только цифры' :'Поле не должно быть пустым',
       onSaveClick: this.props.forUser ? (e: Event) => this.onSaveUserHandler(e) :  this.props.forDeleteUser ? (e: Event) => this.onDeleteUserHandler(e) :(e: Event) => this.onSaveDataClick(e),
       children: this.children,
     })

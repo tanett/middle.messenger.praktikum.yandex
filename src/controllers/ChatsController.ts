@@ -30,15 +30,12 @@ class ChatsController {
 
   selectChat(id: number) {
     store.set('activeChatId', id)
-    this.getUsersInChatController(id).then((res)=>{store.set('usersList', res)})
+    this.getUsersInChatController(id).then((res) => {store.set('usersList', res)})
   }
 
   async createChat(title: string) {
     try {
-      const response = await this.api.create({ title: title })
-
-      console.log(response)
-      return response
+      return await this.api.create({ title: title })
 
     } catch (e: any) {
       console.error(e)
@@ -48,10 +45,10 @@ class ChatsController {
   async deleteChartByIdController(chatId: number) {
 
     try {
-      const response = await this.api.deleteChatById({ chatId })
-      console.log(response)
-
-      return response
+     const response = await this.api.deleteChatById({ chatId })
+      if(response.result.id){
+        store.set('activeChatId', null)
+      }
     } catch (e: any) {
       console.error(e)
     }
@@ -59,9 +56,7 @@ class ChatsController {
 
   async getChatsFilesController(chatId: number) {
     try {
-      const response = await this.api.getChatsFiles({ chatId })
-      console.log(response)
-      return response
+      return await this.api.getChatsFiles({ chatId })
     } catch (e: any) {
       console.error(e)
     }
@@ -69,9 +64,7 @@ class ChatsController {
 
   async getArchivedChatController(offset?: number, limit?: number, title?: string) {
     try {
-      const response = await this.api.getArchivedChat({ offset, title, limit })
-      console.log(response)
-      return response
+      return await this.api.getArchivedChat({ offset, title, limit })
     } catch (e: any) {
       console.error(e)
     }
@@ -79,9 +72,7 @@ class ChatsController {
 
   async unArchiveChatByIdController(chatId: number) {
     try {
-      const response = await this.api.unArchiveChatById({ chatId })
-      console.log(response)
-      return response
+      return await this.api.unArchiveChatById({ chatId })
     } catch (e: any) {
       console.error(e)
     }
@@ -89,9 +80,7 @@ class ChatsController {
 
   async getCommonChatController(id: number) {
     try {
-      const response = await this.api.getCommonChat({ id })
-      console.log(response)
-      return response
+      return await this.api.getCommonChat({ id })
     } catch (e: any) {
       console.error(e)
     }
@@ -100,7 +89,7 @@ class ChatsController {
   async getUsersInChatController(id: number) {
     try {
       const response = await this.api.getUsersInChat({ id })
-      console.log(response)
+      store.set('usersList', response)
       return response
     } catch (e: any) {
       console.error(e)
@@ -109,9 +98,7 @@ class ChatsController {
 
   async getCountNewMessageController(id: number) {
     try {
-      const response = await this.api.getCountNewMessage({ id })
-      console.log(response)
-      return response
+      return await this.api.getCountNewMessage({ id })
     } catch (e: any) {
       console.error(e)
     }
@@ -119,9 +106,7 @@ class ChatsController {
 
   async uploadChatAvatarController(id: number, avatar: FormData) {
     try {
-      const response = await this.api.uploadChatAvatar({ id, avatar })
-      console.log(response)
-      return response
+      return await this.api.uploadChatAvatar({ id, avatar })
     } catch (e: any) {
       console.error(e)
     }
@@ -129,9 +114,7 @@ class ChatsController {
 
   async addUserToChatController(users: number[], chatId: number) {
     try {
-      const response = await this.api.addUserToChat({ users, chatId })
-      console.log('chatController',response)
-      return response
+      return await this.api.addUserToChat({ users, chatId })
     } catch (e: any) {
       console.error(e)
     }
@@ -139,9 +122,7 @@ class ChatsController {
 
   async deleteUserToChatController(users: number[], chatId: number) {
     try {
-      const response = await this.api.deleteUserToChat({ users, chatId })
-      console.log(response)
-      return response
+      return await this.api.deleteUserToChat({ users, chatId })
     } catch (e: any) {
       console.error(e)
     }
@@ -149,9 +130,7 @@ class ChatsController {
 
   async getConnectTokenController(id: number) {
     try {
-      const response = await this.api.getConnectToken({ id })
-      console.log(response)
-      return response
+      return await this.api.getConnectToken({ id })
     } catch (e: any) {
       console.error(e)
     }

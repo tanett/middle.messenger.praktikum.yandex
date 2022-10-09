@@ -2,15 +2,15 @@
 
   <div class='profile__title-wrapper'>
     {{{Button
-    text=""
-    classNames="profile__goBackBtn"
-    type="button"
-    id="backtoProfileBtn"
-    onClick=onGoBackClick
-  }}}
-  <h1 class="profile__title_edit">
-    Изменить данные профиля
-  </h1>
+      text=""
+      classNames="profile__goBackBtn"
+      type="button"
+      id="backtoProfileBtn"
+      onClick=onGoBackClick
+    }}}
+    <h1 class="profile__title_edit">
+      Изменить данные профиля
+    </h1>
   </div>
   <form name="profileData_form">
 
@@ -105,7 +105,7 @@
       id="saveBtn"
       onClick=onSaveDataClick
     }}}
-
+    <p>{{errorMessage}}</p>
   </form>
 
 </section>

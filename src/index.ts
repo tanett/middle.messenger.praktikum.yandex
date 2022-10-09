@@ -33,7 +33,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
   Router
+    // @ts-ignore
     .use(ROUTES.Home, SignIn)
+    // @ts-ignore
     .use(ROUTES.Signup, SignUp)
     // @ts-ignore
     .use(ROUTES.Profile, Profile)

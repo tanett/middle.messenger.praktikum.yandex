@@ -9,7 +9,7 @@ import AuthController from '../../controllers/AuthController'
 import { SignupData } from '../../api/AuthAPI'
 
 
-export class SignUp extends Block {
+export class SignUp extends Block<{}> {
   static componentName: string = 'SignUp'
   private isValidForm: boolean = true
 
@@ -38,11 +38,9 @@ export class SignUp extends Block {
       }
     })
 
-    console.log('input data', inputs)
-
-if(this.isValidForm) {
-  AuthController.signup(inputs)
-}
+    if (this.isValidForm) {
+      AuthController.signup(inputs)
+    }
   }
 
 //----------------------------------------------------------------------------------------------------------------------

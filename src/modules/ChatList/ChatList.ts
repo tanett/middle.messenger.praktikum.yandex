@@ -60,7 +60,6 @@ class ChatList extends Block<IChatList> {
 
 //----------------------------------------------------------------------------------------------------------------------
   protected init() {
-
     // @ts-ignore
     this.children.chats = this.createChats(this.props)
     // @ts-ignore
@@ -69,7 +68,6 @@ class ChatList extends Block<IChatList> {
 
 //----------------------------------------------------------------------------------------------------------------------
   protected componentDidUpdate(oldProps: IChatList, newProps: IChatList): boolean {
-
     // @ts-ignore
     this.children.chats = this.createChats(newProps)
     // @ts-ignore
@@ -99,10 +97,9 @@ class ChatList extends Block<IChatList> {
                             active: this.props.activeChatId === data.id,
                             events: {
                               click: () => {
-                                if(data.id === this.props.activeChatId){return}
+                                if (data.id === this.props.activeChatId) {return}
                                 ChatsController.selectChat(data.id)
                                 MessageController.fetchOldMessages(data.id)
-                                console.log('Click')
                               },
                             },
                           })
@@ -136,7 +133,6 @@ class ChatList extends Block<IChatList> {
 //----------------------------------------------------------------------------------------------------------------------
   onSubmitMessageClick(e: Event) {
     e.preventDefault()
-    console.log({ message: this.messageValue })
     MessageController.sendMessage(this.props.activeChatId, this.messageValue)
   }
 
@@ -150,7 +146,7 @@ class ChatList extends Block<IChatList> {
 
     // @ts-ignore
     const chatId = e.target!.id
-    if(chatId === this.props.activeChatId){return}
+    if (chatId === this.props.activeChatId) {return}
     store.set('activeChatId ', chatId)
     this.chatsList.find((chat: IChats) => chatId === chat.id)!.active = true
 
@@ -165,15 +161,15 @@ class ChatList extends Block<IChatList> {
   }
 //----------------------------------------------------------------------------------------------------------------------
 
-  onDeleteChatClick = (e:Event) => {
+  onDeleteChatClick = (e: Event) => {
     this.setProps({ isOpenPopupConfirmationDeleteChat: true })
   }
 
-  onCloseConfirmationPopupDeleteChatClick = (e:Event) => {
+  onCloseConfirmationPopupDeleteChatClick = (e: Event) => {
     this.setProps({ isOpenPopupConfirmationDeleteChat: false })
   }
 
-  onConfirmDeleteChatClick = (e:Event) => {
+  onConfirmDeleteChatClick = (e: Event) => {
     ChatsController.deleteChartByIdController(this.props.activeChatId)
     this.setProps({ isOpenPopupConfirmationDeleteChat: false })
   }
@@ -188,7 +184,8 @@ class ChatList extends Block<IChatList> {
   onCloseUserInChatHandler = (e: Event) => {
     this.setProps({ openPopupAddUserInChat: false })
   }
-  onSaveAddUserInChat = (e: Event) => {
+  onSaveAddUserInChat = async (e: Event) => {
+   await ChatsController.getUsersInChatController(this.props.activeChatId)
     this.dispatchComponentDidUpdate()
   }
 //----------------------------------------------------------------------------------------------------------------------
@@ -197,7 +194,7 @@ class ChatList extends Block<IChatList> {
     this.setProps({ isOpenPopupShowUsersFromChat: true })
 
   }
-onCloseUsersFromChatClick = (e: Event) => {
+  onCloseUsersFromChatClick = (e: Event) => {
     this.setProps({ isOpenPopupShowUsersFromChat: false })
   }
 
@@ -211,7 +208,9 @@ onCloseUsersFromChatClick = (e: Event) => {
   onCloseUserFromChatHandler = (e: Event) => {
     this.setProps({ openPopupDeleteUserFromChat: false })
   }
-  onSaveDeleteUserFromChat = (e: Event) => {
+
+  onSaveDeleteUserFromChat = async (e: Event) => {
+  await  ChatsController.getUsersInChatController(this.props.activeChatId)
     this.dispatchComponentDidUpdate()
   }
 //----------------------------------------------------------------------------------------------------------------------
@@ -236,7 +235,7 @@ onCloseUsersFromChatClick = (e: Event) => {
 
     return this.compile(ChatListTmpl, {
       chatName: this.props.activeChatId ? this.props.chats.find(item => item.id === this.props.activeChatId)?.title : '',
-activeChat: !!this.props.activeChatId,
+      activeChat: !!this.props.activeChatId,
       children: this.children,
       onChangeMessage: this.onChangeMessage.bind(this),
       onSubmitMessageClick: this.onSubmitMessageClick.bind(this),
@@ -261,7 +260,7 @@ activeChat: !!this.props.activeChatId,
       isOpenPopupShowUsersFromChat: this.props.isOpenPopupShowUsersFromChat,
       closePopupShowUsers: this.onCloseUsersFromChatClick,
       onShowUsersFromChatClick: this.onShowUsersFromChatClick,
-      usersList: this.props.usersList
+      usersList: this.props.usersList,
     })
   }
 
@@ -272,7 +271,7 @@ const withChats = withStore((state) => ( {
   activeChatId: state.activeChatId,
   messages: ( state.messages || {} )[state.activeChatId] || [],
   user: state.user,
-  usersList: state.usersList || []
+  usersList: state.usersList || [],
 } ))
 
 // @ts-ignore

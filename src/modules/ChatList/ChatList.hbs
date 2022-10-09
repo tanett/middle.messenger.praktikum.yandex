@@ -123,7 +123,7 @@
       forUser=true
       openPopup=openPopupAddUserToChat
       closePopup= closePopupAddUserToChat
-      onSaveNewChat= onAddUserHandler
+      onAddUser=onAddUserHandler
     }}}
   {{/if}}
   {{#if isOpenPopupDeleteUser}}
@@ -131,11 +131,11 @@
       title="Удалить юзера по id"
       placeholder="id юзера"
       label="Юзер"
-      forUser=true
+      forUser=false
       forDeleteUser=true
       openPopup=openPopupDeleteUserFromChat
       closePopup= closePopupDeleteUserFromChat
-      onSaveNewChat= onDeleteUserHandler
+      onDeleteUser = onDeleteUserHandler
     }}}
   {{/if}}
   {{#if isOpenPopupShowUsersFromChat}}

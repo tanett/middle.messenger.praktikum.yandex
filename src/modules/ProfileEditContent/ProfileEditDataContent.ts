@@ -4,10 +4,10 @@ import Block from '../../utils/Block'
 import { inputRules } from '../../utils/validationRules'
 import InputTextValidate from '../../components/InputTextValidate'
 import UserController from '../../controllers/UserController'
-import { editUserData, newPasswordData } from '../../api/UserAPI'
 
 
 interface IProfileEditDataContent {
+  errorMessage: string
   login: string;
   email: string;
   name: string;
@@ -22,8 +22,9 @@ interface IProfileEditDataContent {
 export class ProfileEditDataContent extends Block<IProfileEditDataContent> {
   static componentName: string = 'ProfileEditDataContent'
 
-  constructor(props: IProfileEditDataContent) {
+  constructor(props: { onGoBackToProfile: (e: Event) => void; phone: string; displayName: string; editMode: string; name: string; login: string; email: string; secondName: string }) {
     super('ProfileEditDataContent', props)
+    this.setProps({ errorMessage: '' })
   }
 
 
@@ -45,12 +46,19 @@ export class ProfileEditDataContent extends Block<IProfileEditDataContent> {
       }
     })
 
-
-
     if (isValid) {
       // @ts-ignore
-      UserController.changeUserProfile(inputs.chatTitle).catch(error => console.log(error))
-      this.onGoBackToProfileClick(e)
+      UserController.changeUserProfile(inputs)
+        .then(res => {
+          if (res.reason) {
+            this.setProps({ errorMessage: res.reason })
+          } else {
+            this.setProps({ errorMessage: '' })
+            this.onGoBackToProfileClick(e)
+          }
+        })
+        .catch(error => console.log(error))
+
     }
 
   }
@@ -80,6 +88,7 @@ export class ProfileEditDataContent extends Block<IProfileEditDataContent> {
       children: this.children,
       onGoBackClick: (e: Event) => this.onGoBackToProfileClick(e),
       onSaveDataClick: ( (e: Event) => this.onSaveDataClick(e) ).bind(this),
+      errorMessage: this.props.errorMessage,
     })
 
   }

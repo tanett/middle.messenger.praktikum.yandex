@@ -3,7 +3,7 @@ import { isEqualString } from './helpers/isEqual'
 import renderBlock from './render'
 
 class Route {
-  private block: Block | null = null;
+  private block: Block<{}> | null = null;
 
   constructor(
     private pathname: string,

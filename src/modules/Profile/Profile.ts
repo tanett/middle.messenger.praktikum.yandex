@@ -4,7 +4,6 @@ import Block from '../../utils/Block'
 import { ProfileEditDataContent } from '../ProfileEditContent/ProfileEditDataContent'
 import { ProfileMainContent } from '../ProfileMainContent/ProfileMainContent'
 import { ProfileEditPasswordComponent } from '../ProfileEditPasswordComponent/ProfileEditPasswordComponent'
-import { ROUTES } from '../../index'
 import store from '../../utils/Store'
 import { User } from '../../api/AuthAPI'
 import AuthController from '../../controllers/AuthController'
@@ -31,26 +30,23 @@ interface IProfile {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-export class Profile extends Block {
+export class Profile extends Block<IProfile> {
   static componentName: string = 'Profile'
   private userData: User
 
   constructor(props: IProfile) {
     super('Profile', props)
     this.userData = store.getState()
-    console.log(store)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onChangeDataClick(e: Event) {
     this.setProps({ editMode: 'data' })
-    console.log('click edit', this.props.editMode)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
   onEditPasswordClick(e: Event) {
     this.setProps({ editMode: 'password' })
-    console.log('click passw', this.props.editMode)
   }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -61,9 +57,7 @@ export class Profile extends Block {
 
 //----------------------------------------------------------------------------------------------------------------------
   onOutClick() {
-
     AuthController.logout()
-    console.log('onOutClick')
   }
 
   private chooseContent(editMode: string) {

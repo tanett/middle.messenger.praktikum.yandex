@@ -27,12 +27,9 @@ export class InputFile extends Block<IInputTextValidate> {
     super('InputFile', props)
   }
 
- // private onInputHandler(e: Event): void {
- //    this.inputValue = ( e.target as HTMLInputElement ).files[0]
- //  }
 
  private onChangeHandler(e: Event): void {
-console.log("22222", (e.target as HTMLInputElement).files!)
+
     const file = ( e.target as HTMLInputElement ).files![0]
 
     if (!file) {

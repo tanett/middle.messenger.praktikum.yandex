@@ -25,6 +25,8 @@ export class InputTextValidate extends Block<IInputTextValidate> {
 
   constructor(props: IInputTextValidate) {
     super('InputTextValidate', props)
+    this.setProps({ message: '' })
+
   }
 
  private onInputHandler(e: Event): void {
@@ -47,7 +49,6 @@ export class InputTextValidate extends Block<IInputTextValidate> {
   }
 
   public  isValid(){
-    console.log("em, m", this.props.errorMessage, this.props.message)
     return this.props.message === ''
   }
 
