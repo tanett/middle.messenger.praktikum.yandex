@@ -1,4 +1,4 @@
-.button{
+.button {
     border-radius: 8px;
 
     text-align: center;
@@ -9,16 +9,16 @@
     border: none;
     cursor: pointer;
     padding: 12px;
-
+    width: 100%;
 }
-.button:hover, .button:active, .button:focus {
+
+.button:hover,
+.button:active,
+.button:focus {
     opacity: 80%;
 }
 
-
-
 .button_primary {
-    background: #3369F3;
-    color: #FFFFFF;
+    background: #3369f3;
+    color: #ffffff;
 }
-

@@ -1,0 +1,116 @@
+<main class="main">
+    <form class="signUp_container" name="signUp" id="signUpForm">
+        <h1 class="signUp_title">Регистрация</h1>
+        <fieldset class="signUp_fieldset">
+          {{{InputTextValidate
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Почта"
+            value=emailValue
+            label="Почта"
+            errorMessage=errorEmailMessage
+            disabled=false
+            pattern=emailPattern
+            classInput="signUp__input"
+            classLabel='signUp__label'
+          }}}
+          {{{InputTextValidate
+            id="login"
+            name="login"
+            type="text"
+            placeholder="Логин"
+            label="Логин"
+            classInput="signUp__input"
+            classLabel='signUp__label'
+            value=loginValue
+            errorMessage=errorLoginMessage
+            disabled=false
+            pattern=loginPattern
+          }}}
+          {{{InputTextValidate
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Имя"
+            value=firstNameValue
+            label="Имя"
+            errorMessage=errorFirstNameMessage
+            disabled=false
+            pattern=firstNamePattern
+            classInput="signUp__input"
+            classLabel='signUp__label'
+          }}}
+          {{{InputTextValidate
+            id="secondName"
+            name="secondName"
+            type="text"
+            placeholder="Фамилия"
+            value=secondNameValue
+            label="Фамилия"
+            errorMessage=errorSecondNameMessage
+            disabled=false
+            pattern=secondNamePattern
+            classInput="signUp__input"
+            classLabel='signUp__label'
+          }}}
+          {{{InputTextValidate
+            id="phone"
+            name="phone"
+            type="text"
+            placeholder="Телефон"
+            value=phoneValue
+            label="Телефон"
+            errorMessage=errorPhoneMessage
+            disabled=false
+            pattern=phonePattern
+            classInput="signUp__input"
+            classLabel='signUp__label'
+          }}}
+          {{{InputTextValidate
+            id="newPassw"
+            name="newPassw"
+            type="password"
+            label="Новый пароль"
+            value=passwordValue
+            placeholder="Новый пароль"
+            errorMessage=errorNewPasswordMessage
+            disabled=false
+            pattern=passwordPattern
+            classInput="signUp__input"
+            classLabel='signUp__label'
+          }}}
+          {{{InputTextValidate
+            id="retryPassw"
+            name="retryPassw"
+            type="password"
+            placeholder="Пароль"
+            label="Пароль (еще раз)"
+            errorMessage=errorSubmitPasswordMessage
+            value=submitPasswordValue
+            disabled=false
+            pattern=submitPasswordPattern
+            classInput="signUp__input"
+            classLabel='signUp__label'
+          }}}
+        </fieldset>
+
+        <div class="signUp_buttonBlock">
+            {{{Button
+                    text="Зарегестироваться"
+                    classNames="button_primary"
+                    type="submit"
+                    id="signUpSubmitBtn"
+                    onClick=onSubmitClick
+            }}}
+            {{{ButtonLink
+                    text="Войти"
+                    classNames="buttonLink_center"
+                    id="onSignIn"
+                    onClick=onSignInClick
+            }}}
+        </div>
+
+    </form>
+
+</main>

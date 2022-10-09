@@ -1,34 +1,85 @@
-
 .signUp_container {
-    background-color: white;
-    min-height: 450px;
-    width: 340px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 50px 30px 30px;
-
+  background-color: white;
+  min-height: 450px;
+  width: 340px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 50px 30px 30px;
 }
 
 .signUp_title {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 20px;
-    text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
 }
 
-
-.signUp_fieldset{
-    border: none;
-    margin-bottom: 16px;
+.signUp_fieldset {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+  border: none;
 }
 
-.signUp_buttonBlock{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 14px;
+.signUp_buttonBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+.signUp__input {
+  text-align: right;
+  color: #999;
+  border: none;
+  flex-grow: 1;
+  padding-bottom: 7px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 13px;
+  background-color: #0000 !important;
+}
+
+.signUp__label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 9px;
+  color: #999999;
+}
+
+.signUp__input:not([disabled]) {
+  text-align: right;
+  color: #444242;
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #3369F3;
+  flex-grow: 1;
+  padding-bottom: 7px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 13px;
+}
+
+.signUp__input:focus,
+.signUp__input:active,
+.signUp__input:focus-visible {
+  outline: none;
+  background-color: transparent !important;
+}
+
+.signUp__input::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  color: #999999;
+  text-align: left;
 }

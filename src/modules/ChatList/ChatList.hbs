@@ -1,11 +1,28 @@
 <main class="chats__container">
     <section class="chats__leftPanel">
-        <a id="profileLink" class="chats__profileLink" href="./profile.html">Профиль&nbsp;&nbsp;></a>
+        <a
+                id="profileLink"
+                class="chats__profileLink"
+                href="./profile.html"
+        >Профиль&nbsp;&nbsp;></a>
         <div class="chats__searchContainer">
-            <input id="search" name="search" class="chats__inputSearch" placeholder="Поиск"/>
+            <input
+                    id="search"
+                    name="search"
+                    class="chats__inputSearch"
+                    placeholder="Поиск"
+            />
         </div>
         <div class="chats__chatsListContainer">
-            {{{chatsList}}}
+            {{{ChatItem
+                    id="11111"
+                    text="text"
+                    chatName="111"
+                    avatar=null
+                    date="21 bkk"
+                    count=8
+                    classNames=""
+            }}}
         </div>
     </section>
     <section class="chats__messagesContainer">
@@ -17,16 +34,52 @@
             <div class="messagesContainer__chatActions">
             </div>
         </div>
-      <div class="messagesList">
-          <div class="messagesList__date">21 июня</div>
-          {{{messagesList}}}
-      </div>
-        <div class="messagesContainer__inputContainer">
-            <button class="inputContainer__addSomething"></button>
-            <input id="message" name="imessage" class="inputContainer__input" maxlength="250" placeholder="Сообщение"/>
-            <button class="inputContainer__submitBtn"></button>
+        <div class="messagesList">
+            <div class="messagesList__date">21 июня</div>
+            {{{Message
+                    id="222"
+                    text="22222"
+                    image=null
+                    date="25 jjj"
+                    checkRead=true
+                    classNames="messagesItem__interlocutor"
+            }}}
+            {{{Message
+                    id="333"
+                    text="3333"
+                    image=null
+                    date="26 jjj"
+                    checkRead=true
+                    classNames="messagesItem__host"
+            }}}
         </div>
+        <form name="messageForm" class="messagesContainer__inputContainer">
+            {{{Button
+                    text=""
+                    classNames="inputContainer__addSomething"
+                    type="button"
+                    id="addInMessageBtn"
+                    onClick=onAddInMessageClick
+            }}}
+            {{{Input
+                    id="message"
+                    name="imessage"
+                    type="text"
+                    placeholder="Сообщение"
+                    classInput="inputContainer__input"
+                    value=messageValue
+                    pattern=".{1,250}"
+                    disabled=false
+                    onChange=onChangeMessage
+            }}}
+            {{{Button
+                    text=""
+                    classNames="inputContainer__submitBtn"
+                    type="submit"
+                    id="messageSubmitBtn"
+                    onClick=onSubmitMessageClick
+            }}}
+        </form>
     </section>
 
 </main>
-

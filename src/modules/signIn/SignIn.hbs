@@ -1,0 +1,50 @@
+<main class="main">
+    <form class="signIn_container" name="signInForm" action="" id="signInForm">
+        <h1 class="signIn_title">Вход</h1>
+        <fieldset class="signIn_fieldset">
+          {{{InputTextValidate
+            id="login"
+            name="login"
+            type="text"
+            placeholder="Логин"
+            label="Логин"
+            classInput="signIn__input"
+            classLabel='signIn__label'
+            value=loginValue
+            errorMessage=errorLoginMessage
+            disabled=false
+            pattern=loginPattern
+          }}}
+          {{{InputTextValidate
+            id="passw"
+            name="passw"
+            type="password"
+            label="Пароль"
+            value=passwordValue
+            placeholder="Пароль"
+            errorMessage=errorPasswordMessage
+            disabled=false
+            pattern=passwordPattern
+            classInput="signIn__input"
+            classLabel='signIn__label'
+          }}}
+        </fieldset>
+        <div class="signIn_buttonBlock">
+            {{{Button
+                    text="Войти"
+                    classNames="button_primary"
+                    type="submit"
+                    id="signInSubmitBtn"
+                    onClick=onSubmitClick
+            }}}
+            {{{ButtonLink
+                    text="Нет аккаунта?"
+                    classNames="buttonLink_center"
+                    id="onSignUp"
+                    onClick=onSignUpClick
+            }}}
+        </div>
+
+    </form>
+
+</main>

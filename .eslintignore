@@ -1,0 +1,4 @@
+/build
+**/*.min.jsnpx prettier --write .
+/node_modules
+.prettierignore
