@@ -1,4 +1,4 @@
-import './style.css'
+import styles from './style.css'
 import SignInTmpl from './SignIn.hbs'
 import Block from '../../utils/Block'
 import { inputRules } from '../../utils/validationRules'
@@ -26,6 +26,8 @@ export class SignIn extends Block<{}> {
       password: ''
     }
     Object.values(this.children).forEach(child => {
+
+      // @ts-ignore
       if (child.className === 'InputTextValidate') {
         // @ts-ignore
         inputs[ child.meta.props.id]= ( child as InputTextValidate ).getValue()
@@ -54,6 +56,7 @@ export class SignIn extends Block<{}> {
       errorPasswordMessage: 'Пароль должен содержать хотя бы одну цифру и заглавную букву. Длина 8-40 символов',
       passwordValue: '',
       children: this.children,
+      styles
     })
   }
 }

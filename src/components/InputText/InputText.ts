@@ -1,5 +1,5 @@
 import InputTextTmpl from './InputTextTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 
 interface IInputText {
@@ -36,6 +36,7 @@ export class InputText extends Block<IInputText> {
       onInput: this.props.onInput,
       pattern: this.props.pattern,
       children: this.children,
+      styles
     })
   }
 }

@@ -1,4 +1,4 @@
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 import MessageTmpl from './Message.hbs'
 
@@ -18,12 +18,15 @@ export class Message extends Block<IMessage> {
   }
 
   render(): any {
+    const classN =`${styles.messagesItem} ${styles[this.props.classNames]}`
     return this.compile(MessageTmpl, {
       ...this.props,
+      classNames: classN,
       classNamesDate: !!this.props.text
-        ? 'messageItem__date_text '
-        : 'messageItem__date_image',
+        ? styles.messageItem__date_text
+        : styles.messageItem__date_image,
       children: this.children,
+      styles
     })
   }
 }

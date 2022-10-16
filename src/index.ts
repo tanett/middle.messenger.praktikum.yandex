@@ -1,8 +1,8 @@
 
-// @ts-ignore
-import components from './components/**/index.ts'
-// @ts-ignore
-import modules from './modules/**/index.ts'
+// // @ts-ignore
+// import components from './components/**/index.ts'
+// // @ts-ignore
+// import modules from './modules/**/index.ts'
 
 import { helperRegisterComponent } from './utils/helperRegisterComponent'
 import Router from './utils/Router'
@@ -10,9 +10,15 @@ import { SignUp } from './modules/signUp/SignUp'
 import { SignIn } from './modules/signIn/SignIn'
 import { Profile } from './modules/Profile/Profile'
 import AuthController from './controllers/AuthController'
-import ChatList from './modules/ChatList'
-import { Chats } from './modules/ChatList/ChatList'
 
+import { Chats } from './modules/ChatList/ChatList'
+import styles from './index.css'
+
+const context = require.context('./components', true,/index\.ts/)
+// const contextM = require.context('./modules', true,/index\.ts/)
+
+const components = context.keys().map(key=>context(key))
+// const modulesM = contextM.keys().map(key=>context(key))
 
 export enum ROUTES {
   Home = '/',
@@ -25,12 +31,12 @@ export enum ROUTES {
 
 window.addEventListener('DOMContentLoaded', async () => {
 
-  // @ts-ignore
+
   Object.values(components).forEach((component) => helperRegisterComponent(component.default))
 
-  // @ts-ignore
-  Object.values(modules).forEach((module) => helperRegisterComponent(module.default))
 
+ // Object.values(modulesM).forEach((module) => helperRegisterComponent(module.default))
+ //
 
   Router
     // @ts-ignore

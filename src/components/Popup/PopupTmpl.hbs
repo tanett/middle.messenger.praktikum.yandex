@@ -1,14 +1,14 @@
-<div  class="popup__overlay">
-  <div class="popup__container">
+<div  class="{{styles.popup__overlay}}">
+  <div class="{{styles.popup__container}}">
     {{{Button
       text="X"
-      classNames="popup__closeBtn"
+      classNames='popup__closeBtn'
       type="button"
       id="popupClsBtn"
       onClick=onCloseClick
       secondary="true"
     }}}
-    <h1 class="popup__title">{{ title }}</h1>
+    <h1 class="{{styles.popup__title}}">{{ title }}</h1>
     {{{InputTextValidate
       id="chatTitle"
       name="chatTitle"
@@ -19,12 +19,12 @@
       errorMessage=errorMessage
       disabled=false
       pattern=titlePattern
-      classInput="popup__input"
-      classLabel="popup__inputLabel"
+      classInput='popup__input'
+      classLabel='popup__inputLabel'
     }}}
     {{{Button
       text="Сохранить"
-      classNames="button_primary"
+      classNames='button_primary'
       type="button"
       id="popupSaveBtn"
       onClick=onSaveClick

@@ -1,4 +1,4 @@
-import './style.css'
+import styles from './style.css'
 import signUpTmpl from './signUpTmpl.hbs'
 import Block from '../../utils/Block'
 import { inputRules } from '../../utils/validationRules'
@@ -28,7 +28,9 @@ export class SignUp extends Block<{}> {
       password: '',
       phone: '',
     }
-    Object.values(this.children).forEach(child => {
+    Object.values(this.children).forEach((child )=> {
+
+      // @ts-ignore
       if (child.className === 'InputTextValidate') {
 
         // @ts-ignore
@@ -79,6 +81,7 @@ export class SignUp extends Block<{}> {
       onSubmitClick: ( (e: Event) => this.onSubmitClick(e) ).bind(this),
       onSignInClick: this.onSignInClick,
       children: this.children,
+      styles
     })
   }
 }

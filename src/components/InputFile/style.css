@@ -36,3 +36,46 @@
     line-height: 8px;
     color: #ff2f2f;
 }
+
+
+.profile__avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+
+    background: #efefef url("../../image/avatarPlaceholder.png") no-repeat center;
+    margin-bottom: 21px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.profile__avatar:before {
+    display: flex;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    content: "Поменять аватар";
+    background: #000000;
+    opacity: 0;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    transition: opacity 0.3s;
+}
+
+.profile__avatar:hover:before {
+    opacity: 0.5;
+}
+
+
+.avatar__image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+
+
+.profile__img {
+    margin: 0 auto;
+}

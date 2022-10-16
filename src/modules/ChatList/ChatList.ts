@@ -1,5 +1,5 @@
-import './style.css'
-import ChatListTmpl from './ChatList.hbs'
+import styles from './style.css'
+import ChatListTmpl from './ChatListTmpl.hbs'
 import { Message } from '../../components/Message/Message'
 import Block from '../../utils/Block'
 import { IChats } from '../../api/ChatsAPI'
@@ -261,6 +261,7 @@ class ChatList extends Block<IChatList> {
       closePopupShowUsers: this.onCloseUsersFromChatClick,
       onShowUsersFromChatClick: this.onShowUsersFromChatClick,
       usersList: this.props.usersList,
+      styles: styles
     })
   }
 
@@ -272,6 +273,7 @@ const withChats = withStore((state) => ( {
   messages: ( state.messages || {} )[state.activeChatId] || [],
   user: state.user,
   usersList: state.usersList || [],
+
 } ))
 
 // @ts-ignore

@@ -1,19 +1,20 @@
-<main class="chats__container">
-  <section class="chats__leftPanel">
+<div class="{{styles.root}}">
+<main class="{{styles.chats__container}}">
+  <section class="{{styles.chats__leftPanel}}">
     <a
       id="profileLink"
-      class="chats__profileLink"
+      class="{{styles.chats__profileLink}}"
       href="/profile"
     >Профиль&nbsp;&nbsp;></a>
-    <div class="chats__searchContainer">
+    <div class="{{styles.chats__searchContainer}}">
       <input
         id="search"
         name="search"
-        class="chats__inputSearch"
+        class="{{styles.chats__inputSearch}}"
         placeholder="Поиск"
       />
     </div>
-    <div class="chats__chatsListContainer">
+    <div class="{{styles.chats__chatsListContainer}}">
       {{#each chats}}
         {{{this}}}
       {{/each}}
@@ -21,7 +22,7 @@
     </div>
     {{{Button
       text="+"
-      classNames="chats__addChatBtn"
+      classNames='chats__addChatBtn'
       type="button"
       id="addChatBtn"
       onClick=onAddChatClick
@@ -29,15 +30,15 @@
 
   </section>
 
-  <section class="chats__messagesContainer">
+  <section class="{{styles.chats__messagesContainer}}">
     {{#if activeChat}}
-    <div class="messagesContainer__chatInfo">
-      <div class="messagesContainer__chatInfoWrapper">
-        <div class="messagesContainer__chatAvatar"></div>
-        <div class="messagesContainer__chatName">{{chatName}}</div>
+    <div class="{{styles.messagesContainer__chatInfo}}">
+      <div class="{{styles.messagesContainer__chatInfoWrapper}}">
+        <div class="{{styles.messagesContainer__chatAvatar}}"></div>
+        <div class="{{styles.messagesContainer__chatName}}">{{chatName}}</div>
       </div>
-      <div class="messagesContainer__chatActions">
-        <ul class='chatActions__container'>
+      <div class="{{styles.messagesContainer__chatActions}}">
+        <ul class='{{styles.chatActions__container}}'>
           <li> {{{ButtonLink
             id="showUserfromChat"
             text="Участники чата"
@@ -69,15 +70,15 @@
         </ul>
       </div>
     </div>
-    <div class="messagesList">
+    <div class="{{styles.messagesList}}">
       {{#each messages}}
         {{{this}}}
       {{/each}}
     </div>
-    <form name="messageForm" class="messagesContainer__inputContainer">
+    <form name="messageForm" class="{{styles.messagesContainer__inputContainer}}">
       {{{Button
         text=""
-        classNames="inputContainer__addSomething"
+        classNames='inputContainer__addSomething'
         type="button"
         id="addInMessageBtn"
         onClick=onAddInMessageClick
@@ -87,7 +88,7 @@
         name="imessage"
         type="text"
         placeholder="Сообщение"
-        classInput="inputContainer__input"
+        classInput=styles.inputContainer__input
         value=messageValue
         pattern=".{1,250}"
         disabled=false
@@ -95,14 +96,14 @@
       }}}
       {{{Button
         text=""
-        classNames="inputContainer__submitBtn"
+        classNames='inputContainer__submitBtn'
         type="submit"
         id="messageSubmitBtn"
         onClick=onSubmitMessageClick
       }}}
     </form>
       {{else}}
-      <div class='messagesContainer__notify'>Выберите чат или создайте новый</div>
+      <div class='{{styles.messagesContainer__notify}}'>Выберите чат или создайте новый</div>
     {{/if}}
   </section>
 {{#if isOpenPopup}}
@@ -157,3 +158,4 @@
     }}}
   {{/if}}
 </main>
+</div>

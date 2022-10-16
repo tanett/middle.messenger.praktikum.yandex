@@ -1,6 +1,7 @@
 import Block from './Block'
-// @ts-ignore
-import * as Handlebars from 'handlebars/dist/handlebars.runtime'
+
+
+import * as Handlebars from 'handlebars/runtime'
 
 export function helperRegisterComponent(Component: typeof Block) {
   Handlebars.registerHelper(

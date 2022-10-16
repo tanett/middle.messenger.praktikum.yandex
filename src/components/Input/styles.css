@@ -1,0 +1,23 @@
+
+.inputContainer__input {
+    flex-grow: 1;
+    background: #efefef;
+    border-radius: 30px;
+    border: none;
+    padding: 10px 20px;
+}
+
+.inputContainer__input::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: #999999;
+}
+
+.inputContainer__input:active,
+.inputContainer__input:focus,
+.inputContainer__input:focus-visible {
+    border: none;
+    outline: none;
+}

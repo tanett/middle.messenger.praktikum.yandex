@@ -1,4 +1,4 @@
-import './style.css'
+import styles from  './style.css'
 import Block from '../../utils/Block'
 import InputTextValidate from '../../components/InputTextValidate'
 import ProfileEditPasswordTmpl from './ProfileEditPasswordTmpl.hbs'
@@ -36,8 +36,11 @@ export class ProfileEditPasswordComponent extends Block<IProfileEditPasswordComp
     e.preventDefault()
     let isValid = true
 
+    // @ts-ignore
     const inputs = { oldPassword: null, newPassword: null, retryPassword: null }
     Object.values(this.children).forEach(child => {
+
+      // @ts-ignore
       if (child.className === 'InputTextValidate') {
         // @ts-ignore
         inputs[child.meta.props.id] = ( child as InputTextValidate ).getValue()
@@ -77,7 +80,7 @@ export class ProfileEditPasswordComponent extends Block<IProfileEditPasswordComp
       children: this.children,
       onGoBackClick: (e: Event) => this.onGoBackToProfileClick(e),
       onSaveDataClick: ( (e: Event) => this.onSaveDataClick(e) ).bind(this),
-
+styles
     })
   }
 }

@@ -1,5 +1,5 @@
 import InputTextValidateTmpl from './InputTextValidateTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 
 
@@ -69,6 +69,7 @@ export class InputTextValidate extends Block<IInputTextValidate> {
       onInput: ( (e: Event) => this.onInputHandler(e) ).bind(this),
       onChange: ( (e: Event) => this.onChangeHandler(e) ).bind(this),
       children: this.children,
+      styles
     })
   }
 }

@@ -1,5 +1,5 @@
 import ChatItemTmpl from './ChatItem.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 import store, { withStore } from '../../utils/Store'
 import { resourceUrl }from '../../api/constants'
@@ -21,7 +21,7 @@ export class ChatItemBase extends Block<IChatItem> {
   static componentName: string='ChatItemBase'
 
   constructor(props: IChatItem) {
-    super('ChatItemBase', props)
+    super('ChatItemBase', props )
   }
 
 
@@ -29,12 +29,13 @@ export class ChatItemBase extends Block<IChatItem> {
   render(): any {
 
     const chatAvatar = this.props.avatar
-      ? `<img src='${resourceUrl}${ this.props.avatar }' alt='${ this.props.title }' class='chatItem__img'>`
+      ? `<img src='${resourceUrl}${ this.props.avatar }' alt='${ this.props.title }' class=${styles.chatItem__img}>`
       : null
     return this.compile(ChatItemTmpl, {
       ...this.props,
       avatar: chatAvatar,
       children: this.children,
+      styles
     })
   }
 }

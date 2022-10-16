@@ -1,5 +1,5 @@
 import InputFileTmpl from './InputFileTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 
 
@@ -64,7 +64,8 @@ export class InputFile extends Block<IInputTextValidate> {
       classLabel: this.props.classLabel,
       onChange: ( (e: Event) => this.onChangeHandler(e) ).bind(this),
       children: this.children,
-      pathAvatar:this.props.pathAvatar
+      pathAvatar:this.props.pathAvatar,
+      styles
     })
   }
 }

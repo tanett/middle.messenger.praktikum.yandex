@@ -1,5 +1,5 @@
 import InputTextProfileTmpl from './InputTextProfileTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 
 interface IInputTextProfile {
@@ -37,6 +37,7 @@ export class InputTextProfile extends Block<IInputTextProfile> {
       onInput: this.props.onInput,
       onChange: this.props.onChange,
       children: this.children,
+      styles
     })
   }
 }

@@ -1,15 +1,16 @@
-<main class="main">
-    <form class="signIn_container" name="signInForm" action="" id="signInForm">
-        <h1 class="signIn_title">Вход</h1>
-        <fieldset class="signIn_fieldset">
+<div class="{{styles.root}}">
+<main class="{{styles.main}}">
+    <form class="{{styles.signIn_container}}" name="signInForm" action="" id="signInForm">
+        <h1 class="{{styles.signIn_title}}">Вход</h1>
+        <fieldset class="{{styles.signIn_fieldset}}">
           {{{InputTextValidate
             id="login"
             name="login"
             type="text"
             placeholder="Логин"
             label="Логин"
-            classInput="signIn__input"
-            classLabel='signIn__label'
+            classInput=styles.signIn__input
+            classLabel=styles.signIn__label
             value=loginValue
             errorMessage=errorLoginMessage
             disabled=false
@@ -25,21 +26,21 @@
             errorMessage=errorPasswordMessage
             disabled=false
             pattern=passwordPattern
-            classInput="signIn__input"
-            classLabel='signIn__label'
+            classInput=styles.signIn__input
+            classLabel=styles.signIn__label
           }}}
         </fieldset>
-        <div class="signIn_buttonBlock">
+        <div class="{{styles.signIn_buttonBlock}}">
             {{{Button
                     text="Войти"
-                    classNames="button_primary"
+                    classNames='button_primary'
                     type="submit"
                     id="signInSubmitBtn"
                     onClick=onSubmitClick
             }}}
             {{{ButtonLink
                     text="Нет аккаунта?"
-                    classNames="buttonLink_center"
+                    classNames='buttonLink_center'
                     id="onSignUp"
                     onClick=onSignUpClick
             }}}
@@ -48,3 +49,4 @@
     </form>
 
 </main>
+</div>
