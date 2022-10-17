@@ -1,17 +1,17 @@
-<div  class="popup__overlay">
-  <div class="popup__container">
+<div  class="{{styles.popup__overlay}}">
+  <div class="{{styles.popup__container}}">
     {{{Button
       text="X"
-      classNames="popup__closeBtn"
+      classNames='popup__closeBtn'
       type="button"
       id="popupClsBtn"
       onClick=onCloseClick
       secondary="true"
     }}}
-    <h1 class="popup__title">{{ title }}</h1>
-   <p class='popup-confirm__message'>{{message}}</p>
+    <h1 class="{{styles.popup__title}}">{{ title }}</h1>
+   <p class='{{styles.popup-confirm__message}}'>{{message}}</p>
 
-    <div class='popup-confirm__btn-wrapper'>
+    <div class='{{styles.popup-confirm__btn-wrapper}}'>
       {{{Button
         text="Отменить"
         classNames=""
@@ -21,7 +21,7 @@
 
       }}} {{{Button
       text="Подтвердить"
-      classNames="button_primary"
+      classNames='button_primary'
       type="button"
       id="popupSaveBtn"
       onClick=onSaveClick

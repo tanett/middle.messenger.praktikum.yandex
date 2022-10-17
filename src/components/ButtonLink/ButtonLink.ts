@@ -1,5 +1,5 @@
 import BtnLinkTmpl from './BtnLinkTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 
 interface IButtonLink {
@@ -24,6 +24,7 @@ export class ButtonLink extends Block<IButtonLink> {
 
   render() {
     const { id, text, classNames, onClick } = this.props
-    return this.compile(BtnLinkTmpl, { id, text, classNames, onClick })
+    const classN = styles[this.props.classNames]
+    return this.compile(BtnLinkTmpl, { id, text, classNames:  `${styles.buttonLink} ${classN}`, onClick, styles })
   }
 }

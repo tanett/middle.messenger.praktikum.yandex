@@ -1,6 +1,6 @@
 import Block from '../../utils/Block'
 import template from './ButtonTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 
 interface IButtonProps {
   text: string;
@@ -24,6 +24,7 @@ export class Button extends Block<IButtonProps> {
   }
 
   render() {
-    return this.compile(template, this.props)
+    const classN = styles[this.props.classNames]
+    return this.compile(template, { ...this.props, styles, classNames: `${styles.button} ${classN}` })
   }
 }

@@ -1,3 +1,125 @@
+.profile__goBackBtn {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    background: #3369f3;
+    background-image: url("../../image/arrowBlueLeft.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.profile__title-wrapper{
+    display: flex;
+    align-items: baseline;
+}
+
+
+.profile__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-grow: 1;
+    background: #fbfbfb;
+    padding: 60px 60px 109px;
+}
+
+.profile__container_edit {
+    justify-content: center;
+}
+
+.profile__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-grow: 1;
+    background: #fbfbfb;
+    padding: 60px;
+    padding-bottom: 109px;
+}
+
+.profile__container_edit {
+    justify-content: center;
+}
+
+
+.profile__title-wrapper{
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+    justify-content: center;
+}
+.profile__title_edit {
+    white-space: nowrap;
+    flex-grow: 1;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #1e1e1e;
+    margin-bottom: 60px;
+}
+
+.profile__fields {
+    list-style: none;
+    width: 510px;
+    margin-bottom: 60px;
+}
+
+.profile__fieldsItem {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 10px;
+}
+
+.profile__btnList {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.profile__fieldsItem:last-child {
+    border-bottom: none;
+}
+
+.profile__fieldsItemName {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1e1e1e;
+}
+
+.profile__fieldsItemValue {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: right;
+
+    color: #999999;
+}
+
+.profile__btnBlock {
+    display: flex;
+    flex-direction: column;
+    width: 510px;
+}
+.profile__goBack {
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #294db7;
+    border-right: 1px solid #eaeaea;
+}
 
 .profile__title {
     font-style: normal;
@@ -79,4 +201,77 @@
 
 .buttonLink_red {
     color: #ff0000;
+}
+.inputBlockProfile {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+}
+
+.inputBlockProfile__wrapper {
+    display: flex;
+}
+
+.inputBlockProfile__label {
+    width: 150px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #1e1e1e;
+}
+
+.inputBlockProfile__input {
+    border: none;
+    flex-grow: 1;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: right;
+
+    color: #999999;
+    background-color: transparent !important;
+    padding-bottom: 7px;
+}
+
+.inputBlockProfile__input:not([disabled]) {
+    border-bottom: 1px solid gray;
+    flex-grow: 1;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    text-align: right;
+
+    color: #444242;
+    background-color: transparent !important;
+    padding-bottom: 7px;
+}
+
+.inputBlockProfile__input:focus,
+.inputBlockProfile__input:active,
+.inputBlockProfile__input:focus-visible {
+    outline: none;
+
+    background-color: transparent !important;
+}
+
+.inputBlockProfile__input::placeholder {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #999999;
+}
+
+.inputBlockProfile__message {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+    color: #ff2f2f;
 }

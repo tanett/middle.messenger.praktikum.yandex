@@ -1,6 +1,6 @@
 import Block from '../../utils/Block'
 import PopupTmpl from './ConfirmationPopupTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import ChatsController from '../../controllers/ChatsController'
 
 
@@ -40,6 +40,7 @@ export class ConfirmationPopup extends Block<IPopup> {
       onCloseClick:  (e: Event) => closePopupClick(e) ,
       onSaveClick: (e: Event) => this.onSaveClick(e),
       children: this.children,
+      styles
     })
   }
 }

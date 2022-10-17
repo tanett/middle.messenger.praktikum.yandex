@@ -1,18 +1,18 @@
-<div  class="popup__overlay">
-  <div class="popup__container">
+<div  class="{{styles.popup__overlay}}">
+  <div class="{{styles.popup__container}}">
     {{{Button
       text="X"
-      classNames="popup__closeBtn"
+      classNames='popup__closeBtn'
       type="button"
       id="popupClsBtn"
       onClick=onCloseClick
       secondary="true"
     }}}
-    <h1 class="popup__title">{{ title }}</h1>
-    <ul class='usersList'>
+    <h1 class="{{styles.popup__title}}">{{ title }}</h1>
+    <ul class='{{styles.usersList}}'>
       {{#each list}}
 
-        <li class='usersList__li' ><span>id</span> :<span  class='usersList__item'> {{this.id}}</span>, <span>login</span> :<span  class='usersList__item'> {{this.login}}</span></li>
+        <li class='{{styles.usersList__li}}' ><span>id</span> :<span  class='{{styles.usersList__item}}'> {{this.id}}</span>, <span>login</span> :<span  class='{{styles.usersList__item}}'> {{this.login}}</span></li>
       {{/each}}
     </ul>
 

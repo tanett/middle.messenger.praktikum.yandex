@@ -1,5 +1,5 @@
 import ProfileTmpl from './ProfileMainTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 import UserController from '../../controllers/UserController'
 import { resourceUrl } from '../../api/constants'
@@ -72,7 +72,7 @@ export class ProfileMainContent extends Block<IProfileMainContent> {
       onChangePasswClick: (e: Event) => this.onEditPasswordClick(e),
       onOutClick: () => this.onOutClick(),
       onUploadAvatar: (e: Event, file: File) => this.onUploadAvatarClick(e, file),
-
+styles
     })
   }
 }

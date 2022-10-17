@@ -1,8 +1,8 @@
 import Block from '../../utils/Block'
 import PopupTmpl from './UsersListPopupTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import { User } from '../../api/UserAPI'
-import store from '../../utils/Store'
+
 
 
 interface IPopupUsers {
@@ -28,6 +28,7 @@ export class UsersListPopup extends Block<IPopupUsers> {
       title, list, isOpenPopup, closePopupClick,
       onCloseClick: (e: Event) => closePopupClick(e),
       children: this.children,
+      styles
     })
   }
 }

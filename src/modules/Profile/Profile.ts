@@ -1,5 +1,5 @@
 import ProfileTmpl from './ProfileMainTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 import { ProfileEditDataContent } from '../ProfileEditContent/ProfileEditDataContent'
 import { ProfileMainContent } from '../ProfileMainContent/ProfileMainContent'
@@ -120,7 +120,7 @@ export class Profile extends Block<IProfile> {
       onChangeClick: ( (e: Event) => this.onChangeDataClick(e) ),
       onChangePasswClick: ( (e: Event) => this.onEditPasswordClick(e) ).bind(this),
       onOutClick: () => this.onOutClick(),
-
+styles
     })
   }
 }

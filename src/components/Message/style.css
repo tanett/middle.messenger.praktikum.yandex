@@ -13,18 +13,16 @@
     line-height: 15px;
     color: #1e1e1e;
 }
-
 .messagesItem_image {
     max-width: 402px;
     border: 1px solid #eaeaea;
     border-radius: 12px;
     background-color: white;
 }
-
 .messageItem__date {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .messageItem__date_text {

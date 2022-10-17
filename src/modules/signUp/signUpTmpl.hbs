@@ -1,7 +1,8 @@
-<main class="main">
-    <form class="signUp_container" name="signUp" id="signUpForm">
-        <h1 class="signUp_title">Регистрация</h1>
-        <fieldset class="signUp_fieldset">
+<div class="{{styles.root}}">
+<main class="{{styles.main}}">
+    <form class="{{styles.signUp_container}}" name="signUp" id="signUpForm">
+        <h1 class="{{styles.signUp_title}}">Регистрация</h1>
+        <fieldset class="{{styles.signUp_fieldset}}">
           {{{InputTextValidate
             id="email"
             name="email"
@@ -12,8 +13,8 @@
             errorMessage=errorEmailMessage
             disabled=false
             pattern=emailPattern
-            classInput="signUp__input"
-            classLabel='signUp__label'
+            classInput=styles.signUp__input
+            classLabel=styles.signUp__label
           }}}
           {{{InputTextValidate
             id="login"
@@ -21,8 +22,8 @@
             type="text"
             placeholder="Логин"
             label="Логин"
-            classInput="signUp__input"
-            classLabel='signUp__label'
+            classInput=styles.signUp__input
+            classLabel=styles.signUp__label
             value=loginValue
             errorMessage=errorLoginMessage
             disabled=false
@@ -38,8 +39,8 @@
             errorMessage=errorFirstNameMessage
             disabled=false
             pattern=firstNamePattern
-            classInput="signUp__input"
-            classLabel='signUp__label'
+            classInput=styles.signUp__input
+            classLabel=styles.signUp__label
           }}}
           {{{InputTextValidate
             id="second_name"
@@ -51,8 +52,8 @@
             errorMessage=errorSecondNameMessage
             disabled=false
             pattern=secondNamePattern
-            classInput="signUp__input"
-            classLabel='signUp__label'
+            classInput=styles.signUp__input
+            classLabel=styles.signUp__label
           }}}
           {{{InputTextValidate
             id="phone"
@@ -64,8 +65,8 @@
             errorMessage=errorPhoneMessage
             disabled=false
             pattern=phonePattern
-            classInput="signUp__input"
-            classLabel='signUp__label'
+            classInput=styles.signUp__input
+            classLabel=styles.signUp__label
           }}}
           {{{InputTextValidate
             id="password"
@@ -77,8 +78,8 @@
             errorMessage=errorNewPasswordMessage
             disabled=false
             pattern=passwordPattern
-            classInput="signUp__input"
-            classLabel='signUp__label'
+            classInput=styles.signUp__input
+            classLabel=styles.signUp__label
           }}}
           {{{InputTextValidate
             id="retryPassw"
@@ -90,22 +91,22 @@
             value=submitPasswordValue
             disabled=false
             pattern=submitPasswordPattern
-            classInput="signUp__input"
-            classLabel='signUp__label'
+            classInput=styles.signUp__input
+            classLabel=styles.signUp__label
           }}}
         </fieldset>
 
-        <div class="signUp_buttonBlock">
+        <div class="{{styles.signUp_buttonBlock}}">
             {{{Button
                     text="Зарегестироваться"
-                    classNames="button_primary"
+                    classNames='button_primary'
                     type="submit"
                     id="signUpSubmitBtn"
                     onClick=onSubmitClick
             }}}
             {{{ButtonLink
                     text="Войти"
-                    classNames="buttonLink_center"
+                    classNames='buttonLink_center'
                     id="onSignIn"
                     onClick=onSignInClick
             }}}
@@ -114,3 +115,4 @@
     </form>
 
 </main>
+</div>

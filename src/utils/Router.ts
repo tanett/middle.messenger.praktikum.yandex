@@ -2,12 +2,16 @@ import Block from './Block'
 import { isEqualString } from './helpers/isEqual'
 import renderBlock from './render'
 
+export interface BlockConstructable<P = any> {
+  new(props: P): Block<P>;
+}
+
 class Route {
   private block: Block<{}> | null = null;
 
   constructor(
     private pathname: string,
-    private readonly blockClass: typeof Block,
+    private readonly blockClass: BlockConstructable,
     private readonly query: string) {
   }
 
@@ -21,7 +25,7 @@ public  match(pathname: string) {
 
 public  render() {
     if (!this.block) {
-      this.block = new this.blockClass(this.blockClass.name, {});
+      this.block = new this.blockClass(this.blockClass.name);
 
       renderBlock(this.query, this.block);
       return;
@@ -45,7 +49,7 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: typeof Block) {
+  public use(pathname: string, block: BlockConstructable) {
     const route = new Route(pathname, block, this.rootQuery);
     this.routes.push(route);
 

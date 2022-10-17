@@ -1,6 +1,6 @@
-<div class="inputBlock">
-  <div class="inputBlock__wrapper">
-    <label for='{{id}}' class="inputFile__label {{classLabel}}" style='background-image: url("{{pathAvatar}} "); background-size: contain'></label>
+<div class="{{styles.inputBlock}}">
+  <div class="{{styles.inputBlock__wrapper}}">
+    <label for='{{id}}' class="{{classLabel}}" style='background-image: url("{{pathAvatar}} "); background-size: contain'></label>
     {{{Input
       id=id
       name=name
@@ -14,6 +14,6 @@
       pattern=pattern
     }}}
   </div>
-  <p id="id-errorMsg" class="inputBlock__message">{{errorMessage}}</p>
+  <p id="id-errorMsg" class="{{styles.inputBlock__message}}">{{errorMessage}}</p>
 
 </div>

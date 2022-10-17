@@ -1,17 +1,17 @@
-<div class="inputBlock">
-  <p class="inputBlock__label {{classLabel}}">{{label}}</p>
+<div class="{{styles.inputBlock}}">
+  <p class="{{styles.inputBlock__label}} {{classLabel}}">{{label}}</p>
   {{{Input
     id=id
     name=name
     type=type
     placeholder=placeholder
-    classInput="inputBlock__input "
+    classInput=styles.inputBlock__input
     value=value
     onInput=onInput
     disabled=disabled
     onChange=onChange
     pattern=pattern
   }}}
-  <p class="inputBlock__message">{{errorMessage}}</p>
+  <p class="{{styles.inputBlock__message}}">{{errorMessage}}</p>
 
 </div>

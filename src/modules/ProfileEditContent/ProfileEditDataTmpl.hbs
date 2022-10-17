@@ -1,21 +1,21 @@
-<section class="profile__container">
+<section class="{{styles.profile__container}}">
 
-  <div class='profile__title-wrapper'>
+  <div class='{{styles.profile__title-wrapper}}'>
     {{{Button
       text=""
-      classNames="profile__goBackBtn"
+      classNames='profile__goBackBtn'
       type="button"
       id="backtoProfileBtn"
       onClick=onGoBackClick
     }}}
-    <h1 class="profile__title_edit">
+    <h1 class="{{styles.profile__title_edit}}">
       Изменить данные профиля
     </h1>
   </div>
-  <form name="profileData_form">
+  <form name="{{styles.profileData_form}}">
 
-    <ul class="profile__fields">
-      <li class="profile__fieldsItem">{{{InputTextValidate
+    <ul class="{{styles.profile__fields}}">
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextValidate
         id="login"
         name="login"
         type="text"
@@ -24,12 +24,12 @@
         value=loginValue
         errorMessage=errorLoginMessage
         disabled=false
-        classInput="inputBlockProfile__input"
-        classLabel="inputBlockProfile__label"
+        classInput=styles.inputBlockProfile__input
+        classLabel=styles.inputBlockProfile__label
         pattern=loginPattern
       }}}</li>
 
-      <li class="profile__fieldsItem">{{{InputTextValidate
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextValidate
         id="first_name"
         name="first_name"
         type="text"
@@ -39,10 +39,10 @@
         errorMessage=errorFirstNameMessage
         disabled=false
         pattern=firstNamePattern
-        classInput="inputBlockProfile__input"
-        classLabel="inputBlockProfile__label"
+        classInput=styles.inputBlockProfile__input
+        classLabel=styles.inputBlockProfile__label
       }}}</li>
-      <li class="profile__fieldsItem">{{{InputTextValidate
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextValidate
         id="second_name"
         name="second_name"
         type="text"
@@ -52,10 +52,10 @@
         errorMessage=errorSecondNameMessage
         disabled=false
         pattern=secondNamePattern
-        classInput="inputBlockProfile__input"
-        classLabel="inputBlockProfile__label"
+        classInput=styles.inputBlockProfile__input
+        classLabel=styles.inputBlockProfile__label
       }}}</li>
-      <li class="profile__fieldsItem">{{{InputTextValidate
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextValidate
         id="display_name"
         name="display_name"
         type="text"
@@ -65,10 +65,10 @@
         errorMessage=errorDisplayNameMessage
         disabled=false
         pattern=displayNamePattern
-        classInput="inputBlockProfile__input"
-        classLabel="inputBlockProfile__label"
+        classInput=styles.inputBlockProfile__input
+        classLabel=styles.inputBlockProfile__label
       }}}</li>
-      <li class="profile__fieldsItem">{{{InputTextValidate
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextValidate
         id="email"
         name="email"
         type="email"
@@ -78,11 +78,11 @@
         errorMessage=errorEmailMessage
         disabled=false
         pattern=emailPattern
-        classInput="inputBlockProfile__input"
-        classLabel="inputBlockProfile__label"
+        classInput=styles.inputBlockProfile__input
+        classLabel=styles.inputBlockProfile__label
       }}}</li>
 
-      <li class="profile__fieldsItem">{{{InputTextValidate
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextValidate
         id="phone"
         name="phone"
         type="text"
@@ -92,15 +92,15 @@
         errorMessage=errorPhoneMessage
         disabled=false
         pattern=phonePattern
-        classInput="inputBlockProfile__input"
-        classLabel="inputBlockProfile__label"
+        classInput=styles.inputBlockProfile__input
+        classLabel=styles.inputBlockProfile__label
       }}}</li>
 
     </ul>
 
     {{{Button
       text="Сохранить"
-      classNames="button_primary"
+      classNames='button_primary'
       type="submit"
       id="saveBtn"
       onClick=onSaveDataClick

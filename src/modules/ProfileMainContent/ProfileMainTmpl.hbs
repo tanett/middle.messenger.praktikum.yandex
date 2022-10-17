@@ -1,4 +1,4 @@
-<section class="profile__container">
+<section class="{{styles.profile__container}}">
 
   {{{InputFile
     id="fileInput"
@@ -7,18 +7,18 @@
     label="File avatar"
     errorMessage="1111"
     disabled=false
-    classInput="inputFile__input"
+    classInput='inputFile__input'
     classLabel="avatar profile__avatar"
     onUpload=onUploadAvatar
     pathAvatar=pathAvatar
   }}}
 
 
-  <h1 class="profile__title">{{name}}</h1>
-  <form name="profileData_form">
+  <h1 class="{{styles.profile__title}}">{{name}}</h1>
+  <form name="{{styles.profileData_form}}">
 
-    <ul class="profile__fields">
-      <li class="profile__fieldsItem">{{{InputTextProfile
+    <ul class="{{styles.profile__fields}}">
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextProfile
         id="login"
         name=name
         type="text"
@@ -27,7 +27,7 @@
         disabled=true
       }}}</li>
 
-      <li class="profile__fieldsItem">{{{InputTextProfile
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextProfile
         id="name"
         name=name
         type="text"
@@ -35,7 +35,7 @@
         label="Имя"
         disabled=true
       }}}</li>
-      <li class="profile__fieldsItem">{{{InputTextProfile
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextProfile
         id="secondName"
         name=secondName
         type="text"
@@ -43,7 +43,7 @@
         label="Фамилия"
         disabled=true
       }}}</li>
-      <li class="profile__fieldsItem">{{{InputTextProfile
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextProfile
         id="displayName"
         name=displayName
         type="text"
@@ -51,7 +51,7 @@
         label="Имя в чате"
         disabled=true
       }}}</li>
-      <li class="profile__fieldsItem">{{{InputTextProfile
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextProfile
         id="email"
         name=email
         type="text"
@@ -60,7 +60,7 @@
         value=emailValue
         disabled=true
       }}}</li>
-      <li class="profile__fieldsItem">{{{InputTextProfile
+      <li class="{{styles.profile__fieldsItem}}">{{{InputTextProfile
         id="phone"
         name=phone
         type="text"
@@ -74,22 +74,22 @@
     </ul>
 
   </form>
-  <ul class="profile__fields">
-    <li class="profile__btnList">{{{ButtonLink
+  <ul class="{{styles.profile__fields}}">
+    <li class="{{styles.profile__btnList}}">{{{ButtonLink
       text="Изменить данные"
       classNames=""
       id="changeBtn"
       onClick=onChangeClick
     }}}</li>
-    <li class="profile__btnList">{{{ButtonLink
+    <li class="{{styles.profile__btnList}}">{{{ButtonLink
       text="Изменить пароль"
       classNames=""
       id="changeBtn"
       onClick=onChangePasswClick
     }}}</li>
-    <li class="profile__btnList">{{{ButtonLink
+    <li class="{{styles.profile__btnList}}">{{{ButtonLink
       text="Выйти"
-      classNames="buttonLink_red"
+      classNames='buttonLink_red'
       id="outBtn"
       onClick=onOutClick
     }}}</li>

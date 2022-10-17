@@ -1,5 +1,5 @@
 import ProfileEditDataTmpl from './ProfileEditDataTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import Block from '../../utils/Block'
 import { inputRules } from '../../utils/validationRules'
 import InputTextValidate from '../../components/InputTextValidate'
@@ -39,6 +39,8 @@ export class ProfileEditDataContent extends Block<IProfileEditDataContent> {
     let isValid = true
     const inputs = {}
     Object.values(this.children).forEach(child => {
+
+      // @ts-ignore
       if (child.className === 'InputTextValidate') {
         // @ts-ignore
         inputs[child.meta.props.id] = ( child as unknown as InputTextValidate ).getValue()
@@ -89,6 +91,7 @@ export class ProfileEditDataContent extends Block<IProfileEditDataContent> {
       onGoBackClick: (e: Event) => this.onGoBackToProfileClick(e),
       onSaveDataClick: ( (e: Event) => this.onSaveDataClick(e) ).bind(this),
       errorMessage: this.props.errorMessage,
+      styles
     })
 
   }

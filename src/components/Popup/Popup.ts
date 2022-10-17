@@ -1,6 +1,6 @@
 import Block from '../../utils/Block'
 import PopupTmpl from './PopupTmpl.hbs'
-import './style.css'
+import styles from './style.css'
 import InputTextValidate from '../../components/InputTextValidate'
 
 import ChatsController from '../../controllers/ChatsController'
@@ -107,6 +107,7 @@ export class Popup extends Block<IPopup> {
       errorMessage:( this.props.forUser || this.props.forDeleteUser) ?'Id содержит только цифры' :'Поле не должно быть пустым',
       onSaveClick: this.props.forUser ? (e: Event) => this.onSaveUserHandler(e) :  this.props.forDeleteUser ? (e: Event) => this.onDeleteUserHandler(e) :(e: Event) => this.onSaveDataClick(e),
       children: this.children,
+      styles
     })
   }
 }

@@ -1,6 +1,6 @@
 import InputTmpl from './InputTmpl.hbs'
 import Block from '../../utils/Block'
-
+import styles from './styles.css'
 interface IInput {
   id: string;
   name: string;
@@ -34,6 +34,7 @@ export class Input extends Block<IInput> {
   }
 
   render() {
-    return this.compile(InputTmpl, this.props)
+    const styleN = `${styles[this.props.classInput]}`
+    return this.compile(InputTmpl, { ...this.props, classInput: styleN , styles})
   }
 }
