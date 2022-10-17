@@ -11,10 +11,10 @@
 
 ## Notice
 
-После переезда на вебпак сильн поехала верстка, в процессе исправления
+После переезда на вебпак сильно поехала верстка, в процессе исправления
 
 В качестве прототипа использован шаблон практикума https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=12%3A35
 
 ### Deploy
 
-https://bejewelled-baklava-f2ff47.netlify.app
+https://practikum-chat-1.herokuapp.com/chats
