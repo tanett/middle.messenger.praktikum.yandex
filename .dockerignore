@@ -1,0 +1,8 @@
+
+dist/
+node_modules/
+.idea/
+.git/
+.github/
+
+yarn-error.log
