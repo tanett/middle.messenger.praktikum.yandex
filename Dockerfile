@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:16-alpine
 
 WORKDIR /var/www/app
 
@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run buildher
+RUN npm run build
 
 EXPOSE 3000
 
