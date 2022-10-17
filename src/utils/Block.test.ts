@@ -22,7 +22,7 @@ describe('Block', () => {
 
   class ComponentMock extends Block {
 
-    static getContent() {
+    static getContent():HTMLElement {
       return  null
     }
   }

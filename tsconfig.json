@@ -7,6 +7,18 @@
     "allowJs": true,
     "moduleResolution": "Node"
   },
+  "ts-node": {
+    "files": true,
+    "compilerOptions": {
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "lib": [
+        "ESNext",
+        "DOM"
+      ]
+    }
+  },
   "include": [ "src/**/*"],
   "files": ["src/index.ts"]
 }

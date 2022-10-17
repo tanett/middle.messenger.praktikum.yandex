@@ -16,6 +16,8 @@ describe('isEqual',()=>{
     expect(isEqual(obj1, obj2)).to.be.false
   })
   it('return false for not a obj', ()=>{
+
+    // @ts-ignore
     const obj1={key: []}
     const obj2={key: 'value'}
     expect(isEqual(obj1, obj2)).to.be.false
@@ -36,6 +38,6 @@ describe('isEqualString',()=>{
     const str2=''
     expect(isEqualString(str1, str2)).to.be.false
   })
-  
+
 
 })

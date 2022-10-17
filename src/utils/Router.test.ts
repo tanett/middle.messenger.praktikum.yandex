@@ -1,4 +1,4 @@
-import Router from './Router'
+import Router, { BlockConstructable } from "./Router";
 import { expect } from 'chai';
 import sinon from 'sinon';
 import Block from './Block'
@@ -22,7 +22,9 @@ describe('Router', () => {
 
   const BlockMock = class {
     getContent = getContentFake;
-  } as unknown as Block;
+    dispatchComponentDidMount=sinon.fake(()=>{} )
+
+  } as unknown as BlockConstructable;
 
   it('use() should return Router instance', () => {
     const result = Router.use('/', BlockMock as any);
@@ -31,7 +33,7 @@ describe('Router', () => {
   });
 
   describe('.back()', () => {
-    
+
     it('should render a page on history back action', () => {
       Router
         .use('/', BlockMock as any)
